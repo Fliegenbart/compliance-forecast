@@ -1,155 +1,160 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>GMP Compliance Weather Forecast - Vercel Demo</title>
+    <title>GMP Compliance Weather Forecast - Demo</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <header class="topbar">
-      <div class="brand-lockup">
-        <div class="brand-mark" aria-hidden="true">GW</div>
-        <div>
-          <p class="eyebrow">Gruene Wald GmbH / static Vercel demo</p>
-          <h1>GMP Compliance Weather Forecast</h1>
-          <p class="subtitle">
-            Backlog age is not the same as GMP risk. This demo helps QA teams see which quality issues deserve human attention first.
-          </p>
-        </div>
-      </div>
-      <div class="model-card">
-        <span>Model version</span>
-        <strong id="modelVersion">rules-v0.1</strong>
-        <small>transparent rules, synthetic data</small>
-      </div>
-    </header>
-
     <main>
-      <section class="safety-strip" aria-label="Regulatory safety boundary">
-        <strong>Advisory decision support only.</strong>
-        <span>Human QA review required.</span>
-        <span>No batch release, CAPA approval, deviation closure, supplier qualification, or validation approval logic.</span>
+      <section class="hero" aria-label="Einführung">
+        <nav class="nav">
+          <div class="brand">
+            <div class="brand-mark" aria-hidden="true">GW</div>
+            <span>Grüne Wald GmbH</span>
+          </div>
+          <div class="nav-meta">
+            <span>Statische Vercel-Demo</span>
+            <strong id="modelVersion">rules-v0.1</strong>
+          </div>
+        </nav>
+
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Beratende GMP-Risikovorschau</p>
+            <h1>Compliance-Risiken früher sehen. Entscheidungen bleiben beim QA-Team.</h1>
+            <p class="lead">
+              Backlog-Alter ist nicht dasselbe wie GMP-Risiko. Diese Demo zeigt, welche Qualitätsthemen zuerst menschliche Aufmerksamkeit verdienen.
+            </p>
+          </div>
+
+          <aside class="forecast-glass" aria-label="Aktuelle Vorschau">
+            <div class="glass-topline">
+              <span>Compliance-Wetterindex</span>
+              <strong id="weatherIndex">0</strong>
+            </div>
+            <div class="mini-metrics">
+              <div>
+                <span>Datenreife</span>
+                <strong id="readinessScore">0</strong>
+              </div>
+              <div>
+                <span>Risikoscores</span>
+                <strong id="riskScoreCount">0</strong>
+              </div>
+              <div>
+                <span>Evidenzkarten</span>
+                <strong id="evidenceCardCount">0</strong>
+              </div>
+            </div>
+            <p>
+              Regelbasiert, transparent und ausschließlich mit synthetischen QMS-Daten.
+            </p>
+          </aside>
+        </div>
+
+        <section class="safety-strip" aria-label="Regulatorische Sicherheitsgrenze">
+          <strong>Nur beratende Entscheidungsunterstützung.</strong>
+          <span>Keine GMP-Entscheidung.</span>
+          <span>Human QA Review ist verpflichtend.</span>
+          <span>Keine Batchfreigabe, CAPA-Genehmigung, Deviation-Schließung oder Validierungsfreigabe.</span>
+        </section>
       </section>
 
-      <section class="workspace">
-        <aside class="rail">
-          <div class="rail-section">
-            <p class="rail-label">Demo path</p>
+      <section class="experience" aria-label="Demo Arbeitsfläche">
+        <aside class="story-rail">
+          <div>
+            <p class="section-kicker">Demo-Fokus</p>
             <div id="storyButtons" class="story-buttons"></div>
           </div>
 
-          <div class="rail-section">
-            <p class="rail-label">Forecast facts</p>
-            <div class="meta-list">
-              <div>
-                <span>Last generated</span>
-                <strong id="generatedAt">Loading</strong>
-              </div>
-              <div>
-                <span>As-of date</span>
-                <strong id="asOfDate">Loading</strong>
-              </div>
-              <div>
-                <span>Source records</span>
-                <strong id="sourceRecordCount">Loading</strong>
-              </div>
+          <div class="facts">
+            <p class="section-kicker">Forecast-Kontext</p>
+            <div class="fact-row">
+              <span>Generiert</span>
+              <strong id="generatedAt">Lädt</strong>
+            </div>
+            <div class="fact-row">
+              <span>Stichtag</span>
+              <strong id="asOfDate">Lädt</strong>
+            </div>
+            <div class="fact-row">
+              <span>Quelldaten</span>
+              <strong id="sourceRecordCount">Lädt</strong>
             </div>
           </div>
 
-          <div class="boundary-note">
-            <strong>Read-only preview</strong>
-            <p>No external calls. No real client data. Evidence is linked to synthetic source IDs.</p>
+          <div class="quiet-note">
+            <strong>Read-only-Prototyp</strong>
+            <p>Keine externen Calls. Keine echten Kundendaten. Jede Evidenz verweist auf synthetische Record-IDs.</p>
           </div>
         </aside>
 
-        <section class="main-panel">
-          <section class="metric-row" aria-label="Forecast summary">
-            <div class="metric metric-primary">
-              <span>Compliance Weather Index</span>
-              <strong id="weatherIndex">0</strong>
-              <small>Overall advisory signal</small>
-            </div>
-            <div class="metric">
-              <span>Data Readiness</span>
-              <strong id="readinessScore">0</strong>
-              <small>Quality of loaded sample data</small>
-            </div>
-            <div class="metric">
-              <span>Risk Scores</span>
-              <strong id="riskScoreCount">0</strong>
-              <small>Explainable rule outputs</small>
-            </div>
-            <div class="metric">
-              <span>Evidence Cards</span>
-              <strong id="evidenceCardCount">0</strong>
-              <small>Source-linked review notes</small>
-            </div>
-          </section>
-
-          <section class="story-panel">
+        <section class="content">
+          <section class="story-focus">
             <div>
-              <p class="eyebrow">Selected advisory scenario</p>
-              <h2 id="storyTitle">Loading demo story</h2>
+              <p class="section-kicker">Ausgewähltes Signal</p>
+              <h2 id="storyTitle">Demo wird geladen</h2>
               <p id="storyInterpretation"></p>
             </div>
-            <div class="review-action">
-              <span>Suggested human review</span>
+            <div class="human-review">
+              <span>Empfohlene menschliche Prüfung</span>
               <strong id="storyReviewAction"></strong>
             </div>
           </section>
 
-          <section class="grid-two">
-            <div class="panel panel-risks">
-              <div class="panel-head">
+          <section class="signal-layout">
+            <div class="surface surface-large">
+              <div class="surface-head">
                 <div>
-                  <h2>Priority Review List</h2>
-                  <p>Highest advisory signals for the selected demo story.</p>
+                  <p class="section-kicker">Priorisierung</p>
+                  <h3>Worauf QA zuerst schauen sollte</h3>
                 </div>
-                <span>2-8 week horizon</span>
+                <span>2-8 Wochen</span>
               </div>
               <div id="topRisks" class="risk-list"></div>
             </div>
 
-            <div class="panel">
-              <div class="panel-head">
+            <div class="surface">
+              <div class="surface-head">
                 <div>
-                  <h2>Weather Distribution</h2>
-                  <p>Risk bands from the active transparent rule set.</p>
+                  <p class="section-kicker">Wetterlage</p>
+                  <h3>Risikobänder</h3>
                 </div>
-                <span>rules-v0.1</span>
+                <span>transparent</span>
               </div>
               <div id="bandCounts" class="band-stack"></div>
 
-              <div class="panel-head lower">
+              <div class="surface-head divider">
                 <div>
-                  <h2>Department / Process Map</h2>
-                  <p>Where the strongest review signals cluster.</p>
+                  <p class="section-kicker">Cluster</p>
+                  <h3>Bereich / Prozess</h3>
                 </div>
               </div>
               <div id="heatmap" class="heatmap-list"></div>
             </div>
           </section>
 
-          <section class="panel">
-            <div class="panel-head">
+          <section class="surface">
+            <div class="surface-head">
               <div>
-                <h2>Evidence Cards</h2>
-                <p>Plain-language rationale, visible drivers, and source record IDs.</p>
+                <p class="section-kicker">Evidenz</p>
+                <h3>Warum dieses Signal sichtbar ist</h3>
               </div>
-              <span>human QA review</span>
+              <span>mit Record-IDs</span>
             </div>
             <div id="evidenceCards" class="evidence-list"></div>
           </section>
 
-          <section class="panel compact">
-            <div class="panel-head">
+          <section class="surface">
+            <div class="surface-head">
               <div>
-                <h2>Data Quality Notes</h2>
-                <p>Issues to review before relying on any advisory signal.</p>
+                <p class="section-kicker">Datenqualität</p>
+                <h3>Was der Data Owner prüfen sollte</h3>
               </div>
-              <span>data owner review</span>
+              <span>vor Nutzung prüfen</span>
             </div>
             <div id="qualityIssues" class="quality-list"></div>
           </section>
