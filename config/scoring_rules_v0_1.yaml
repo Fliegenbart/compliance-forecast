@@ -1,0 +1,154 @@
+model_version: rules-v0.1
+
+risk_bands:
+  score_min: 0
+  score_max: 100
+  clear_max: 29
+  watch_max: 49
+  advisory_max: 69
+  storm_max: 84
+  severe_storm_min: 85
+
+deviation_recurrence:
+  severity_minor: 8
+  severity_medium: 14
+  severity_major: 22
+  severity_critical: 32
+  integer_severity_multiplier: 6
+  age_14_day_threshold: 14
+  age_30_day_threshold: 30
+  age_60_day_threshold: 60
+  age_at_least_14_days: 4
+  age_at_least_30_days: 7
+  age_at_least_60_days: 12
+  due_soon_7_day_threshold: 7
+  due_soon_14_day_threshold: 14
+  due_overdue: 25
+  due_within_7_days: 16
+  due_within_14_days: 9
+  process_recurrence_lookback_days: 90
+  same_process_per_record: 5
+  same_process_max: 16
+  equipment_recurrence_lookback_days: 90
+  same_equipment_per_record: 7
+  same_equipment_max: 18
+  root_cause_recurrence_lookback_days: 180
+  same_root_cause_per_record: 6
+  same_root_cause_max: 18
+  linked_capa_missing: 12
+  no_capa_id_present: 8
+  linked_capa_overdue: 16
+  owner_workload_10_item_threshold: 10
+  owner_workload_5_item_threshold: 5
+  owner_workload_3_item_threshold: 3
+  owner_workload_at_least_10: 14
+  owner_workload_at_least_5: 8
+  owner_workload_at_least_3: 4
+  department_recent_window_days: 30
+  department_prior_window_start_days: 31
+  department_prior_window_end_days: 60
+  department_acceleration_per_record: 3
+  department_acceleration_max: 12
+
+capa_failure:
+  due_soon_7_day_threshold: 7
+  due_soon_14_day_threshold: 14
+  due_overdue: 25
+  due_within_7_days: 16
+  due_within_14_days: 9
+  linked_deviation_per_record: 5
+  linked_deviation_max: 15
+  repeated_root_cause_per_record: 6
+  repeated_root_cause_max: 18
+  retraining_only_action: 15
+  vague_action_description: 10
+  effectiveness_check_missing: 14
+  effectiveness_check_overdue: 14
+  owner_workload_10_item_threshold: 10
+  owner_workload_5_item_threshold: 5
+  owner_workload_3_item_threshold: 3
+  owner_workload_at_least_10: 14
+  owner_workload_at_least_5: 8
+  owner_workload_at_least_3: 4
+  severity_minor: 8
+  severity_medium: 14
+  severity_major: 22
+  severity_critical: 32
+  integer_severity_multiplier: 6
+  related_audit_finding_max: 16
+  related_audit_finding_severity_divisor: 2
+  vague_description_word_threshold: 6
+
+training_drift:
+  overdue_training_per_record: 5
+  overdue_training_max: 30
+  sop_recent_window_days: 60
+  sop_recently_revised: 14
+  due_soon_day_threshold: 14
+  due_soon_per_record: 4
+  due_soon_max: 18
+  open_deviation_per_record: 4
+  open_deviation_max: 18
+  training_impacting_change_per_record: 5
+  training_impacting_change_max: 16
+
+audit_readiness_gap:
+  severity_rank_minor: 1
+  severity_rank_medium: 2
+  severity_rank_major: 3
+  severity_rank_critical: 4
+  major_or_critical_min_rank: 3
+  open_major_critical_deviation_per_record: 8
+  open_major_critical_deviation_max: 24
+  overdue_capa_per_record: 8
+  overdue_capa_max: 22
+  open_audit_finding_per_record: 6
+  open_audit_finding_max: 18
+  sop_recent_window_days: 60
+  incomplete_training_per_record: 3
+  incomplete_training_max: 18
+  validation_change_per_record: 6
+  validation_change_max: 20
+
+backlog_pressure:
+  open_deviation_per_record: 4
+  open_deviation_max: 20
+  open_capa_per_record: 5
+  open_capa_max: 20
+  overdue_item_per_record: 6
+  overdue_item_max: 24
+  average_age_30_day_threshold: 30
+  average_age_60_day_threshold: 60
+  average_age_at_least_30_days: 9
+  average_age_at_least_60_days: 16
+  recent_window_days: 30
+  prior_window_start_days: 31
+  prior_window_end_days: 60
+  intake_increase_per_record: 4
+  intake_increase_max: 16
+
+confidence_penalties:
+  confidence_min_output: 0
+  confidence_max_output: 1
+  missing_field_penalty: 0.08
+  min_confidence: 0.35
+  deviation_recurrence_base: 0.90
+  capa_failure_base: 0.88
+  training_drift_base: 0.86
+  audit_readiness_gap_base: 0.84
+  backlog_pressure_base: 0.82
+
+legacy_process_area:
+  high_severity_min: 4
+  process_volume_per_open_record: 2.5
+  process_volume_max: 10
+  process_overdue_per_record: 5
+  process_overdue_max: 15
+  qms_rpn_denominator: 125
+  qms_rpn_scale: 70
+  open_status_signal: 10
+  overdue_signal: 15
+  record_score_max: 100
+  risk_level_medium_min: 35
+  risk_level_high_min: 60
+  risk_level_critical_min: 80

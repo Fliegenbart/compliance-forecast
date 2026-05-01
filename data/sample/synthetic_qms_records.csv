@@ -1,0 +1,11 @@
+record_id,record_type,site,process_area,severity,occurrence,detection,status,opened_date,due_date,description
+DEV-001,deviation,Site Alpha,sterile manufacturing,5,4,4,open,2026-04-01,2026-04-18,Synthetic aseptic intervention documentation delay.
+CAPA-002,capa,Site Alpha,sterile manufacturing,4,3,3,in_progress,2026-03-22,2026-05-15,Synthetic CAPA for environmental monitoring trend review.
+AUD-003,audit_observation,Site Beta,quality control,4,3,4,open,2026-04-05,2026-04-20,Synthetic audit observation for laboratory data review timeliness.
+DEV-004,deviation,Site Beta,quality control,3,3,3,open,2026-04-10,2026-05-05,Synthetic deviation for delayed OOS investigation documentation.
+CC-005,change_control,Site Gamma,packaging,2,2,2,closed,2026-03-01,2026-03-28,Synthetic packaging artwork change completed.
+TRN-006,training_event,Site Alpha,warehouse,3,2,3,in_progress,2026-04-08,2026-05-03,Synthetic training completion follow-up for warehouse SOP.
+CMP-007,complaint,Site Gamma,packaging,4,2,3,open,2026-04-12,2026-05-10,Synthetic complaint trend related to label readability.
+VAL-008,change_control,Site Alpha,validation,4,3,2,in_progress,2026-03-25,2026-04-22,Synthetic validation protocol change pending QA review.
+DEV-009,deviation,Site Alpha,validation,3,2,3,closed,2026-02-15,2026-03-10,Synthetic validation deviation closed after investigation.
+AUD-010,audit_observation,Site Beta,warehouse,2,3,2,open,2026-04-15,,Synthetic warehouse audit observation without assigned due date.

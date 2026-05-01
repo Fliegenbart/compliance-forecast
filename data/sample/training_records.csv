@@ -1,0 +1,401 @@
+training_id,employee_role,department,sop_id,assigned_date,due_date,completion_date,status
+TRN-001,Operator,Packaging,SOP-023,2026-04-28,2026-05-17,,in_progress
+TRN-002,QA Specialist,Packaging,SOP-023,2026-03-27,2026-04-26,,overdue
+TRN-003,QA Specialist,Packaging,SOP-023,2026-04-02,2026-05-02,,in_progress
+TRN-004,QA Specialist,Packaging,SOP-023,2026-04-10,2026-05-03,,assigned
+TRN-005,Packaging Technician,Packaging,SOP-023,2026-04-04,2026-04-27,,in_progress
+TRN-006,QA Specialist,Packaging,SOP-023,2026-04-02,2026-04-22,,in_progress
+TRN-007,QC Analyst,Packaging,SOP-023,2026-03-31,2026-04-21,,assigned
+TRN-008,QC Analyst,Packaging,SOP-023,2026-03-31,2026-04-14,,assigned
+TRN-009,QC Analyst,Warehouse,SOP-009,2026-04-14,2026-05-01,,overdue
+TRN-010,QA Specialist,Warehouse,SOP-010,2026-04-14,2026-05-10,,overdue
+TRN-011,QA Specialist,Packaging,SOP-011,2026-04-07,2026-05-03,,assigned
+TRN-012,Warehouse Associate,Packaging,SOP-012,2026-03-30,2026-04-21,,overdue
+TRN-013,Warehouse Associate,Packaging,SOP-013,2026-04-29,2026-05-17,,assigned
+TRN-014,QC Analyst,QC Lab,SOP-014,2026-04-11,2026-05-09,,assigned
+TRN-015,QC Analyst,Production,SOP-015,2026-04-23,2026-05-14,,overdue
+TRN-016,Operator,QA Operations,SOP-016,2026-04-19,2026-05-09,,overdue
+TRN-017,Engineer,QC Lab,SOP-017,2026-04-25,2026-05-22,,assigned
+TRN-018,Engineer,Production,SOP-018,2026-04-04,2026-05-02,,in_progress
+TRN-019,Packaging Technician,Warehouse,SOP-019,2026-03-26,2026-04-12,,overdue
+TRN-020,Engineer,Packaging,SOP-020,2026-03-30,2026-04-14,,assigned
+TRN-021,Packaging Technician,Warehouse,SOP-023,2026-03-29,2026-04-20,,assigned
+TRN-022,Operator,Engineering,SOP-001,2026-03-28,2026-04-12,,assigned
+TRN-023,Warehouse Associate,QA Operations,SOP-002,2026-04-28,2026-05-20,,assigned
+TRN-024,Engineer,Packaging,SOP-003,2026-04-02,2026-05-02,,in_progress
+TRN-025,Operator,Production,SOP-004,2026-04-07,2026-04-23,,in_progress
+TRN-026,Packaging Technician,Production,SOP-005,2026-04-25,2026-05-19,,in_progress
+TRN-027,Warehouse Associate,QC Lab,SOP-006,2026-03-28,2026-04-25,,assigned
+TRN-028,QC Analyst,Packaging,SOP-007,2026-04-09,2026-05-03,,overdue
+TRN-029,Packaging Technician,Packaging,SOP-008,2026-04-15,2026-05-14,,overdue
+TRN-030,Operator,Production,SOP-009,2026-04-10,2026-05-03,,overdue
+TRN-031,Packaging Technician,QA Operations,SOP-010,2026-03-29,2026-04-22,,overdue
+TRN-032,QC Analyst,Packaging,SOP-011,2026-03-29,2026-04-23,,overdue
+TRN-033,QA Specialist,Production,SOP-012,2026-04-18,2026-05-18,,in_progress
+TRN-034,QA Specialist,QC Lab,SOP-013,2026-03-31,2026-04-27,,overdue
+TRN-035,QA Specialist,QC Lab,SOP-014,2026-04-20,2026-05-04,,in_progress
+TRN-036,QA Specialist,Packaging,SOP-015,2026-04-16,2026-05-10,,in_progress
+TRN-037,Warehouse Associate,Engineering,SOP-016,2026-04-29,2026-05-14,,assigned
+TRN-038,QC Analyst,Packaging,SOP-017,2026-04-24,2026-05-15,,assigned
+TRN-039,QA Specialist,Packaging,SOP-018,2026-04-24,2026-05-20,,in_progress
+TRN-040,Engineer,Packaging,SOP-019,2026-03-27,2026-04-16,,in_progress
+TRN-041,QC Analyst,Packaging,SOP-020,2026-03-27,2026-04-13,,overdue
+TRN-042,QC Analyst,Production,SOP-023,2026-03-30,2026-04-29,,in_progress
+TRN-043,QA Specialist,QA Operations,SOP-001,2026-03-31,2026-04-18,,overdue
+TRN-044,QC Analyst,QA Operations,SOP-002,2026-04-03,2026-04-24,,in_progress
+TRN-045,Operator,Production,SOP-003,2026-04-06,2026-04-25,,in_progress
+TRN-046,QC Analyst,QA Operations,SOP-004,2026-04-22,2026-05-13,,overdue
+TRN-047,Operator,Packaging,SOP-005,2026-04-16,2026-05-16,,in_progress
+TRN-048,Engineer,Engineering,SOP-006,2026-04-24,2026-05-17,,overdue
+TRN-049,QA Specialist,QA Operations,SOP-007,2026-03-29,2026-04-16,,in_progress
+TRN-050,QC Analyst,QC Lab,SOP-008,2026-03-27,2026-04-12,,overdue
+TRN-051,QA Specialist,Engineering,SOP-009,2026-04-25,2026-05-21,,assigned
+TRN-052,Packaging Technician,Production,SOP-010,2026-04-11,2026-05-02,,assigned
+TRN-053,QA Specialist,Warehouse,SOP-011,2026-04-28,2026-05-13,,in_progress
+TRN-054,QC Analyst,Engineering,SOP-012,2026-04-06,2026-04-26,,overdue
+TRN-055,QC Analyst,Production,SOP-013,2026-04-13,2026-05-04,,overdue
+TRN-056,Operator,Production,SOP-014,2026-04-12,2026-05-07,,in_progress
+TRN-057,Engineer,Production,SOP-015,2026-04-21,2026-05-18,,overdue
+TRN-058,QC Analyst,Production,SOP-016,2026-04-26,2026-05-19,,assigned
+TRN-059,QC Analyst,Engineering,SOP-017,2026-04-06,2026-05-03,,assigned
+TRN-060,QA Specialist,QA Operations,SOP-018,2026-03-30,2026-04-21,,assigned
+TRN-061,Operator,Packaging,SOP-019,2026-04-27,2026-05-11,,in_progress
+TRN-062,Engineer,QA Operations,SOP-020,2026-03-26,2026-04-19,,overdue
+TRN-063,QC Analyst,Production,SOP-023,2026-04-19,2026-05-19,,in_progress
+TRN-064,Operator,Production,SOP-001,2026-03-26,2026-04-11,,overdue
+TRN-065,QC Analyst,QA Operations,SOP-002,2026-04-15,2026-05-04,,overdue
+TRN-066,Warehouse Associate,QC Lab,SOP-003,2026-04-10,2026-05-06,,overdue
+TRN-067,Warehouse Associate,QA Operations,SOP-004,2026-03-26,2026-04-25,,overdue
+TRN-068,QA Specialist,Engineering,SOP-005,2026-04-16,2026-04-30,,overdue
+TRN-069,Engineer,QA Operations,SOP-006,2026-04-28,2026-05-28,,assigned
+TRN-070,QA Specialist,Engineering,SOP-007,2026-04-11,2026-05-01,,assigned
+TRN-071,QC Analyst,Production,SOP-008,2026-04-20,2026-05-19,2026-04-28,completed
+TRN-072,Warehouse Associate,Production,SOP-009,2026-03-31,2026-04-30,2026-04-14,completed
+TRN-073,Engineer,QA Operations,SOP-010,2026-04-08,2026-05-06,2026-04-22,completed
+TRN-074,Warehouse Associate,QA Operations,SOP-011,2026-04-20,2026-05-15,2026-04-24,completed
+TRN-075,QA Specialist,Warehouse,SOP-012,2026-04-13,2026-05-11,2026-04-17,completed
+TRN-076,QA Specialist,Engineering,SOP-013,2026-03-30,2026-04-19,2026-04-07,completed
+TRN-077,Operator,Engineering,SOP-014,2026-04-15,2026-05-10,2026-04-28,completed
+TRN-078,QC Analyst,Warehouse,SOP-015,2026-04-10,2026-05-02,2026-04-16,completed
+TRN-079,QA Specialist,QA Operations,SOP-016,2026-03-26,2026-04-23,2026-03-29,completed
+TRN-080,Packaging Technician,Engineering,SOP-017,2026-04-21,2026-05-18,2026-05-08,completed
+TRN-081,QC Analyst,QA Operations,SOP-018,2026-04-16,2026-05-07,2026-05-03,completed
+TRN-082,Packaging Technician,Production,SOP-019,2026-04-12,2026-05-07,2026-04-16,completed
+TRN-083,Engineer,Packaging,SOP-020,2026-04-15,2026-05-03,2026-04-29,completed
+TRN-084,Operator,Production,SOP-023,2026-04-21,2026-05-07,2026-04-24,completed
+TRN-085,Packaging Technician,QA Operations,SOP-001,2026-04-10,2026-05-06,2026-04-11,completed
+TRN-086,QA Specialist,Engineering,SOP-002,2026-03-29,2026-04-25,2026-04-05,completed
+TRN-087,Operator,QA Operations,SOP-003,2026-04-03,2026-04-24,2026-04-17,completed
+TRN-088,QA Specialist,Warehouse,SOP-004,2026-04-20,2026-05-04,2026-05-08,completed
+TRN-089,Engineer,QC Lab,SOP-005,2026-04-24,2026-05-24,2026-05-07,completed
+TRN-090,QA Specialist,Warehouse,SOP-006,2026-04-29,2026-05-16,2026-05-13,completed
+TRN-091,Warehouse Associate,QA Operations,SOP-007,2026-04-22,2026-05-14,2026-04-29,completed
+TRN-092,QA Specialist,Packaging,SOP-008,2026-04-21,2026-05-20,2026-05-06,completed
+TRN-093,QA Specialist,Production,SOP-009,2026-04-15,2026-05-06,2026-04-16,completed
+TRN-094,Operator,QA Operations,SOP-010,2026-04-07,2026-05-02,2026-04-15,completed
+TRN-095,Packaging Technician,QA Operations,SOP-011,2026-04-18,2026-05-04,2026-04-27,completed
+TRN-096,QC Analyst,Packaging,SOP-012,2026-04-24,2026-05-10,2026-05-06,completed
+TRN-097,Packaging Technician,QA Operations,SOP-013,2026-04-11,2026-05-09,2026-04-15,completed
+TRN-098,Packaging Technician,QC Lab,SOP-014,2026-03-31,2026-04-26,2026-04-15,completed
+TRN-099,Operator,Warehouse,SOP-015,2026-04-17,2026-05-02,2026-05-03,completed
+TRN-100,Engineer,Packaging,SOP-016,2026-04-15,2026-05-14,2026-05-02,completed
+TRN-101,Packaging Technician,Production,SOP-017,2026-04-15,2026-05-04,2026-04-25,completed
+TRN-102,Packaging Technician,Packaging,SOP-018,2026-03-28,2026-04-26,2026-04-03,completed
+TRN-103,Operator,Packaging,SOP-019,2026-04-15,2026-05-15,2026-04-19,completed
+TRN-104,Engineer,Packaging,SOP-020,2026-04-14,2026-05-07,2026-04-18,completed
+TRN-105,Engineer,Engineering,SOP-023,2026-03-27,2026-04-13,2026-03-31,completed
+TRN-106,Warehouse Associate,QC Lab,SOP-001,2026-04-25,2026-05-15,2026-05-12,completed
+TRN-107,QC Analyst,QC Lab,SOP-002,2026-04-02,2026-05-01,2026-04-13,completed
+TRN-108,Operator,Warehouse,SOP-003,2026-04-26,2026-05-14,2026-05-08,completed
+TRN-109,Operator,Packaging,SOP-004,2026-04-24,2026-05-21,2026-05-07,completed
+TRN-110,QA Specialist,Production,SOP-005,2026-04-04,2026-04-22,2026-04-08,completed
+TRN-111,QA Specialist,QA Operations,SOP-006,2026-04-04,2026-04-20,2026-04-17,completed
+TRN-112,Warehouse Associate,Engineering,SOP-007,2026-04-06,2026-04-21,2026-04-09,completed
+TRN-113,Engineer,Engineering,SOP-008,2026-04-20,2026-05-09,2026-04-28,completed
+TRN-114,Operator,Warehouse,SOP-009,2026-04-21,2026-05-17,2026-05-05,completed
+TRN-115,Packaging Technician,Production,SOP-010,2026-04-22,2026-05-08,2026-05-03,completed
+TRN-116,QC Analyst,Production,SOP-011,2026-04-10,2026-05-06,2026-04-23,completed
+TRN-117,Engineer,Warehouse,SOP-012,2026-04-02,2026-04-27,2026-04-03,completed
+TRN-118,Engineer,Production,SOP-013,2026-04-18,2026-05-13,2026-04-25,completed
+TRN-119,Engineer,Engineering,SOP-014,2026-04-20,2026-05-15,2026-04-28,completed
+TRN-120,Engineer,QA Operations,SOP-015,2026-04-21,2026-05-16,2026-05-03,completed
+TRN-121,QA Specialist,Warehouse,SOP-016,2026-04-27,2026-05-19,2026-05-06,completed
+TRN-122,Operator,QA Operations,SOP-017,2026-04-20,2026-05-10,2026-05-08,completed
+TRN-123,Packaging Technician,Engineering,SOP-018,2026-04-23,2026-05-19,2026-05-07,completed
+TRN-124,QA Specialist,Production,SOP-019,2026-03-28,2026-04-19,2026-04-13,completed
+TRN-125,Packaging Technician,QC Lab,SOP-020,2026-04-27,2026-05-26,2026-05-02,completed
+TRN-126,QA Specialist,Warehouse,SOP-023,2026-04-09,2026-04-28,2026-04-11,completed
+TRN-127,Warehouse Associate,Engineering,SOP-001,2026-03-29,2026-04-19,2026-04-11,completed
+TRN-128,Operator,Packaging,SOP-002,2026-04-12,2026-05-09,2026-04-17,completed
+TRN-129,Warehouse Associate,Production,SOP-003,2026-04-23,2026-05-09,2026-04-25,completed
+TRN-130,QA Specialist,Engineering,SOP-004,2026-03-30,2026-04-24,2026-04-13,completed
+TRN-131,QA Specialist,Production,SOP-005,2026-04-25,2026-05-23,2026-05-13,completed
+TRN-132,Packaging Technician,Production,SOP-006,2026-04-17,2026-05-13,2026-04-21,completed
+TRN-133,Packaging Technician,QC Lab,SOP-007,2026-04-23,2026-05-21,2026-04-29,completed
+TRN-134,QA Specialist,Warehouse,SOP-008,2026-04-25,2026-05-13,2026-05-08,completed
+TRN-135,Packaging Technician,Production,SOP-009,2026-04-01,2026-04-26,2026-04-12,completed
+TRN-136,QA Specialist,QC Lab,SOP-010,2026-04-03,2026-04-24,2026-04-07,completed
+TRN-137,QA Specialist,Packaging,SOP-011,2026-04-17,2026-05-12,2026-04-23,completed
+TRN-138,Operator,QA Operations,SOP-012,2026-04-20,2026-05-17,2026-04-29,completed
+TRN-139,Operator,QA Operations,SOP-013,2026-04-02,2026-04-20,2026-04-16,completed
+TRN-140,Engineer,Engineering,SOP-014,2026-04-25,2026-05-14,2026-05-03,completed
+TRN-141,QC Analyst,QC Lab,SOP-012,2025-11-24,2025-12-20,2025-11-28,completed
+TRN-142,Operator,QA Operations,SOP-085,2025-06-25,2025-07-20,2025-07-18,completed
+TRN-143,Packaging Technician,Warehouse,SOP-045,2026-02-24,2026-03-10,,overdue
+TRN-144,Warehouse Associate,QC Lab,SOP-057,2025-10-27,2025-11-10,2025-11-18,completed
+TRN-145,Packaging Technician,Production,SOP-032,2025-10-17,2025-11-02,,assigned
+TRN-146,Engineer,QA Operations,SOP-043,2026-02-07,2026-03-01,2026-02-09,completed
+TRN-147,Engineer,Warehouse,SOP-095,2025-12-24,2026-01-15,2026-01-02,completed
+TRN-148,Warehouse Associate,QC Lab,SOP-078,2025-10-08,2025-11-03,2025-10-28,completed
+TRN-149,Warehouse Associate,Production,SOP-022,2026-02-07,2026-03-02,2026-03-04,completed
+TRN-150,Operator,Warehouse,SOP-098,2025-09-11,2025-10-05,2025-09-13,completed
+TRN-151,Operator,QA Operations,SOP-051,2025-06-24,2025-07-22,2025-07-02,completed
+TRN-152,QC Analyst,QC Lab,SOP-017,2025-12-17,2026-01-16,2025-12-31,completed
+TRN-153,Warehouse Associate,Warehouse,SOP-066,2025-12-02,2025-12-22,,overdue
+TRN-154,Packaging Technician,QC Lab,SOP-001,2025-08-23,2025-09-07,2025-09-03,completed
+TRN-155,Engineer,QA Operations,SOP-004,2025-08-24,2025-09-23,,in_progress
+TRN-156,QC Analyst,Production,SOP-039,2025-07-19,2025-08-16,2025-08-13,completed
+TRN-157,Engineer,QA Operations,SOP-001,2025-11-02,2025-12-02,2025-11-09,completed
+TRN-158,QC Analyst,Packaging,SOP-082,2026-02-20,2026-03-21,2026-03-13,completed
+TRN-159,Packaging Technician,QC Lab,SOP-056,2025-11-20,2025-12-10,2025-12-15,completed
+TRN-160,QC Analyst,Production,SOP-061,2025-08-08,2025-09-06,2025-09-02,completed
+TRN-161,Operator,Production,SOP-018,2026-02-15,2026-03-14,,assigned
+TRN-162,QC Analyst,Warehouse,SOP-074,2026-02-17,2026-03-19,2026-03-02,completed
+TRN-163,QC Analyst,QC Lab,SOP-056,2025-07-09,2025-08-06,2025-07-20,completed
+TRN-164,Engineer,Packaging,SOP-078,2025-12-03,2025-12-29,,assigned
+TRN-165,QA Specialist,Production,SOP-077,2026-03-03,2026-03-27,,assigned
+TRN-166,QC Analyst,Packaging,SOP-075,2025-07-19,2025-08-07,2025-08-12,completed
+TRN-167,QA Specialist,QA Operations,SOP-019,2025-11-15,2025-12-14,2025-11-18,completed
+TRN-168,Warehouse Associate,Warehouse,SOP-036,2025-10-09,2025-10-26,2025-10-15,completed
+TRN-169,Warehouse Associate,Packaging,SOP-083,2025-11-24,2025-12-09,2025-11-29,completed
+TRN-170,Packaging Technician,Packaging,SOP-053,2025-08-28,2025-09-25,,in_progress
+TRN-171,Operator,QA Operations,SOP-005,2025-07-29,2025-08-14,2025-08-15,completed
+TRN-172,Packaging Technician,Warehouse,SOP-044,2025-11-23,2025-12-19,2025-11-28,completed
+TRN-173,Warehouse Associate,Warehouse,SOP-057,2026-01-14,2026-02-12,2026-02-06,completed
+TRN-174,Packaging Technician,Packaging,SOP-075,2025-12-11,2026-01-05,,assigned
+TRN-175,Engineer,QA Operations,SOP-030,2025-11-17,2025-12-11,2025-11-21,completed
+TRN-176,Packaging Technician,QA Operations,SOP-022,2025-10-02,2025-10-21,,assigned
+TRN-177,Packaging Technician,Production,SOP-086,2025-10-22,2025-11-10,2025-11-10,completed
+TRN-178,Engineer,Production,SOP-072,2026-01-29,2026-02-22,2026-02-13,completed
+TRN-179,Warehouse Associate,Engineering,SOP-093,2026-02-24,2026-03-13,2026-03-12,completed
+TRN-180,Packaging Technician,Production,SOP-023,2026-01-12,2026-01-31,2026-01-19,completed
+TRN-181,QA Specialist,Engineering,SOP-100,2025-10-26,2025-11-19,,assigned
+TRN-182,Packaging Technician,Engineering,SOP-060,2025-07-21,2025-08-06,2025-07-22,completed
+TRN-183,QC Analyst,Engineering,SOP-038,2025-09-05,2025-10-03,2025-09-07,completed
+TRN-184,QC Analyst,QA Operations,SOP-024,2025-11-07,2025-11-28,2025-11-13,completed
+TRN-185,Warehouse Associate,Packaging,SOP-093,2025-07-25,2025-08-24,2025-08-01,completed
+TRN-186,QA Specialist,Packaging,SOP-003,2025-08-29,2025-09-27,2025-09-11,completed
+TRN-187,QC Analyst,Packaging,SOP-001,2025-09-27,2025-10-21,2025-10-18,completed
+TRN-188,QA Specialist,Production,SOP-012,2025-10-02,2025-10-20,2025-10-23,completed
+TRN-189,QA Specialist,Engineering,SOP-022,2025-12-16,2025-12-30,,overdue
+TRN-190,QC Analyst,Warehouse,SOP-020,2025-06-15,2025-07-06,2025-06-29,completed
+TRN-191,Engineer,QC Lab,SOP-033,2025-12-12,2026-01-07,2025-12-27,completed
+TRN-192,QA Specialist,Warehouse,SOP-039,2026-02-14,2026-03-05,2026-02-18,completed
+TRN-193,Packaging Technician,Production,SOP-025,2026-02-21,2026-03-20,2026-02-22,completed
+TRN-194,Packaging Technician,Warehouse,SOP-016,2025-08-14,2025-09-01,2025-08-18,completed
+TRN-195,QA Specialist,Production,SOP-009,2025-11-27,2025-12-23,2025-12-13,completed
+TRN-196,QA Specialist,QA Operations,SOP-076,2025-11-03,2025-11-22,,in_progress
+TRN-197,QA Specialist,Production,SOP-032,2025-11-04,2025-11-25,,overdue
+TRN-198,Warehouse Associate,Warehouse,SOP-068,2025-07-03,2025-07-29,2025-07-16,completed
+TRN-199,Operator,QC Lab,SOP-072,2025-10-05,2025-10-25,2025-10-20,completed
+TRN-200,Operator,Engineering,SOP-096,2025-12-04,2025-12-29,,in_progress
+TRN-201,Warehouse Associate,Production,SOP-025,2025-08-17,2025-09-03,2025-09-10,completed
+TRN-202,Engineer,Production,SOP-081,2025-12-11,2026-01-02,2025-12-14,completed
+TRN-203,Operator,Warehouse,SOP-071,2026-01-28,2026-02-13,2026-02-21,completed
+TRN-204,Warehouse Associate,Engineering,SOP-099,2026-02-27,2026-03-22,2026-03-15,completed
+TRN-205,Packaging Technician,QC Lab,SOP-097,2025-10-20,2025-11-06,2025-11-06,completed
+TRN-206,Warehouse Associate,QC Lab,SOP-044,2025-12-10,2025-12-28,,overdue
+TRN-207,Operator,Warehouse,SOP-069,2025-12-18,2026-01-08,,assigned
+TRN-208,Packaging Technician,QA Operations,SOP-022,2025-11-01,2025-11-25,2025-11-08,completed
+TRN-209,QA Specialist,QC Lab,SOP-032,2025-07-16,2025-08-12,2025-08-03,completed
+TRN-210,QC Analyst,Production,SOP-052,2025-07-01,2025-07-31,2025-07-02,completed
+TRN-211,Engineer,Warehouse,SOP-032,2025-09-16,2025-10-16,2025-10-04,completed
+TRN-212,Packaging Technician,QA Operations,SOP-060,2026-03-10,2026-04-01,2026-03-15,completed
+TRN-213,QA Specialist,Production,SOP-095,2025-11-19,2025-12-10,2025-12-06,completed
+TRN-214,QA Specialist,Warehouse,SOP-013,2025-07-21,2025-08-04,2025-08-03,completed
+TRN-215,Engineer,Warehouse,SOP-053,2025-09-10,2025-10-08,2025-10-01,completed
+TRN-216,QA Specialist,Packaging,SOP-072,2025-09-10,2025-09-30,2025-09-23,completed
+TRN-217,Packaging Technician,QA Operations,SOP-082,2026-01-02,2026-01-18,,in_progress
+TRN-218,QC Analyst,QC Lab,SOP-061,2025-07-14,2025-08-06,,in_progress
+TRN-219,Operator,QA Operations,SOP-025,2025-12-27,2026-01-21,2026-01-09,completed
+TRN-220,Operator,QA Operations,SOP-039,2025-08-13,2025-09-10,2025-08-24,completed
+TRN-221,Engineer,QC Lab,SOP-068,2026-02-28,2026-03-26,2026-03-06,completed
+TRN-222,Packaging Technician,Warehouse,SOP-090,2025-11-24,2025-12-10,2025-12-19,completed
+TRN-223,QA Specialist,Warehouse,SOP-008,2025-12-07,2026-01-04,2025-12-12,completed
+TRN-224,Warehouse Associate,Engineering,SOP-082,2025-07-07,2025-08-05,2025-07-11,completed
+TRN-225,Operator,Warehouse,SOP-058,2025-10-23,2025-11-15,2025-10-29,completed
+TRN-226,Packaging Technician,QA Operations,SOP-009,2025-10-27,2025-11-20,2025-11-03,completed
+TRN-227,Engineer,QC Lab,SOP-090,2026-01-22,2026-02-18,2026-01-25,completed
+TRN-228,Engineer,Packaging,SOP-098,2025-10-12,2025-11-05,2025-11-06,completed
+TRN-229,Packaging Technician,Production,SOP-081,2025-12-20,2026-01-15,2026-01-06,completed
+TRN-230,Engineer,Packaging,SOP-038,2025-06-19,2025-07-12,2025-06-21,completed
+TRN-231,Engineer,Production,SOP-067,2025-12-08,2025-12-22,2025-12-30,completed
+TRN-232,Warehouse Associate,QA Operations,SOP-048,2025-10-07,2025-10-28,2025-10-19,completed
+TRN-233,Operator,QA Operations,SOP-030,2025-07-07,2025-07-31,,in_progress
+TRN-234,QC Analyst,QA Operations,SOP-020,2026-02-20,2026-03-08,2026-03-04,completed
+TRN-235,Operator,QC Lab,SOP-075,2025-07-21,2025-08-07,2025-07-29,completed
+TRN-236,QC Analyst,Warehouse,SOP-050,2026-01-07,2026-01-24,,assigned
+TRN-237,Packaging Technician,Engineering,SOP-049,2025-08-28,2025-09-25,2025-08-30,completed
+TRN-238,Warehouse Associate,Production,SOP-065,2025-08-20,2025-09-09,2025-08-31,completed
+TRN-239,QA Specialist,QA Operations,SOP-058,2025-09-14,2025-10-10,2025-10-02,completed
+TRN-240,Packaging Technician,QC Lab,SOP-039,2025-09-10,2025-09-25,2025-09-20,completed
+TRN-241,Engineer,Engineering,SOP-083,2026-01-25,2026-02-14,,in_progress
+TRN-242,Operator,Production,SOP-001,2026-02-19,2026-03-07,,assigned
+TRN-243,Packaging Technician,Warehouse,SOP-093,2026-02-20,2026-03-17,2026-03-04,completed
+TRN-244,Engineer,Packaging,SOP-013,2026-03-13,2026-04-02,2026-03-31,completed
+TRN-245,QC Analyst,Warehouse,SOP-100,2025-06-30,2025-07-26,2025-07-03,completed
+TRN-246,QA Specialist,Packaging,SOP-094,2025-10-09,2025-11-06,2025-11-03,completed
+TRN-247,Warehouse Associate,Packaging,SOP-069,2025-08-31,2025-09-29,2025-09-15,completed
+TRN-248,Engineer,Engineering,SOP-069,2026-02-11,2026-02-26,2026-03-01,completed
+TRN-249,Packaging Technician,QA Operations,SOP-099,2025-11-27,2025-12-20,2025-12-12,completed
+TRN-250,Engineer,QC Lab,SOP-068,2026-03-20,2026-04-10,,overdue
+TRN-251,QC Analyst,QC Lab,SOP-061,2025-09-18,2025-10-15,2025-09-27,completed
+TRN-252,Engineer,Packaging,SOP-073,2025-06-29,2025-07-27,,assigned
+TRN-253,QC Analyst,Engineering,SOP-075,2025-07-09,2025-08-04,2025-07-22,completed
+TRN-254,Warehouse Associate,QA Operations,SOP-010,2026-03-05,2026-04-01,2026-03-24,completed
+TRN-255,Warehouse Associate,Packaging,SOP-027,2026-03-11,2026-04-02,2026-03-18,completed
+TRN-256,QA Specialist,QC Lab,SOP-034,2025-07-29,2025-08-25,2025-08-21,completed
+TRN-257,Warehouse Associate,Engineering,SOP-057,2025-09-13,2025-10-11,,in_progress
+TRN-258,Operator,Packaging,SOP-001,2025-07-21,2025-08-09,2025-07-27,completed
+TRN-259,QA Specialist,Engineering,SOP-022,2026-01-06,2026-01-23,2026-01-25,completed
+TRN-260,Operator,Engineering,SOP-039,2026-01-02,2026-01-18,2026-01-16,completed
+TRN-261,QC Analyst,Engineering,SOP-046,2025-12-29,2026-01-19,2026-01-02,completed
+TRN-262,QC Analyst,QA Operations,SOP-016,2025-12-15,2026-01-08,2026-01-02,completed
+TRN-263,QC Analyst,QC Lab,SOP-007,2025-10-22,2025-11-08,2025-11-01,completed
+TRN-264,QA Specialist,Packaging,SOP-019,2026-01-26,2026-02-13,2026-02-14,completed
+TRN-265,Operator,QC Lab,SOP-094,2025-10-31,2025-11-17,2025-11-21,completed
+TRN-266,Packaging Technician,Warehouse,SOP-017,2025-12-27,2026-01-17,,assigned
+TRN-267,QA Specialist,Production,SOP-080,2025-08-13,2025-09-09,,overdue
+TRN-268,Engineer,QA Operations,SOP-070,2025-06-23,2025-07-18,2025-07-10,completed
+TRN-269,QA Specialist,Engineering,SOP-056,2026-02-09,2026-03-07,,in_progress
+TRN-270,Warehouse Associate,Engineering,SOP-030,2025-12-06,2025-12-31,2025-12-22,completed
+TRN-271,QC Analyst,Warehouse,SOP-014,2026-03-13,2026-04-02,2026-03-26,completed
+TRN-272,Packaging Technician,Engineering,SOP-027,2025-07-19,2025-08-13,2025-07-25,completed
+TRN-273,QA Specialist,Engineering,SOP-069,2025-10-02,2025-10-17,2025-10-17,completed
+TRN-274,Warehouse Associate,Engineering,SOP-066,2025-08-23,2025-09-15,2025-09-10,completed
+TRN-275,Operator,Warehouse,SOP-009,2025-12-02,2025-12-30,,assigned
+TRN-276,Warehouse Associate,Engineering,SOP-068,2026-03-07,2026-03-21,2026-03-20,completed
+TRN-277,QC Analyst,Packaging,SOP-076,2025-09-04,2025-09-29,2025-09-24,completed
+TRN-278,Warehouse Associate,Warehouse,SOP-097,2025-08-02,2025-08-22,2025-08-07,completed
+TRN-279,QC Analyst,Packaging,SOP-015,2026-03-10,2026-03-24,2026-03-23,completed
+TRN-280,Engineer,Engineering,SOP-044,2025-11-27,2025-12-26,2025-12-17,completed
+TRN-281,Warehouse Associate,Warehouse,SOP-029,2026-03-14,2026-03-31,2026-04-04,completed
+TRN-282,QA Specialist,QC Lab,SOP-058,2026-02-11,2026-03-10,,overdue
+TRN-283,QC Analyst,QA Operations,SOP-025,2025-10-21,2025-11-14,2025-11-07,completed
+TRN-284,Warehouse Associate,Warehouse,SOP-017,2025-06-22,2025-07-07,2025-07-13,completed
+TRN-285,Engineer,Production,SOP-040,2025-09-14,2025-10-12,2025-09-19,completed
+TRN-286,QC Analyst,Engineering,SOP-039,2025-08-10,2025-09-06,2025-08-18,completed
+TRN-287,Packaging Technician,Engineering,SOP-078,2025-11-30,2025-12-30,2025-12-03,completed
+TRN-288,QC Analyst,Warehouse,SOP-012,2025-09-06,2025-10-04,,in_progress
+TRN-289,Packaging Technician,Packaging,SOP-039,2025-09-17,2025-10-13,2025-10-08,completed
+TRN-290,Packaging Technician,Warehouse,SOP-068,2025-11-18,2025-12-18,2025-12-08,completed
+TRN-291,QA Specialist,Production,SOP-035,2025-09-02,2025-09-19,,overdue
+TRN-292,QA Specialist,Production,SOP-087,2025-10-17,2025-11-12,2025-10-25,completed
+TRN-293,Warehouse Associate,Warehouse,SOP-004,2025-12-30,2026-01-27,2026-01-08,completed
+TRN-294,Warehouse Associate,Production,SOP-065,2025-12-09,2026-01-01,,assigned
+TRN-295,Engineer,Warehouse,SOP-032,2025-08-01,2025-08-24,2025-08-10,completed
+TRN-296,Operator,Production,SOP-004,2025-06-15,2025-06-30,2025-06-19,completed
+TRN-297,Warehouse Associate,Warehouse,SOP-027,2025-09-04,2025-10-04,2025-09-10,completed
+TRN-298,Packaging Technician,Packaging,SOP-018,2026-02-23,2026-03-09,,overdue
+TRN-299,Operator,QA Operations,SOP-097,2025-09-22,2025-10-08,,overdue
+TRN-300,QC Analyst,QC Lab,SOP-091,2025-11-04,2025-11-25,2025-11-26,completed
+TRN-301,QC Analyst,QA Operations,SOP-037,2026-02-27,2026-03-18,2026-02-28,completed
+TRN-302,Operator,Warehouse,SOP-062,2025-11-27,2025-12-12,,in_progress
+TRN-303,Packaging Technician,Packaging,SOP-061,2025-12-23,2026-01-08,,overdue
+TRN-304,Operator,QC Lab,SOP-046,2025-08-16,2025-09-10,2025-08-21,completed
+TRN-305,QA Specialist,QC Lab,SOP-023,2026-02-25,2026-03-17,,assigned
+TRN-306,QA Specialist,QA Operations,SOP-038,2025-10-19,2025-11-02,2025-10-26,completed
+TRN-307,Warehouse Associate,Engineering,SOP-078,2025-08-11,2025-09-09,2025-08-18,completed
+TRN-308,QC Analyst,QA Operations,SOP-082,2025-08-31,2025-09-27,2025-09-22,completed
+TRN-309,QA Specialist,QC Lab,SOP-095,2025-12-11,2026-01-09,,assigned
+TRN-310,Engineer,QC Lab,SOP-044,2025-08-25,2025-09-20,2025-09-06,completed
+TRN-311,Packaging Technician,Warehouse,SOP-081,2025-09-04,2025-09-19,,assigned
+TRN-312,QC Analyst,Packaging,SOP-093,2025-10-31,2025-11-15,2025-11-16,completed
+TRN-313,QC Analyst,Production,SOP-007,2025-11-17,2025-12-08,2025-12-09,completed
+TRN-314,Engineer,Warehouse,SOP-005,2025-10-03,2025-10-17,,overdue
+TRN-315,Engineer,Warehouse,SOP-071,2025-07-08,2025-07-22,2025-07-26,completed
+TRN-316,Operator,Production,SOP-044,2025-07-07,2025-08-03,2025-07-16,completed
+TRN-317,QC Analyst,Packaging,SOP-005,2025-10-24,2025-11-08,2025-11-09,completed
+TRN-318,QC Analyst,Production,SOP-093,2025-07-05,2025-07-20,2025-07-25,completed
+TRN-319,Engineer,Production,SOP-046,2025-10-03,2025-11-01,2025-10-28,completed
+TRN-320,Operator,Warehouse,SOP-001,2025-08-13,2025-09-12,2025-09-06,completed
+TRN-321,QA Specialist,Packaging,SOP-086,2025-09-18,2025-10-05,2025-10-07,completed
+TRN-322,Warehouse Associate,Warehouse,SOP-022,2026-03-18,2026-04-12,,assigned
+TRN-323,QC Analyst,Production,SOP-048,2025-07-12,2025-08-04,2025-07-22,completed
+TRN-324,Engineer,Warehouse,SOP-064,2025-07-24,2025-08-10,2025-07-31,completed
+TRN-325,Packaging Technician,QA Operations,SOP-064,2025-09-02,2025-09-27,,overdue
+TRN-326,Warehouse Associate,Packaging,SOP-080,2026-01-03,2026-01-20,2026-01-14,completed
+TRN-327,QC Analyst,Packaging,SOP-008,2025-07-01,2025-07-27,2025-07-11,completed
+TRN-328,QA Specialist,Production,SOP-005,2025-12-03,2025-12-27,2025-12-11,completed
+TRN-329,Warehouse Associate,QA Operations,SOP-021,2026-01-11,2026-02-09,2026-01-12,completed
+TRN-330,Operator,Production,SOP-088,2025-09-06,2025-10-05,2025-09-19,completed
+TRN-331,QC Analyst,Engineering,SOP-065,2025-12-09,2025-12-31,2025-12-27,completed
+TRN-332,QC Analyst,QA Operations,SOP-079,2025-09-21,2025-10-19,,in_progress
+TRN-333,Engineer,Warehouse,SOP-074,2026-02-19,2026-03-19,2026-03-10,completed
+TRN-334,QA Specialist,Production,SOP-017,2025-10-15,2025-11-08,2025-10-31,completed
+TRN-335,Engineer,Warehouse,SOP-004,2025-09-22,2025-10-19,2025-10-10,completed
+TRN-336,Packaging Technician,Production,SOP-017,2025-09-27,2025-10-27,2025-10-03,completed
+TRN-337,Engineer,QA Operations,SOP-081,2025-10-02,2025-10-21,2025-10-06,completed
+TRN-338,Engineer,Warehouse,SOP-001,2025-11-02,2025-11-16,2025-11-11,completed
+TRN-339,QA Specialist,QA Operations,SOP-040,2025-09-21,2025-10-15,,assigned
+TRN-340,Warehouse Associate,QC Lab,SOP-078,2025-07-01,2025-07-23,2025-07-07,completed
+TRN-341,QC Analyst,Production,SOP-100,2026-03-09,2026-03-26,,assigned
+TRN-342,Operator,QA Operations,SOP-017,2026-03-03,2026-03-21,2026-03-14,completed
+TRN-343,Warehouse Associate,Warehouse,SOP-080,2026-02-09,2026-02-24,2026-03-06,completed
+TRN-344,Engineer,Warehouse,SOP-063,2025-08-10,2025-08-28,2025-08-29,completed
+TRN-345,QC Analyst,Warehouse,SOP-042,2025-07-15,2025-08-05,,assigned
+TRN-346,Warehouse Associate,QA Operations,SOP-064,2026-01-30,2026-02-20,2026-02-14,completed
+TRN-347,Operator,Packaging,SOP-093,2025-07-11,2025-07-29,,overdue
+TRN-348,Packaging Technician,QA Operations,SOP-063,2026-02-24,2026-03-26,2026-03-13,completed
+TRN-349,Operator,QA Operations,SOP-056,2026-02-11,2026-03-02,2026-03-03,completed
+TRN-350,QC Analyst,Engineering,SOP-085,2026-03-02,2026-03-18,,overdue
+TRN-351,QA Specialist,QA Operations,SOP-034,2026-03-02,2026-03-16,2026-03-27,completed
+TRN-352,QC Analyst,QC Lab,SOP-089,2025-09-28,2025-10-22,,in_progress
+TRN-353,Packaging Technician,QA Operations,SOP-014,2026-03-11,2026-04-10,2026-03-27,completed
+TRN-354,Packaging Technician,Warehouse,SOP-035,2026-03-15,2026-04-08,2026-03-30,completed
+TRN-355,Engineer,Production,SOP-024,2025-10-03,2025-10-17,2025-10-13,completed
+TRN-356,QC Analyst,Engineering,SOP-082,2025-08-19,2025-09-16,2025-09-11,completed
+TRN-357,Engineer,QA Operations,SOP-076,2025-09-11,2025-10-01,2025-10-05,completed
+TRN-358,Packaging Technician,QC Lab,SOP-078,2025-07-18,2025-08-07,2025-07-28,completed
+TRN-359,Operator,QA Operations,SOP-070,2025-10-22,2025-11-12,2025-10-29,completed
+TRN-360,Packaging Technician,Production,SOP-097,2025-08-29,2025-09-18,2025-09-22,completed
+TRN-361,QC Analyst,Packaging,SOP-044,2026-01-29,2026-02-14,,assigned
+TRN-362,QA Specialist,Engineering,SOP-044,2025-07-21,2025-08-20,2025-08-12,completed
+TRN-363,Warehouse Associate,Production,SOP-045,2025-10-19,2025-11-10,,assigned
+TRN-364,Engineer,QC Lab,SOP-029,2025-11-06,2025-11-26,2025-11-20,completed
+TRN-365,Packaging Technician,QC Lab,SOP-057,2025-11-12,2025-12-02,2025-11-19,completed
+TRN-366,QC Analyst,QA Operations,SOP-093,2025-09-09,2025-09-28,,overdue
+TRN-367,QC Analyst,Production,SOP-060,2026-01-28,2026-02-24,,assigned
+TRN-368,Operator,Engineering,SOP-024,2026-02-04,2026-03-01,2026-02-11,completed
+TRN-369,QA Specialist,QC Lab,SOP-097,2025-10-19,2025-11-18,,assigned
+TRN-370,QA Specialist,Warehouse,SOP-099,2026-02-18,2026-03-15,2026-02-23,completed
+TRN-371,Engineer,Packaging,SOP-053,2025-11-07,2025-11-21,2025-11-14,completed
+TRN-372,QC Analyst,Engineering,SOP-087,2025-09-15,2025-10-08,2025-10-09,completed
+TRN-373,Warehouse Associate,Production,SOP-053,2025-12-07,2025-12-26,2025-12-20,completed
+TRN-374,Warehouse Associate,QA Operations,SOP-026,2026-01-30,2026-02-26,,overdue
+TRN-375,Engineer,Packaging,SOP-062,2025-11-15,2025-12-05,2025-11-19,completed
+TRN-376,Warehouse Associate,QA Operations,SOP-078,2026-03-12,2026-04-09,2026-03-14,completed
+TRN-377,QC Analyst,Production,SOP-007,2025-09-17,2025-10-07,2025-10-02,completed
+TRN-378,Packaging Technician,Engineering,SOP-090,2026-01-18,2026-02-13,2026-01-30,completed
+TRN-379,Warehouse Associate,QA Operations,SOP-060,2025-06-30,2025-07-26,2025-07-12,completed
+TRN-380,Packaging Technician,Engineering,SOP-020,2025-08-08,2025-08-24,2025-09-02,completed
+TRN-381,QA Specialist,QC Lab,SOP-054,2025-09-06,2025-10-02,,in_progress
+TRN-382,Warehouse Associate,Engineering,SOP-012,2026-01-09,2026-02-02,2026-01-15,completed
+TRN-383,Engineer,QA Operations,SOP-083,2025-07-29,2025-08-19,2025-07-31,completed
+TRN-384,QC Analyst,Production,SOP-033,2025-07-05,2025-08-03,,in_progress
+TRN-385,Warehouse Associate,Warehouse,SOP-094,2025-11-25,2025-12-12,2025-12-17,completed
+TRN-386,Operator,Production,SOP-074,2026-02-13,2026-02-28,2026-02-24,completed
+TRN-387,Packaging Technician,QC Lab,SOP-013,2025-12-05,2025-12-22,2025-12-25,completed
+TRN-388,Engineer,QA Operations,SOP-046,2025-08-27,2025-09-23,2025-09-10,completed
+TRN-389,QC Analyst,QA Operations,SOP-085,2025-12-02,2025-12-26,2025-12-24,completed
+TRN-390,Packaging Technician,Packaging,SOP-022,2025-11-20,2025-12-16,2025-12-02,completed
+TRN-391,Operator,Warehouse,SOP-001,2026-02-16,2026-03-13,2026-02-24,completed
+TRN-392,Operator,QC Lab,SOP-015,2025-12-09,2025-12-28,,assigned
+TRN-393,Packaging Technician,QC Lab,SOP-029,2025-08-13,2025-09-01,,assigned
+TRN-394,QC Analyst,Engineering,SOP-021,2025-10-27,2025-11-22,2025-11-21,completed
+TRN-395,QC Analyst,Packaging,SOP-031,2026-01-24,2026-02-15,2026-02-10,completed
+TRN-396,Operator,Packaging,SOP-066,2025-12-12,2025-12-27,,assigned
+TRN-397,Operator,Packaging,SOP-025,2025-07-15,2025-08-10,,in_progress
+TRN-398,Operator,Packaging,SOP-016,2025-06-18,2025-07-12,2025-06-29,completed
+TRN-399,Packaging Technician,Engineering,SOP-095,2025-12-08,2025-12-29,2025-12-14,completed
+TRN-400,QA Specialist,Warehouse,SOP-056,2025-07-02,2025-07-25,,assigned
