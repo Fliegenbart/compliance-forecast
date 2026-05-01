@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>GMP-Risikowetter - Demo</title>
+    <title>GMP Risiko-Cockpit - Demo</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -23,21 +23,27 @@
 
         <div class="hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Beratende GMP-Risikovorschau</p>
-            <h1>Compliance-Risiken früher sehen. Entscheidungen bleiben beim QA-Team.</h1>
+            <p class="eyebrow">Beratende GMP-Risikopriorisierung</p>
+            <h1>GMP Risiko-Cockpit für QA-Priorisierung.</h1>
             <p class="lead">
-              Backlog-Alter ist nicht dasselbe wie GMP-Risiko. Diese Demo zeigt, welche Qualitätsthemen zuerst menschliche Aufmerksamkeit verdienen.
+              Backlog-Alter ist nicht dasselbe wie GMP-Risiko. Das Cockpit zeigt QA-Leitung, Site Quality Leads und Quality Councils, welche Qualitätsthemen zuerst menschliche Aufmerksamkeit verdienen.
             </p>
+            <div class="hero-answers" aria-label="Kurz erklärt">
+              <span>Für QA-Leitung und Site Quality Leads</span>
+              <span>Lädt synthetische QMS-Daten</span>
+              <span>Priorisiert Risikosignale mit Evidenz-IDs</span>
+              <span>Keine GMP-Entscheidung</span>
+            </div>
           </div>
 
-          <aside class="forecast-glass" aria-label="Heutiges Wetter-Briefing">
+          <aside class="focus-panel" aria-label="Heute im Fokus">
             <div class="briefing-eyebrow" id="briefingEyebrow">HEUTE · lädt</div>
-            <div class="weather-glyph" id="weatherGlyph" aria-hidden="true"></div>
-            <h2 id="weatherStatus">Wetterlage wird geladen</h2>
-            <p id="weatherBriefing">
-              Die regelbasierte Lagebeschreibung wird aus den synthetischen QMS-Signalen erzeugt.
+            <h2 id="focusStatus">Heute im Fokus</h2>
+            <p id="focusBriefing">
+              Die regelbasierte Priorisierung wird aus synthetischen QMS-Signalen erzeugt.
             </p>
-            <div class="watchline" id="weatherWatchline">Weitere Bereiche werden geprüft.</div>
+            <ul class="focus-reasons" id="focusReasons"></ul>
+            <div class="watchline" id="focusWatchline">Weitere Bereiche werden geprüft.</div>
             <div class="briefing-footnote" id="briefingFootnote">Stand lädt · synthetische Records · Datenreife lädt</div>
           </aside>
         </div>
@@ -60,8 +66,8 @@
           </ul>
         </details>
 
-        <section class="forecast-strip" aria-label="Forecast-Zeitleiste">
-          <div id="forecastStrip" class="forecast-strip-grid"></div>
+        <section class="outlook-strip" aria-label="Risikoausblick">
+          <div id="outlookStrip" class="outlook-strip-grid"></div>
         </section>
       </section>
 
@@ -73,7 +79,7 @@
           </div>
 
           <div class="facts">
-            <p class="section-kicker">Forecast-Kontext</p>
+            <p class="section-kicker">Risiko-Kontext</p>
             <div class="fact-row">
               <span>Generiert</span>
               <strong id="generatedAt">Lädt</strong>
@@ -117,8 +123,8 @@
             <div class="surface">
               <div class="surface-head">
                 <div>
-                  <p class="section-kicker">Wetterlage</p>
-                  <h3>Risikobänder</h3>
+                  <p class="section-kicker">Prioritätslage</p>
+                  <h3>Prioritätsverteilung</h3>
                 </div>
                 <span>transparent</span>
               </div>
@@ -164,6 +170,6 @@
       </footer>
     </main>
 
-    <script src="./app.js?v=forecast-strip-1"></script>
+    <script src="./app.js?v=outlook-strip-1"></script>
   </body>
 </html>

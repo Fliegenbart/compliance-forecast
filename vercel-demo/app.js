@@ -1,12 +1,12 @@
 const bandOrder = ["clear", "watch", "advisory", "storm", "severe_storm"];
-let forecast = null;
+let outlook = null;
 let activeStoryId = null;
-let activeForecastId = "today";
-let forecastHorizons = [];
+let activeOutlookId = "today";
+let outlookHorizons = [];
 
 const storyCopy = {
-  "packaging-storm": {
-    label: "Packaging-Sturm",
+  "packaging-priority": {
+    label: "Packaging-Priorität",
     interpretation:
       "Packaging zeigt in den synthetischen Daten ein ansteigendes Risikosignal. Sichtbar werden Wiederholungen, Owner-Belastung und quellverknüpfte Evidenz für die QA-Priorisierung.",
     review: "QA sollte prüfen, ob die wiederkehrenden Packaging-Abweichungen und verknüpften CAPAs weiterhin angemessen adressiert sind.",
@@ -24,7 +24,7 @@ const storyCopy = {
     review: "Der Training Owner sollte SOP-bezogene offene oder überfällige Trainings prüfen.",
   },
   "sterile-filling": {
-    label: "Sterile Filling Watch",
+    label: "Sterile Filling prüfen",
     interpretation:
       "Sterile Filling hat weniger Abweichungen, aber höhere Schweregrade. Das erzeugt ein klares Signal für menschliche QA-Prüfung.",
     review: "Die Site Quality Lead sollte schwere offene Abweichungen und zugehörige Kontrollen prüfen.",
@@ -46,11 +46,11 @@ const riskTypeLabels = {
 };
 
 const bandLabels = {
-  clear: "Klar",
+  clear: "Niedrig",
   watch: "Beobachten",
-  advisory: "Aufziehend",
-  storm: "Sturm",
-  severe_storm: "Schwerer Sturm",
+  advisory: "Erhöht",
+  storm: "Hoch",
+  severe_storm: "Kritisch",
 };
 
 const domainLabels = {
@@ -97,27 +97,26 @@ function renderMetrics(data) {
     minute: "2-digit",
   });
   const asOfDate = new Date(`${data.meta.as_of_date}T00:00:00`).toLocaleDateString("de-DE");
-  const briefing = buildWeatherBriefing(data);
+  const briefing = buildPriorityBriefing(data);
 
   setText("modelVersion", data.meta.model_version);
   setText("generatedAt", generatedAt);
   setText("asOfDate", asOfDate);
   setText("sourceRecordCount", `${recordCount} synthetisch`);
   setText("briefingEyebrow", `HEUTE · ${asOfDate}`);
-  setText("weatherStatus", briefing.status);
-  setText("weatherBriefing", briefing.prose);
-  setText("weatherWatchline", briefing.watchline);
+  setText("focusStatus", briefing.status);
+  setText("focusBriefing", briefing.prose);
+  setText("focusWatchline", briefing.watchline);
   setText(
     "briefingFootnote",
     `Stand ${generatedAt} · ${recordCount} synthetische Records · Datenreife ${data.summary.data_readiness_score}%`,
   );
-  byId("weatherGlyph").innerHTML = weatherGlyph(briefing.state);
+  byId("focusReasons").innerHTML = briefing.reasons.map((reason) => `<li>${escapeHtml(reason)}</li>`).join("");
 }
 
-function buildWeatherBriefing(data) {
+function buildPriorityBriefing(data) {
   const topRisk = data.top_risks[0] || {};
   const topBand = topRisk.band || "clear";
-  const state = weatherStateFromBand(topBand);
   const topArea = topRisk.process || topRisk.department || "dem Qualitätssystem";
   const topDepartment = topRisk.department || "bereichsübergreifend";
   const severeCount = data.risk_band_counts.severe_storm || 0;
@@ -137,56 +136,26 @@ function buildWeatherBriefing(data) {
   const trainingPhrase = training ? `Training-Drift um ${training.entity_id.split("|").pop()}` : "keine führende Training-Drift im Top-Signal";
 
   const templates = {
-    clear: {
-      status: "Klare Lage",
-      prose: `Die regelbasierte Sicht zeigt heute keine dominierende Sturmfront. ${topDepartment} bleibt sichtbar, aber ohne akuten Spitzenwert. Backlog und Evidenz sollten weiter im QA-Rhythmus geprüft werden.`,
-    },
-    watch: {
-      status: `Beobachten in ${topArea}`,
-      prose: `Die Lage ist noch kontrolliert, aber nicht leer. ${watchCount} Beobachtungssignale deuten auf Themen hin, die im nächsten QA-Termin bewusst priorisiert werden sollten.`,
-    },
-    building: {
-      status: `Aufziehend über ${topArea}`,
-      prose: `${recurrence} Wiederholungs-Signale, ${capaPhrase} und ${trainingPhrase} verdichten sich zu einer aufziehenden Wetterlage. Das ist kein GMP-Befund, sondern ein Signal für fokussierte QA-Prüfung.`,
-    },
-    storm: {
-      status: `Sturm über ${topArea}`,
-      prose: `${stormCount} Sturm-Signale und ${recurrence} Wiederholungs-Signale zeigen eine klare Verdichtung. ${capaPhrase}; ${trainingPhrase}. QA sollte die Quellenlage priorisiert ansehen.`,
-    },
-    "severe-storm": {
-      status: `Schwerer Sturm über ${topArea}`,
-      prose: `${severeCount} schwere Sturm-Signale, ${recurrence} Wiederholungs-Signale und ${capaPhrase} prägen die heutige Lage. Besonders ${topDepartment} sollte anhand der Quell-IDs menschlich geprüft werden.`,
-    },
+    clear: `Heute gibt es keinen dominierenden Spitzenwert. ${topDepartment} bleibt sichtbar, aber die regelbasierte Priorisierung zeigt keinen akuten Fokusbereich.`,
+    watch: `${watchCount} Beobachtungssignale deuten auf Themen hin, die im nächsten QA-Termin bewusst priorisiert werden sollten.`,
+    advisory: `${recurrence} Wiederholungs-Signale, ${capaPhrase} und ${trainingPhrase} machen ${topArea} heute zu einem erhöhten Review-Kandidaten.`,
+    storm: `${stormCount} hohe Signale und ${recurrence} Wiederholungs-Signale zeigen eine klare Verdichtung. ${capaPhrase}; ${trainingPhrase}.`,
+    severe_storm: `${severeCount} kritische Signale, ${recurrence} Wiederholungs-Signale und ${capaPhrase} prägen die heutige Priorisierung. Besonders ${topDepartment} sollte anhand der Quell-IDs menschlich geprüft werden.`,
   };
 
   return {
-    state,
-    status: templates[state].status,
-    prose: templates[state].prose,
+    status: `${formatBand(topBand)} · ${topArea}`,
+    prose: templates[topBand] || templates.clear,
+    reasons: [
+      `${recurrence} Wiederholungs-Signale in den Top-Risiken`,
+      capa ? `CAPA-Fokus: ${capa.entity_id}` : "Keine einzelne CAPA dominiert die Top-Signale",
+      training ? `Training-/SOP-Fokus: ${training.entity_id.split("|").pop()}` : `${topDepartment} als führender Kontext`,
+    ],
     watchline: `${furtherAreas} weitere Bereiche unter Beobachtung`,
   };
 }
 
-function weatherStateFromBand(band) {
-  if (band === "severe_storm") return "severe-storm";
-  if (band === "storm") return "storm";
-  if (band === "advisory") return "building";
-  if (band === "watch") return "watch";
-  return "clear";
-}
-
-function weatherGlyph(state) {
-  const glyphs = {
-    clear: `<svg viewBox="0 0 80 80" role="img" aria-label="Klar"><circle cx="40" cy="40" r="15"/><path d="M40 8v10M40 62v10M8 40h10M62 40h10M17.4 17.4l7.1 7.1M55.5 55.5l7.1 7.1M62.6 17.4l-7.1 7.1M24.5 55.5l-7.1 7.1"/></svg>`,
-    watch: `<svg viewBox="0 0 80 80" role="img" aria-label="Beobachten"><path d="M23 53h32a13 13 0 0 0 0-26 18 18 0 0 0-34-5 15 15 0 0 0 2 31Z"/><path d="M24 64h34"/></svg>`,
-    building: `<svg viewBox="0 0 80 80" role="img" aria-label="Aufziehend"><path d="M20 52h35a14 14 0 0 0 1-28 19 19 0 0 0-36-4 16 16 0 0 0 0 32Z"/><path d="M22 64h36M30 70h20"/></svg>`,
-    storm: `<svg viewBox="0 0 80 80" role="img" aria-label="Sturm"><path d="M20 48h35a13 13 0 0 0 0-26 19 19 0 0 0-35-4 15 15 0 0 0 0 30Z"/><path d="m40 48-8 15h11l-6 12 18-20H44l7-7"/></svg>`,
-    "severe-storm": `<svg viewBox="0 0 80 80" role="img" aria-label="Schwerer Sturm"><path d="M19 46h36a14 14 0 0 0 0-28 20 20 0 0 0-36-4 16 16 0 0 0 0 32Z"/><path d="m40 46-9 17h12l-6 13 20-22H45l8-8"/><path d="M24 63h-8M62 64h-8"/></svg>`,
-  };
-  return glyphs[state] || glyphs.clear;
-}
-
-function buildForecastStrip(data) {
+function buildOutlookStrip(data) {
   const severe = data.top_risks.filter((row) => row.band === "severe_storm");
   const storm = data.top_risks.filter((row) => row.band === "storm" || row.band === "severe_storm");
   const recurrence = data.top_risks.filter((row) => row.risk_type === "deviation_recurrence");
@@ -209,17 +178,15 @@ function buildForecastStrip(data) {
     {
       id: "today",
       label: "Heute",
-      state: weatherStateFromBand(todayTop.band || "severe_storm"),
       status: formatBand(todayTop.band || "severe_storm"),
       area: todayTop.process || todayTop.department || "Packaging",
-      trigger: `${Math.max(severe.length, 1)} Sturm-Signale`,
+      trigger: `${Math.max(severe.length, 1)} kritische Signale`,
       filter: (row) => row.band === "severe_storm",
     },
     {
       id: "plus1",
       label: "+1 Tag",
-      state: "storm",
-      status: "Sturm",
+      status: "Hoch",
       area: plusOneTop.process || plusOneTop.department || "Packaging",
       trigger: `+${Math.min(Math.max(accelerated.length, 2), 9)} seit Mo`,
       filter: (row) =>
@@ -229,8 +196,7 @@ function buildForecastStrip(data) {
     {
       id: "plus3",
       label: "+3 Tage",
-      state: "building",
-      status: "Aufziehend",
+      status: "Erhöht",
       area: plusThreeTop.entity_id ? `${plusThreeTop.entity_id} Frist` : "CAPA-Frist",
       trigger: plusThreeTop.entity_id === "CAPA-014" ? "Packaging-CAPA" : `${Math.max(capas.length, 1)} CAPA-Fristen`,
       filter: (row) => row.risk_type === "capa_failure",
@@ -238,8 +204,7 @@ function buildForecastStrip(data) {
     {
       id: "plus7",
       label: "+7 Tage",
-      state: training.length ? "watch" : "building",
-      status: "Wetterumschwung",
+      status: "Beobachten",
       area: plusSevenTop.entity_id && String(plusSevenTop.entity_id).includes("SOP-023") ? "SOP-023 Revision" : plusSevenTop.process || "Training",
       trigger: training.length ? `Training-Coverage ${Math.max(38, 100 - training.length * 7)}%` : `${observed.size} Bereiche`,
       filter: (row) => row.risk_type === "training_drift",
@@ -247,50 +212,50 @@ function buildForecastStrip(data) {
   ];
 }
 
-function renderForecastStrip(data) {
-  forecastHorizons = buildForecastStrip(data);
-  const container = byId("forecastStrip");
+function renderOutlookStrip(data) {
+  outlookHorizons = buildOutlookStrip(data);
+  const container = byId("outlookStrip");
   container.innerHTML = "";
-  forecastHorizons.forEach((item) => {
+  outlookHorizons.forEach((item) => {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "forecast-cell";
-    button.dataset.forecastId = item.id;
-    button.setAttribute("aria-pressed", String(item.id === activeForecastId));
+    button.className = "outlook-cell";
+    button.dataset.outlookId = item.id;
+    button.setAttribute("aria-pressed", String(item.id === activeOutlookId));
     button.innerHTML = `
-      <span class="forecast-label">${escapeHtml(item.label)}</span>
-      <span class="forecast-glyph">${weatherGlyph(item.state)}</span>
+      <span class="outlook-label">${escapeHtml(item.label)}</span>
+      <span class="outlook-marker ${classForBand(item.status === "Hoch" ? "storm" : item.status === "Erhöht" ? "advisory" : item.status === "Kritisch" ? "severe_storm" : "watch")}"></span>
       <strong>${escapeHtml(item.status)}</strong>
       <span>${escapeHtml(item.area)}</span>
       <em>${escapeHtml(item.trigger)}</em>
     `;
-    button.addEventListener("click", () => selectForecast(item.id));
+    button.addEventListener("click", () => selectOutlook(item.id));
     container.appendChild(button);
   });
-  updateForecastActiveState();
+  updateOutlookActiveState();
 }
 
-function selectForecast(forecastId) {
-  activeForecastId = forecastId;
-  updateForecastActiveState();
+function selectOutlook(outlookId) {
+  activeOutlookId = outlookId;
+  updateOutlookActiveState();
   renderPriorityList();
 }
 
-function updateForecastActiveState() {
-  document.querySelectorAll(".forecast-cell").forEach((button) => {
-    const isActive = button.dataset.forecastId === activeForecastId;
+function updateOutlookActiveState() {
+  document.querySelectorAll(".outlook-cell").forEach((button) => {
+    const isActive = button.dataset.outlookId === activeOutlookId;
     button.classList.toggle("active", isActive);
     button.setAttribute("aria-pressed", String(isActive));
   });
 }
 
 function renderPriorityList() {
-  const active = forecastHorizons.find((item) => item.id === activeForecastId) || forecastHorizons[0];
-  const story = forecast.demo_stories.find((item) => item.id === activeStoryId) || forecast.demo_stories[0];
+  const active = outlookHorizons.find((item) => item.id === activeOutlookId) || outlookHorizons[0];
+  const story = outlook.demo_stories.find((item) => item.id === activeStoryId) || outlook.demo_stories[0];
   const storyIds = new Set(story?.risk_entity_ids || []);
-  const horizonRows = active ? forecast.top_risks.filter(active.filter) : [];
-  const storyRows = forecast.top_risks.filter((row) => storyIds.has(row.entity_id));
-  const rows = horizonRows.length ? horizonRows : storyRows.length ? storyRows : forecast.top_risks;
+  const horizonRows = active ? outlook.top_risks.filter(active.filter) : [];
+  const storyRows = outlook.top_risks.filter((row) => storyIds.has(row.entity_id));
+  const rows = horizonRows.length ? horizonRows : storyRows.length ? storyRows : outlook.top_risks;
   setText("priorityScope", active ? active.label : "Heute");
   renderTopRisks(rows);
 }
@@ -314,7 +279,7 @@ function renderStoryButtons(data) {
 
 function selectStory(storyId) {
   activeStoryId = storyId;
-  const story = forecast.demo_stories.find((item) => item.id === storyId) || forecast.demo_stories[0];
+  const story = outlook.demo_stories.find((item) => item.id === storyId) || outlook.demo_stories[0];
   const localized = storyCopy[story.id] || {
     label: story.label,
     interpretation: story.business_interpretation,
@@ -331,9 +296,9 @@ function selectStory(storyId) {
 
   const riskIds = new Set(story.risk_entity_ids);
   const cardIds = new Set(story.evidence_card_ids);
-  const cards = forecast.evidence_cards.filter((row) => cardIds.has(row.card_id));
+  const cards = outlook.evidence_cards.filter((row) => cardIds.has(row.card_id));
   renderPriorityList();
-  renderEvidenceCards(cards.length ? cards : forecast.evidence_cards.slice(0, 8));
+  renderEvidenceCards(cards.length ? cards : outlook.evidence_cards.slice(0, 8));
 }
 
 function renderBandCounts(data) {
@@ -359,11 +324,10 @@ function renderBandCounts(data) {
   `;
 }
 
-function weatherStatusMarkup(band) {
-  const state = weatherStateFromBand(band);
+function priorityStatusMarkup(band) {
   return `
-    <span class="weather-status ${classForBand(band)}">
-      <span class="weather-status-glyph" aria-hidden="true">${weatherGlyph(state)}</span>
+    <span class="priority-status ${classForBand(band)}">
+      <span class="priority-status-marker" aria-hidden="true"></span>
       <span>${escapeHtml(formatBand(band))}</span>
     </span>
   `;
@@ -545,7 +509,7 @@ function renderHeatmap(rows) {
         <strong>${escapeHtml(row.department)} / ${escapeHtml(row.process)}</strong>
         <span>${row.signal_count} Signale, Durchschnitt ${row.average_score}</span>
       </div>
-      ${weatherStatusMarkup(band)}
+      ${priorityStatusMarkup(band)}
     `;
     container.appendChild(item);
   });
@@ -563,7 +527,7 @@ function renderEvidenceCards(rows) {
           ${escapeHtml(cluster.title)}
           <small>${escapeHtml(cluster.subtitle)}</small>
         </div>
-        ${weatherStatusMarkup(cluster.band)}
+        ${priorityStatusMarkup(cluster.band)}
       </div>
       <div class="source-list evidence-chip-row">
         ${cluster.records.map((record) => recordChip(record)).join("")}
@@ -626,7 +590,7 @@ function clusterTitle(row, records) {
 function clusterDescription(row, records, index) {
   const templates = [
     `Die Records liegen nicht isoliert nebeneinander, sondern bilden ein erkennbares Muster in ${row.process || row.department}. Auffällig ist die Nähe der Signale: mehrere Quellen zeigen denselben Bereich, aber nicht zwingend dieselbe Ursache. Das ist ein guter Kandidat für eine gebündelte QA-Sichtung statt Einzelbearbeitung.`,
-    `Der Cluster verdichtet mehrere Signale zu einem gemeinsamen Wetterbild. Die Quell-IDs zeigen, wo die Analyse starten sollte; die Bewertung bleibt bewusst beratend und ersetzt keine fachliche GMP-Entscheidung.`,
+    `Der Cluster verdichtet mehrere Signale zu einem gemeinsamen Prioritätsbild. Die Quell-IDs zeigen, wo die Analyse starten sollte; die Bewertung bleibt bewusst beratend und ersetzt keine fachliche GMP-Entscheidung.`,
     `Hier wirkt weniger der einzelne Record entscheidend als die Wiederholung im Kontext. ${records.length} Quellrecords zeigen genug Nähe, um den Bereich im Quality Council fokussiert anzusehen.`,
     `Das Signal ist vor allem als Lagebild relevant: gleicher Bereich, ähnliche Treiber, mehrere sichtbare Records. Für die Demo zählt diese Verdichtung stärker als das Alter eines einzelnen Backlog-Items.`,
     `Die Evidenz spricht für einen Review-Block statt für verstreute Einzeldiskussionen. Die Quellen sollten zusammen gelesen werden, damit Wiederholungen, CAPA-Bezug und Trainingseffekte nicht getrennt bewertet werden.`,
@@ -651,7 +615,7 @@ function recordChip(record) {
       <summary>${escapeHtml(record.record_id)}</summary>
       <div class="source-list">
         <span class="source-chip">${escapeHtml(domainLabels[record.domain] || record.domain)}</span>
-        <span class="source-chip weather-source ${escapeHtml(classForBand(record.band))}">${escapeHtml(formatBand(record.band))}</span>
+        <span class="source-chip priority-source ${escapeHtml(classForBand(record.band))}">${escapeHtml(formatBand(record.band))}</span>
         ${record.owner ? `<span class="source-chip">${escapeHtml(record.owner)}</span>` : ""}
       </div>
     </details>
@@ -833,19 +797,19 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
-async function loadForecast() {
-  const response = await fetch("./data/forecast.json?v=forecast-strip-1", { cache: "no-store" });
-  forecast = await response.json();
-  renderMetrics(forecast);
-  renderForecastStrip(forecast);
-  renderStoryButtons(forecast);
-  renderBandCounts(forecast);
-  renderHeatmap(forecast.heatmap);
-  renderQualityIssues(forecast.data_quality_issues);
-  selectStory(activeStoryId || forecast.demo_stories[0].id);
+async function loadRiskData() {
+  const response = await fetch("./data/forecast.json?v=outlook-strip-1", { cache: "no-store" });
+  outlook = await response.json();
+  renderMetrics(outlook);
+  renderOutlookStrip(outlook);
+  renderStoryButtons(outlook);
+  renderBandCounts(outlook);
+  renderHeatmap(outlook.heatmap);
+  renderQualityIssues(outlook.data_quality_issues);
+  selectStory(activeStoryId || outlook.demo_stories[0].id);
 }
 
-loadForecast().catch((error) => {
+loadRiskData().catch((error) => {
   console.error(error);
   byId("storyTitle").textContent = "Demo-Daten konnten nicht geladen werden";
   byId("storyInterpretation").textContent = "Bitte die statische Demo mit make vercel-demo neu erzeugen.";

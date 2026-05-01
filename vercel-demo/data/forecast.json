@@ -1,15 +1,15 @@
 {
   "meta": {
-    "app_name": "GMP Compliance Weather Forecast",
+    "app_name": "GMP Risiko-Cockpit",
     "client_name": "Beispiel GmbH",
-    "generated_at": "2026-05-01T15:02:49.382417+00:00",
+    "generated_at": "2026-05-01T17:14:54.949846+00:00",
     "as_of_date": "2026-04-30",
     "model_version": "rules-v0.1",
     "scoring_config_file": "config/scoring_rules_v0_1.yaml",
     "safety_boundary": "Advisory quality-risk signals only. This static demo does not make GMP decisions. Human QA review is required."
   },
   "summary": {
-    "overall_weather_index": 100.0,
+    "qa_prioritization_index": 100.0,
     "data_readiness_score": 57,
     "risk_score_count": 476,
     "evidence_card_count": 229,
@@ -1314,7 +1314,7 @@
           "record_id": "DEV-003"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-003 over horizon 4_weeks. Top drivers: severity: major (+22); age: 35 days open (+7); due-date proximity: deviation due date due within 1 days (+16). Source record IDs: DEV-003.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-003 over horizon 4_weeks. Top drivers: severity: major (+22); age: 35 days open (+7); due-date proximity: deviation due date due within 1 days (+16). Source record IDs: DEV-003.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1347,7 +1347,7 @@
           "record_id": "DEV-005"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-005 over horizon 4_weeks. Top drivers: severity: major (+22); age: 31 days open (+7); due-date proximity: deviation due date due within 12 days (+9). Source record IDs: DEV-005.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-005 over horizon 4_weeks. Top drivers: severity: major (+22); age: 31 days open (+7); due-date proximity: deviation due date due within 12 days (+9). Source record IDs: DEV-005.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1380,7 +1380,7 @@
           "record_id": "DEV-007"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-007 over horizon 4_weeks. Top drivers: severity: major (+22); age: 29 days open (+4); due-date proximity: deviation due date overdue by 5 days (+25). Source record IDs: DEV-007.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-007 over horizon 4_weeks. Top drivers: severity: major (+22); age: 29 days open (+4); due-date proximity: deviation due date overdue by 5 days (+25). Source record IDs: DEV-007.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1413,7 +1413,7 @@
           "record_id": "DEV-008"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-008 over horizon 4_weeks. Top drivers: severity: major (+22); age: 31 days open (+7); due-date proximity: deviation due date overdue by 7 days (+25). Source record IDs: DEV-008.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-008 over horizon 4_weeks. Top drivers: severity: major (+22); age: 31 days open (+7); due-date proximity: deviation due date overdue by 7 days (+25). Source record IDs: DEV-008.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1446,7 +1446,7 @@
           "record_id": "DEV-009"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-009 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 28 days open (+4); due-date proximity: deviation due date due within 1 days (+16). Source record IDs: DEV-009.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-009 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 28 days open (+4); due-date proximity: deviation due date due within 1 days (+16). Source record IDs: DEV-009.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1479,7 +1479,7 @@
           "record_id": "DEV-011"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-011 over horizon 4_weeks. Top drivers: severity: major (+22); age: 22 days open (+4); due-date proximity: deviation due date due within 8 days (+9). Source record IDs: DEV-011.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-011 over horizon 4_weeks. Top drivers: severity: major (+22); age: 22 days open (+4); due-date proximity: deviation due date due within 8 days (+9). Source record IDs: DEV-011.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1517,7 +1517,7 @@
           "record_id": "CAPA-004"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-014 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 22 days open (+4); due-date proximity: deviation due date due within 5 days (+16). Source record IDs: DEV-014, CAPA-004.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-014 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 22 days open (+4); due-date proximity: deviation due date due within 5 days (+16). Source record IDs: DEV-014, CAPA-004.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1555,7 +1555,7 @@
           "record_id": "CAPA-024"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-015 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 22 days open (+4); due-date proximity: deviation due date due within 7 days (+16). Source record IDs: DEV-015, CAPA-024.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-015 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 22 days open (+4); due-date proximity: deviation due date due within 7 days (+16). Source record IDs: DEV-015, CAPA-024.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1588,7 +1588,7 @@
           "record_id": "DEV-016"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-016 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 21 days open (+4); due-date proximity: deviation due date due within 6 days (+16). Source record IDs: DEV-016.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-016 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 21 days open (+4); due-date proximity: deviation due date due within 6 days (+16). Source record IDs: DEV-016.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1621,7 +1621,7 @@
           "record_id": "DEV-017"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-017 over horizon 4_weeks. Top drivers: severity: major (+22); age: 24 days open (+4); due-date proximity: deviation due date due within 8 days (+9). Source record IDs: DEV-017.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-017 over horizon 4_weeks. Top drivers: severity: major (+22); age: 24 days open (+4); due-date proximity: deviation due date due within 8 days (+9). Source record IDs: DEV-017.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1659,7 +1659,7 @@
           "record_id": "CAPA-048"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-018 over horizon 4_weeks. Top drivers: severity: major (+22); age: 22 days open (+4); confidence reduced: missing due_date. Source record IDs: DEV-018, CAPA-048.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-018 over horizon 4_weeks. Top drivers: severity: major (+22); age: 22 days open (+4); confidence reduced: missing due_date. Source record IDs: DEV-018, CAPA-048.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1697,7 +1697,7 @@
           "record_id": "CAPA-014"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-019 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 15 days open (+4); confidence reduced: missing due_date. Source record IDs: DEV-019, CAPA-014.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-019 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 15 days open (+4); confidence reduced: missing due_date. Source record IDs: DEV-019, CAPA-014.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1735,7 +1735,7 @@
           "record_id": "CAPA-014"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-020 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 16 days open (+4); due-date proximity: deviation due date due within 11 days (+9). Source record IDs: DEV-020, CAPA-014.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-020 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 16 days open (+4); due-date proximity: deviation due date due within 11 days (+9). Source record IDs: DEV-020, CAPA-014.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1773,7 +1773,7 @@
           "record_id": "CAPA-014"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-021 over horizon 4_weeks. Top drivers: severity: major (+22); age: 15 days open (+4); confidence reduced: missing due_date. Source record IDs: DEV-021, CAPA-014.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-021 over horizon 4_weeks. Top drivers: severity: major (+22); age: 15 days open (+4); confidence reduced: missing due_date. Source record IDs: DEV-021, CAPA-014.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1806,7 +1806,7 @@
           "record_id": "DEV-024"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-024 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 15 days open (+4); due-date proximity: deviation due date due within 5 days (+16). Source record IDs: DEV-024.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-024 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 15 days open (+4); due-date proximity: deviation due date due within 5 days (+16). Source record IDs: DEV-024.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1839,7 +1839,7 @@
           "record_id": "DEV-025"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-025 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 15 days open (+4); due-date proximity: deviation due date due within 11 days (+9). Source record IDs: DEV-025.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-025 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 15 days open (+4); due-date proximity: deviation due date due within 11 days (+9). Source record IDs: DEV-025.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1872,7 +1872,7 @@
           "record_id": "DEV-026"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-026 over horizon 4_weeks. Top drivers: severity: major (+22); age: 17 days open (+4); due-date proximity: deviation due date due within 9 days (+9). Source record IDs: DEV-026.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-026 over horizon 4_weeks. Top drivers: severity: major (+22); age: 17 days open (+4); due-date proximity: deviation due date due within 9 days (+9). Source record IDs: DEV-026.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1905,7 +1905,7 @@
           "record_id": "DEV-028"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-028 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 16 days open (+4); due-date proximity: deviation due date due within 10 days (+9). Source record IDs: DEV-028.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-028 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 16 days open (+4); due-date proximity: deviation due date due within 10 days (+9). Source record IDs: DEV-028.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1943,7 +1943,7 @@
           "record_id": "CAPA-014"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-029 over horizon 4_weeks. Top drivers: severity: minor (+8); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-033, DEV-035, DEV-037, DEV-038, DEV-040 (+16). Source record IDs: DEV-029, CAPA-014.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-029 over horizon 4_weeks. Top drivers: severity: minor (+8); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-033, DEV-035, DEV-037, DEV-038, DEV-040 (+16). Source record IDs: DEV-029, CAPA-014.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -1981,7 +1981,7 @@
           "record_id": "CAPA-014"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-030 over horizon 4_weeks. Top drivers: severity: minor (+8); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-031, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16). Source record IDs: DEV-030, CAPA-014.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-030 over horizon 4_weeks. Top drivers: severity: minor (+8); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-031, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16). Source record IDs: DEV-030, CAPA-014.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2019,7 +2019,7 @@
           "record_id": "CAPA-014"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-031 over horizon 4_weeks. Top drivers: severity: minor (+8); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-033, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16). Source record IDs: DEV-031, CAPA-014.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-031 over horizon 4_weeks. Top drivers: severity: minor (+8); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-033, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16). Source record IDs: DEV-031, CAPA-014.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2052,7 +2052,7 @@
           "record_id": "DEV-033"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-033 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028 (+16). Source record IDs: DEV-033.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-033 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028 (+16). Source record IDs: DEV-033.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2090,7 +2090,7 @@
           "record_id": "CAPA-032"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-036 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-033, DEV-035, DEV-037, DEV-038, DEV-040 (+16). Source record IDs: DEV-036, CAPA-032.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-036 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-033, DEV-035, DEV-037, DEV-038, DEV-040 (+16). Source record IDs: DEV-036, CAPA-032.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2123,7 +2123,7 @@
           "record_id": "DEV-040"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-040 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028 (+16). Source record IDs: DEV-040.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-040 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028 (+16). Source record IDs: DEV-040.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2161,7 +2161,7 @@
           "record_id": "CAPA-014"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-041 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16). Source record IDs: DEV-041, CAPA-014.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-041 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16). Source record IDs: DEV-041, CAPA-014.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2199,7 +2199,7 @@
           "record_id": "CAPA-014"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-042 over horizon 4_weeks. Top drivers: severity: critical (+32); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-046, DEV-051, DEV-052, DEV-053 (+16). Source record IDs: DEV-042, CAPA-014.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-042 over horizon 4_weeks. Top drivers: severity: critical (+32); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-046, DEV-051, DEV-052, DEV-053 (+16). Source record IDs: DEV-042, CAPA-014.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2237,7 +2237,7 @@
           "record_id": "CAPA-014"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-043 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053 (+16). Source record IDs: DEV-043, CAPA-014.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-043 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053 (+16). Source record IDs: DEV-043, CAPA-014.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2270,7 +2270,7 @@
           "record_id": "DEV-044"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-044 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-046, DEV-051, DEV-052, DEV-053 (+16). Source record IDs: DEV-044.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-044 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-046, DEV-051, DEV-052, DEV-053 (+16). Source record IDs: DEV-044.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2308,7 +2308,7 @@
           "record_id": "CAPA-037"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-047 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16). Source record IDs: DEV-047, CAPA-037.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-047 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16). Source record IDs: DEV-047, CAPA-037.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2341,7 +2341,7 @@
           "record_id": "DEV-049"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-049 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16). Source record IDs: DEV-049.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-049 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16). Source record IDs: DEV-049.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2374,7 +2374,7 @@
           "record_id": "DEV-051"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-051 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16). Source record IDs: DEV-051.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-051 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16). Source record IDs: DEV-051.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2412,7 +2412,7 @@
           "record_id": "CAPA-056"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-054 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053 (+16). Source record IDs: DEV-054, CAPA-056.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-054 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053 (+16). Source record IDs: DEV-054, CAPA-056.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2445,7 +2445,7 @@
           "record_id": "DEV-055"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-055 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 109 days open (+12); due-date proximity: deviation due date overdue by 86 days (+25). Source record IDs: DEV-055.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-055 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 109 days open (+12); due-date proximity: deviation due date overdue by 86 days (+25). Source record IDs: DEV-055.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2478,7 +2478,7 @@
           "record_id": "DEV-056"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-056 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 54 days open (+7); due-date proximity: deviation due date overdue by 26 days (+25). Source record IDs: DEV-056.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-056 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 54 days open (+7); due-date proximity: deviation due date overdue by 26 days (+25). Source record IDs: DEV-056.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2516,7 +2516,7 @@
           "record_id": "CAPA-021"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-061 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 45 days open (+7); due-date proximity: deviation due date overdue by 7 days (+25). Source record IDs: DEV-061, CAPA-021.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-061 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 45 days open (+7); due-date proximity: deviation due date overdue by 7 days (+25). Source record IDs: DEV-061, CAPA-021.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2554,7 +2554,7 @@
           "record_id": "CAPA-036"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-062 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 39 days open (+7); due-date proximity: deviation due date due within 1 days (+16). Source record IDs: DEV-062, CAPA-036.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-062 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 39 days open (+7); due-date proximity: deviation due date due within 1 days (+16). Source record IDs: DEV-062, CAPA-036.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2592,7 +2592,7 @@
           "record_id": "CAPA-062"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-063 over horizon 4_weeks. Top drivers: severity: major (+22); age: 56 days open (+7); due-date proximity: deviation due date overdue by 36 days (+25). Source record IDs: DEV-063, CAPA-062.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-063 over horizon 4_weeks. Top drivers: severity: major (+22); age: 56 days open (+7); due-date proximity: deviation due date overdue by 36 days (+25). Source record IDs: DEV-063, CAPA-062.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2630,7 +2630,7 @@
           "record_id": "CAPA-050"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-065 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 124 days open (+12); due-date proximity: deviation due date overdue by 101 days (+25). Source record IDs: DEV-065, CAPA-050.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-065 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 124 days open (+12); due-date proximity: deviation due date overdue by 101 days (+25). Source record IDs: DEV-065, CAPA-050.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2663,7 +2663,7 @@
           "record_id": "DEV-066"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-066 over horizon 4_weeks. Top drivers: severity: major (+22); age: 37 days open (+7); due-date proximity: deviation due date due within 4 days (+16). Source record IDs: DEV-066.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-066 over horizon 4_weeks. Top drivers: severity: major (+22); age: 37 days open (+7); due-date proximity: deviation due date due within 4 days (+16). Source record IDs: DEV-066.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2696,7 +2696,7 @@
           "record_id": "DEV-067"
         }
       ],
-      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-067 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 128 days open (+12); due-date proximity: deviation due date overdue by 94 days (+25). Source record IDs: DEV-067.",
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (critical) for deviation DEV-067 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 128 days open (+12); due-date proximity: deviation due date overdue by 94 days (+25). Source record IDs: DEV-067.",
       "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
       "limitations": [
         "Advisory decision support only; this card does not make a GMP decision.",
@@ -2859,8 +2859,8 @@
   ],
   "demo_stories": [
     {
-      "id": "packaging-storm",
-      "label": "Packaging storm",
+      "id": "packaging-priority",
+      "label": "Packaging priority",
       "business_interpretation": "Packaging shows a rising advisory signal. The demo highlights repeat deviations, owner pressure, and source-linked evidence for QA prioritization.",
       "suggested_human_review_action": "QA should review packaging recurrence patterns and whether linked CAPAs remain adequate.",
       "risk_entity_ids": [

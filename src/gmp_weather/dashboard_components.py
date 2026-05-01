@@ -28,6 +28,13 @@ HORIZON_FACTORS = {
     RiskHorizon.FOUR_WEEKS: 1.0,
     RiskHorizon.EIGHT_WEEKS: 1.08,
 }
+PRIORITY_BAND_LABELS = {
+    RiskBand.CLEAR.value: "Niedrig",
+    RiskBand.WATCH.value: "Beobachten",
+    RiskBand.ADVISORY.value: "Erhöht",
+    RiskBand.STORM.value: "Hoch",
+    RiskBand.SEVERE_STORM.value: "Kritisch",
+}
 
 
 @dataclass(frozen=True)
@@ -47,8 +54,8 @@ class DemoStory:
 
 DEMO_STORIES: tuple[DemoStory, ...] = (
     DemoStory(
-        key="packaging_storm",
-        label="Packaging storm",
+        key="packaging_priority",
+        label="Packaging-Priorität",
         business_interpretation=(
             "Packaging shows a rising synthetic deviation pattern over the last six weeks. "
             "This is an elevated operational risk signal for trend review, not a finding of non-compliance."
@@ -101,7 +108,7 @@ DEMO_STORIES: tuple[DemoStory, ...] = (
         label="Sterile Filling high-severity watch",
         business_interpretation=(
             "Sterile Filling has fewer synthetic deviations than Packaging, but a higher severity mix. "
-            "This is a watch area for QA review because severity can matter even when counts are lower."
+            "This is a review area for QA because severity can matter even when counts are lower."
         ),
         suggested_human_review_action=(
             "QA and Production should review high-severity Sterile Filling deviations, related CAPAs, "
@@ -177,7 +184,7 @@ def inject_dashboard_css() -> None:
 def render_dashboard_header(generated_at: datetime, model_version: str = MODEL_VERSION) -> None:
     import streamlit as st
 
-    st.title("GMP Compliance Weather Forecast — Prototype")
+    st.title("GMP Risiko-Cockpit — Prototype")
     st.markdown(
         '<div class="gmp-disclaimer">'
         "This prototype provides advisory quality-risk signals only. It does not make GMP decisions. "
@@ -186,7 +193,7 @@ def render_dashboard_header(generated_at: datetime, model_version: str = MODEL_V
         unsafe_allow_html=True,
     )
     st.markdown(
-        f'<div class="gmp-meta">Last forecast generated at: {generated_at.strftime("%Y-%m-%d %H:%M:%S")} | '
+        f'<div class="gmp-meta">Last risk prioritization generated at: {generated_at.strftime("%Y-%m-%d %H:%M:%S")} | '
         f"Model version: {model_version}</div>",
         unsafe_allow_html=True,
     )
@@ -265,13 +272,16 @@ def filter_scores(
     ]
 
 
-def overall_weather_index(scores: list[RiskScore]) -> int:
-    """Return a simple top-risk weighted compliance weather index."""
+def priority_index(scores: list[RiskScore]) -> int:
+    """Return a simple top-risk weighted QA prioritization index."""
 
     if not scores:
         return 0
     top_scores = sorted((score.score for score in scores), reverse=True)[:10]
     return round(sum(top_scores) / len(top_scores))
+
+
+overall_weather_index = priority_index
 
 
 def risk_band_counts(scores: list[RiskScore]) -> dict[str, int]:
@@ -319,7 +329,7 @@ def demo_story_score_frame(
         rows.append(
             {
                 "score": score.score,
-                "band": score.band.value,
+                "band": band_label(score.band.value),
                 "horizon": score.horizon.value,
                 "risk_type": score.risk_type,
                 "entity_type": score.entity_type,
@@ -359,7 +369,7 @@ def scores_to_frame(scores: list[RiskScore]) -> pd.DataFrame:
     rows = [
         {
             "score": score.score,
-            "band": score.band.value,
+            "band": band_label(score.band.value),
             "horizon": score.horizon.value,
             "risk_type": score.risk_type,
             "entity_type": score.entity_type,
@@ -396,7 +406,7 @@ def score_context_frame(scores: list[RiskScore], cards: list[EvidenceCard]) -> p
         rows.append(
             {
                 "score": score.score,
-                "band": score.band.value,
+                "band": band_label(score.band.value),
                 "risk_type": score.risk_type,
                 "entity_type": score.entity_type,
                 "entity_id": score.entity_id,
@@ -562,7 +572,7 @@ def render_heatmap(frame: pd.DataFrame) -> None:
 def render_band_counts(counts: dict[str, int]) -> None:
     import streamlit as st
 
-    frame = pd.DataFrame([{"band": band, "count": count} for band, count in counts.items()])
+    frame = pd.DataFrame([{"band": band_label(band), "count": count} for band, count in counts.items()])
     st.bar_chart(frame, x="band", y="count")
 
 
@@ -574,7 +584,7 @@ def render_evidence_cards_expanders(cards: list[EvidenceCard]) -> None:
         return
     for card in cards:
         label = (
-            f"{card.risk_score.band.value.replace('_', ' ').title()} | "
+            f"{band_label(card.risk_score.band.value)} | "
             f"{card.risk_score.risk_type} | {card.risk_score.entity_id} | {card.risk_score.score:.1f}"
         )
         with st.expander(label):
@@ -655,6 +665,12 @@ def sidebar_options(bundle: QMSDataBundle) -> dict[str, list[str]]:
         }
     )
     return {"sites": sites, "departments": departments}
+
+
+def band_label(band: str) -> str:
+    """Return user-facing priority labels for internal risk-band keys."""
+
+    return PRIORITY_BAND_LABELS.get(band, band.replace("_", " ").title())
 
 
 def _site_allowed(site: str, selected_sites: set[str]) -> bool:

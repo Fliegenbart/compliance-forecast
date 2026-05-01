@@ -1,4 +1,4 @@
-"""GMP compliance weather forecast prototype package."""
+"""GMP risk prioritization cockpit prototype package."""
 
 __all__ = [
     "schemas",

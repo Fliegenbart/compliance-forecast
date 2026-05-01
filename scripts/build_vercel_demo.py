@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a static Vercel-friendly demo from synthetic GMP forecast data."""
+"""Build a static Vercel-friendly demo from synthetic GMP risk-prioritization data."""
 
 from __future__ import annotations
 
@@ -51,7 +51,7 @@ def build_vercel_demo_payload(
 
     payload = {
         "meta": {
-            "app_name": "GMP Compliance Weather Forecast",
+            "app_name": "GMP Risiko-Cockpit",
             "client_name": "Beispiel GmbH",
             "generated_at": generated_at.isoformat(),
             "as_of_date": as_of_date.isoformat(),
@@ -63,7 +63,7 @@ def build_vercel_demo_payload(
             ),
         },
         "summary": {
-            "overall_weather_index": overall_index,
+            "qa_prioritization_index": overall_index,
             "data_readiness_score": data_quality_report.data_readiness_score,
             "risk_score_count": len(scores),
             "evidence_card_count": len(evidence_cards),
@@ -240,8 +240,8 @@ def _split_entity(entity_id: str, expected_parts: int) -> list[str]:
 def _demo_stories(score_rows: list[dict[str, Any]], evidence_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return [
         _story(
-            story_id="packaging-storm",
-            label="Packaging storm",
+            story_id="packaging-priority",
+            label="Packaging priority",
             interpretation=(
                 "Packaging shows a rising advisory signal. The demo highlights repeat deviations, "
                 "owner pressure, and source-linked evidence for QA prioritization."

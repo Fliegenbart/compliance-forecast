@@ -18,6 +18,7 @@ from gmp_weather.agents import ForecastBriefingAgent
 from gmp_weather.backtesting import run_backtest
 from gmp_weather.config import FORECAST_LOG_DIR, SAMPLE_DATA_DIR, SCORING_CONFIG_PATH, load_scoring_config
 from gmp_weather.dashboard_components import (
+    band_label,
     data_quality_issue_frame,
     demo_story_options,
     demo_story_score_frame,
@@ -68,7 +69,7 @@ def _load_scoring_config(config_path: str, modified_ns: int):
 
 def main() -> None:
     st.set_page_config(
-        page_title="GMP Compliance Weather Forecast — Prototype",
+        page_title="GMP Risiko-Cockpit — Prototype",
         layout="wide",
         initial_sidebar_state="expanded",
     )
@@ -84,7 +85,7 @@ def main() -> None:
         st.session_state["demo_story_key"] = demo_stories[0].key
 
     with st.sidebar:
-        st.header("Forecast Controls")
+        st.header("Risk Controls")
         as_of_date = st.date_input("as_of_date", value=date(2026, 4, 30))
         selected_sites = st.multiselect("site filter", options=options["sites"], default=options["sites"])
         selected_departments = st.multiselect(
@@ -102,14 +103,14 @@ def main() -> None:
             "minimum risk band",
             options=[RiskBand.CLEAR, RiskBand.WATCH, RiskBand.ADVISORY, RiskBand.STORM, RiskBand.SEVERE_STORM],
             index=2,
-            format_func=lambda item: item.value.replace("_", " ").title(),
+            format_func=lambda item: band_label(item.value),
         )
         st.divider()
         st.caption(f"Model version: {scoring_config.model_version}")
         st.caption("Local synthetic sample data only.")
         st.divider()
-        st.subheader("Demo Story Mode")
-        st.caption("Jump through the synthetic consulting walkthrough.")
+        st.subheader("Demo-Fokus")
+        st.caption("Geführte synthetische QA-Szenarien.")
         for story in demo_stories:
             if st.button(story.label, key=f"demo_story_button_{story.key}", use_container_width=True):
                 st.session_state["demo_story_key"] = story.key
@@ -164,7 +165,7 @@ def main() -> None:
     with st.sidebar:
         st.divider()
         st.subheader("Governance")
-        st.caption(f"Forecast run: {forecast_run_log.forecast_run_id}")
+        st.caption(f"Risk run: {forecast_run_log.forecast_run_id}")
         st.caption(f"Scoring config hash: {forecast_run_log.scoring_config_hash[:12]}...")
         st.caption("Audit log is local metadata only; no QMS source data is changed.")
         if st.button("Export Diagnostic Report", use_container_width=True):
@@ -205,8 +206,8 @@ def main() -> None:
         tab_governance,
     ) = st.tabs(
         [
-            "Executive Weather Map",
-            "Deviation & CAPA Storm Forecast",
+            "Executive Priority Map",
+            "Deviation & CAPA Priority View",
             "Audit Readiness",
             "Training Drift",
             "Evidence Cards",
@@ -260,7 +261,7 @@ def _render_executive_weather_map(
     demo_scores,
     demo_evidence_cards,
 ) -> None:
-    st.subheader("Executive Weather Map")
+    st.subheader("Executive Priority Map")
     st.markdown(
         '<div class="section-note">A consolidated advisory view for QA leadership. '
         "Scores are rule-based signals and require human QA review.</div>",
@@ -273,16 +274,16 @@ def _render_executive_weather_map(
         demo_evidence_cards,
     )
 
-    st.markdown("### Weekly Forecast Briefing")
+    st.markdown("### Weekly Priority Briefing")
     st.info(weekly_briefing.briefing_text)
     st.caption("Source record IDs: " + ", ".join(weekly_briefing.source_record_ids[:20]))
 
     weather_index = overall_weather_index(visible_scores)
     render_metric_row(
         [
-            ("Overall Compliance Weather Index", f"{weather_index}/100", "Average of the top visible advisory risks."),
+            ("QA-Priorisierungsindex", f"{weather_index}/100", "Average of the top visible advisory risks."),
             ("Visible risk entities", str(len(visible_scores)), "Filtered by sidebar controls."),
-            ("Evidence cards", str(len(evidence_cards)), "Generated for advisory, storm, and severe storm scores."),
+            ("Evidence cards", str(len(evidence_cards)), "Generated for elevated, high, and critical scores."),
         ]
     )
 
@@ -292,7 +293,7 @@ def _render_executive_weather_map(
 
     left, right = st.columns([1, 2])
     with left:
-        st.markdown("### Risk Band Counts")
+        st.markdown("### Prioritätsverteilung")
         render_band_counts(risk_band_counts(visible_scores))
     with right:
         st.markdown("### Heatmap by Department / Process")
@@ -309,7 +310,7 @@ def _render_demo_story_panel(
     story_scores = demo_story_score_frame(story, demo_scores, demo_evidence_cards)
     story_cards = select_demo_story_evidence_cards(story, demo_evidence_cards)
 
-    st.markdown("### Demo Story")
+    st.markdown("### Demo-Szenario")
     st.markdown(
         '<div class="section-note">A guided walkthrough of the synthetic GMP consulting scenario. '
         "It is advisory only and intended to support human QA review discussions.</div>",
@@ -334,7 +335,7 @@ def _render_demo_story_panel(
 
 
 def _render_deviation_capa_storm(visible_scores, evidence_cards, bundle, as_of_date: date) -> None:
-    st.subheader("Deviation & CAPA Storm Forecast")
+    st.subheader("Deviation & CAPA Priority View")
     score_frame = score_context_frame(visible_scores, evidence_cards)
 
     deviation_scores = score_frame[score_frame["risk_type"] == "deviation_recurrence"].head(15)
@@ -500,7 +501,7 @@ def _render_backtesting(bundle, as_of_date: date, selected_horizons: list[RiskHo
             (
                 "Avg. lead time",
                 f"{result.metric_summary['lead_time_days']:.1f} days",
-                "Average days from forecast date to matched later synthetic event.",
+                "Average days from risk date to matched later synthetic event.",
             ),
         ]
     )
@@ -508,8 +509,8 @@ def _render_backtesting(bundle, as_of_date: date, selected_horizons: list[RiskHo
     st.markdown("### Metric Summary")
     render_table(_metric_comparison_frame(result), "No backtesting metrics are available.", height=180)
 
-    st.markdown("### Forecast Dates Tested")
-    render_table(result.forecast_summary_frame, "No forecast dates were tested.", height=260)
+    st.markdown("### Risk Dates Tested")
+    render_table(result.forecast_summary_frame, "No risk dates were tested.", height=260)
 
     st.markdown("### Top Predicted Risks and Later Outcomes")
     render_table(
@@ -529,7 +530,7 @@ def _render_backtesting(bundle, as_of_date: date, selected_horizons: list[RiskHo
 def _render_governance(forecast_run_log, recent_forecast_logs, scoring_config, visible_scores) -> None:
     st.subheader("Governance")
     st.markdown(
-        '<div class="section-note">This governance view documents how the advisory forecast was generated. '
+        '<div class="section-note">This governance view documents how the advisory prioritization was generated. '
         "It supports traceability for human QA review and does not create GMP decisions.</div>",
         unsafe_allow_html=True,
     )
@@ -546,8 +547,8 @@ def _render_governance(forecast_run_log, recent_forecast_logs, scoring_config, v
         st.write("- No automated CAPA approval, deviation closure, batch release, supplier qualification, or validation approval.")
         st.write("- No regulatory reportability decisions or final audit responses.")
 
-    st.markdown("### Latest Forecast Run Details")
-    render_table(_forecast_log_summary_frame(forecast_run_log), "No forecast run log is available.", height=300)
+    st.markdown("### Latest Risk Run Details")
+    render_table(_forecast_log_summary_frame(forecast_run_log), "No risk run log is available.", height=300)
 
     st.markdown("### Active Scoring Configuration")
     render_metric_row(
@@ -560,7 +561,7 @@ def _render_governance(forecast_run_log, recent_forecast_logs, scoring_config, v
 
     left, right = st.columns(2)
     with left:
-        st.markdown("### Risk Band Thresholds")
+        st.markdown("### Priority Thresholds")
         render_table(_risk_band_threshold_frame(scoring_config), "No risk band thresholds are available.", height=260)
     with right:
         st.markdown("### Top Scoring Drivers Used")
@@ -569,8 +570,8 @@ def _render_governance(forecast_run_log, recent_forecast_logs, scoring_config, v
     st.markdown("### Source File Hashes")
     render_table(_source_hash_frame(forecast_run_log), "No source file hashes are available.", height=260)
 
-    st.markdown("### Recent Forecast Runs")
-    render_table(_recent_logs_frame(recent_forecast_logs[:10]), "No previous forecast run logs are available.", height=320)
+    st.markdown("### Recent Risk Runs")
+    render_table(_recent_logs_frame(recent_forecast_logs[:10]), "No previous risk run logs are available.", height=320)
 
 
 def _issue_subset(frame: pd.DataFrame, pattern: str) -> pd.DataFrame:
@@ -690,11 +691,11 @@ def _risk_band_threshold_frame(scoring_config) -> pd.DataFrame:
     bands = scoring_config.risk_bands
     return pd.DataFrame(
         [
-            {"band": "clear", "threshold": f"<= {bands['clear_max']:g}"},
-            {"band": "watch", "threshold": f"{bands['clear_max'] + 1:g} to {bands['watch_max']:g}"},
-            {"band": "advisory", "threshold": f"{bands['watch_max'] + 1:g} to {bands['advisory_max']:g}"},
-            {"band": "storm", "threshold": f"{bands['advisory_max'] + 1:g} to {bands['storm_max']:g}"},
-            {"band": "severe_storm", "threshold": f">= {bands['severe_storm_min']:g}"},
+            {"band": band_label("clear"), "threshold": f"<= {bands['clear_max']:g}"},
+            {"band": band_label("watch"), "threshold": f"{bands['clear_max'] + 1:g} to {bands['watch_max']:g}"},
+            {"band": band_label("advisory"), "threshold": f"{bands['watch_max'] + 1:g} to {bands['advisory_max']:g}"},
+            {"band": band_label("storm"), "threshold": f"{bands['advisory_max'] + 1:g} to {bands['storm_max']:g}"},
+            {"band": band_label("severe_storm"), "threshold": f">= {bands['severe_storm_min']:g}"},
         ]
     )
 

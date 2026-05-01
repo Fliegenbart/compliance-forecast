@@ -24,7 +24,7 @@ def _assert_safe_draft_text(text: str) -> None:
 
 
 def test_disabled_mode_evidence_rationale_is_deterministic_and_source_grounded(monkeypatch):
-    monkeypatch.delenv("GMP_WEATHER_ENABLE_LLM", raising=False)
+    monkeypatch.delenv("GMP_RISK_COCKPIT_ENABLE_LLM", raising=False)
     context = {
         "risk_type": "capa_failure",
         "entity_type": "capa",
@@ -51,7 +51,7 @@ def test_disabled_mode_evidence_rationale_is_deterministic_and_source_grounded(m
 
 
 def test_disabled_mode_weekly_briefing_is_deterministic_and_source_grounded(monkeypatch):
-    monkeypatch.setenv("GMP_WEATHER_ENABLE_LLM", "false")
+    monkeypatch.setenv("GMP_RISK_COCKPIT_ENABLE_LLM", "false")
     context = {
         "period": "weekly",
         "risk_summary": [

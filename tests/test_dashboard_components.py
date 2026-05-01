@@ -79,13 +79,13 @@ def test_demo_story_options_cover_required_scenarios():
     stories = {story.key: story for story in demo_story_options()}
 
     assert set(stories) == {
-        "packaging_storm",
+        "packaging_priority",
         "capa_recurrence_risk",
         "training_drift_sop_revision",
         "sterile_filling_watch",
         "qc_lab_oos_oot_recurrence",
     }
-    assert stories["packaging_storm"].label == "Packaging storm"
+    assert stories["packaging_priority"].label == "Packaging-Priorität"
     assert stories["capa_recurrence_risk"].suggested_human_review_action
 
 

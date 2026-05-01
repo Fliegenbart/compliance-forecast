@@ -242,10 +242,20 @@ def _rationale(risk_score: RiskScore, top_drivers: list[str], source_ids: str) -
     driver_text = "; ".join(top_drivers)
     return (
         f"Based on available data, this elevated risk signal is recommended for QA review. "
-        f"The advisory score is {risk_score.score:.1f} ({risk_score.band.value.replace('_', ' ')}) "
+        f"The advisory score is {risk_score.score:.1f} ({_band_label(risk_score.band.value)}) "
         f"for {risk_score.entity_type} {risk_score.entity_id} over horizon {risk_score.horizon.value}. "
         f"Top drivers: {driver_text}. Source record IDs: {source_ids}."
     )
+
+
+def _band_label(band: str) -> str:
+    return {
+        "clear": "low",
+        "watch": "watch",
+        "advisory": "elevated",
+        "storm": "high",
+        "severe_storm": "critical",
+    }.get(band, band.replace("_", " "))
 
 
 def _recommended_review(risk_type: str) -> str:

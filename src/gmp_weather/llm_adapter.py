@@ -1,7 +1,7 @@
 """Optional LLM adapter for source-grounded draft text.
 
 The default mode is fully local and deterministic. External LLM calls are not
-performed unless ``GMP_WEATHER_ENABLE_LLM=true`` is set, and this module still
+performed unless ``GMP_RISK_COCKPIT_ENABLE_LLM=true`` is set, and this module still
 requires source-grounded context before draft text can be produced.
 """
 
@@ -13,7 +13,7 @@ from collections.abc import Mapping, Sequence
 from typing import Any
 
 
-LLM_ENABLE_ENV_VAR = "GMP_WEATHER_ENABLE_LLM"
+LLM_ENABLE_ENV_VAR = "GMP_RISK_COCKPIT_ENABLE_LLM"
 FORBIDDEN_DECISION_PHRASES = (
     "approved",
     "closed by ai",
@@ -82,7 +82,7 @@ def generate_draft_weekly_briefing(context: Mapping[str, Any]) -> str:
     source_text = _format_source_ids(source_ids)
 
     text = (
-        "Draft weekly forecast briefing for human QA review: based on available source-grounded data, "
+        "Draft weekly priority briefing for human QA review: based on available source-grounded data, "
         f"the current advisory summary highlights {risk_summary}. "
         f"Source record IDs: {source_text}. "
         "These are advisory risk-ranking signals only and not a final GMP decision."

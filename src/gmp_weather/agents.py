@@ -1,4 +1,4 @@
-"""Advisory agent layer for local GMP forecast support.
+"""Advisory agent layer for local GMP risk-prioritization support.
 
 These agents summarize rule-based signals for human QA review. They do not
 approve, reject, close, certify, release, qualify, accept, or disposition any
@@ -84,7 +84,7 @@ class AgentReviewSignal(AdvisoryAgentModel):
 
 
 class ForecastBriefing(AdvisoryAgentModel):
-    """Short advisory forecast briefing for weekly human QA review."""
+    """Short advisory priority briefing for weekly human QA review."""
 
     agent_name: str = "ForecastBriefingAgent"
     role: str = "summarize advisory signals with safe wording"
@@ -264,7 +264,7 @@ class AuditReadinessAgent:
 
 
 class ForecastBriefingAgent:
-    """Summarize advisory signals with safe weekly forecast wording."""
+    """Summarize advisory signals with safe weekly priority wording."""
 
     role = "summarize advisory signals with safe wording"
 
@@ -274,7 +274,7 @@ class ForecastBriefingAgent:
         if not top_scores:
             return ForecastBriefing(
                 briefing_text=(
-                    "Weekly advisory forecast briefing: based on available data, no elevated risk "
+                    "Weekly advisory priority briefing: based on available data, no elevated risk "
                     "signals were generated for the current filters. Routine human QA review remains expected."
                 ),
                 source_record_ids=["no-elevated-signal"],
@@ -283,9 +283,9 @@ class ForecastBriefingAgent:
         band_counts = Counter(score.band.value for score in risk_scores)
         top_items = ", ".join(f"{score.risk_type} {score.entity_id} ({score.score:.1f})" for score in top_scores)
         briefing = (
-            "Weekly advisory forecast briefing: based on available data, the current forecast shows "
-            f"{len(risk_scores)} advisory risk signals, including {band_counts.get(RiskBand.STORM.value, 0)} storm "
-            f"and {band_counts.get(RiskBand.SEVERE_STORM.value, 0)} severe storm signals. "
+            "Weekly advisory priority briefing: based on available data, the current prioritization shows "
+            f"{len(risk_scores)} advisory risk signals, including {band_counts.get(RiskBand.STORM.value, 0)} high "
+            f"and {band_counts.get(RiskBand.SEVERE_STORM.value, 0)} critical signals. "
             f"Top signals for review: {top_items}. These signals are recommended for human QA review "
             "and are not GMP decisions."
         )

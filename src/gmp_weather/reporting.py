@@ -1,4 +1,4 @@
-"""Markdown diagnostic reporting for advisory GMP forecast demos.
+"""Markdown diagnostic reporting for advisory GMP risk-prioritization demos.
 
 Reports generated here are source-linked diagnostic summaries for human QA
 review. They are not GMP decisions, validation evidence, or regulatory
@@ -36,7 +36,7 @@ def generate_markdown_diagnostic_report(
 
     sorted_scores = sorted(scores, key=lambda item: item.score, reverse=True)
     sections = [
-        "# GMP Compliance Weather Forecast - 30-Day Diagnostic Report",
+        "# GMP Risiko-Cockpit - 30-Day Diagnostic Report",
         "",
         SAFE_WORDING,
         "",
@@ -44,7 +44,7 @@ def generate_markdown_diagnostic_report(
         _intended_use_and_limitations(),
         _data_sources_analyzed(bundle, forecast_run_log),
         _data_quality_assessment(data_quality_report),
-        _overall_compliance_weather(sorted_scores),
+        _overall_risk_prioritization(sorted_scores),
         _top_forecasted_risks(sorted_scores),
         _risk_type_section("7. Deviation Recurrence Signals", "deviation_recurrence", sorted_scores, evidence_cards),
         _risk_type_section("8. CAPA Failure Risk Signals", "capa_failure", sorted_scores, evidence_cards),
@@ -94,7 +94,7 @@ def _executive_summary(
             "",
             _bullet_list(
                 [
-                    f"Forecast run ID: {forecast_run_log.forecast_run_id}",
+                    f"Risk run ID: {forecast_run_log.forecast_run_id}",
                     f"As-of date: {forecast_run_log.as_of_date.isoformat()}",
                     f"Model version: {forecast_run_log.model_version}",
                     f"Risk scores reviewed: {len(sorted_scores)}",
@@ -145,7 +145,7 @@ def _data_sources_analyzed(bundle: QMSDataBundle, forecast_run_log: ForecastRunL
         [
             "## 3. Data Sources Analyzed",
             "",
-            "The report uses local source files recorded in the forecast run log. Source hashes support traceability; they do not make this output a GMP record.",
+            "The report uses local source files recorded in the risk run log. Source hashes support traceability; they do not make this output a GMP record.",
             "",
             _markdown_table(["Domain", "Record count"], rows),
             "",
@@ -176,21 +176,21 @@ def _data_quality_assessment(report: DataQualityReport) -> str:
     )
 
 
-def _overall_compliance_weather(sorted_scores: list[RiskScore]) -> str:
+def _overall_risk_prioritization(sorted_scores: list[RiskScore]) -> str:
     top_scores = sorted_scores[:10]
     index = round(sum(score.score for score in top_scores) / len(top_scores)) if top_scores else 0
     band_counts = Counter(score.band.value for score in sorted_scores)
-    rows = [(band, count) for band, count in sorted(band_counts.items())]
+    rows = [(_band_label(band), count) for band, count in sorted(band_counts.items())]
     return "\n".join(
         [
-            "## 5. Overall Compliance Weather",
+            "## 5. Overall GMP Risk Prioritization",
             "",
             (
-                f"The overall compliance weather index is {index}/100 for the visible advisory scores. "
+                f"The QA prioritization index is {index}/100 for the visible advisory scores. "
                 "This is an elevated risk signal summary for prioritization and not a GMP decision."
             ),
             "",
-            _markdown_table(["Risk band", "Count"], rows or [("none", 0)]),
+            _markdown_table(["Priority level", "Count"], rows or [("none", 0)]),
         ]
     )
 
@@ -199,9 +199,9 @@ def _top_forecasted_risks(sorted_scores: list[RiskScore]) -> str:
     rows = [_score_row(score) for score in sorted_scores[:20]]
     return "\n".join(
         [
-            "## 6. Top 20 Forecasted Risks",
+            "## 6. Top 20 Prioritized Risks",
             "",
-            "These forecasted risks are recommended for human QA review based on available data.",
+            "These prioritized risks are recommended for human QA review based on available data.",
             "",
             _markdown_table(
                 ["Rank", "Score", "Band", "Risk type", "Entity type", "Entity ID", "Confidence", "Top driver"],
@@ -224,7 +224,7 @@ def _risk_type_section(
         rows.append(
             (
                 f"{score.score:.1f}",
-                score.band.value,
+                _band_label(score.band.value),
                 score.entity_type,
                 score.entity_id,
                 score.drivers[0] if score.drivers else "",
@@ -241,7 +241,7 @@ def _risk_type_section(
             ),
             "",
             _markdown_table(
-                ["Score", "Band", "Entity type", "Entity ID", "Top driver", "Source record IDs"],
+                ["Score", "Priority level", "Entity type", "Entity ID", "Top driver", "Source record IDs"],
                 rows or [("none", "none", "none", "none", "No matching signals.", "none")],
             ),
         ]
@@ -255,7 +255,7 @@ def _evidence_card_appendix(evidence_cards: list[EvidenceCard]) -> str:
             (
                 card.card_id,
                 f"{card.risk_score.score:.1f}",
-                card.risk_score.band.value,
+                _band_label(card.risk_score.band.value),
                 card.risk_score.risk_type,
                 card.risk_score.entity_id,
                 ", ".join(source.record_id for source in card.source_records[:10]),
@@ -269,7 +269,7 @@ def _evidence_card_appendix(evidence_cards: list[EvidenceCard]) -> str:
             "Evidence cards remain source-linked and recommended for human QA review. Rationale text is advisory and not a GMP decision.",
             "",
             _markdown_table(
-                ["Card ID", "Score", "Band", "Risk type", "Entity ID", "Source record IDs", "Recommended human review"],
+                ["Card ID", "Score", "Priority level", "Risk type", "Entity ID", "Source record IDs", "Recommended human review"],
                 rows or [("none", "none", "none", "none", "none", "none", "No evidence cards generated.")],
             ),
         ]
@@ -356,7 +356,7 @@ def _score_row(score: RiskScore) -> tuple[Any, ...]:
     return (
         "",
         f"{score.score:.1f}",
-        score.band.value,
+        _band_label(score.band.value),
         score.risk_type,
         score.entity_type,
         score.entity_id,
@@ -389,6 +389,16 @@ def _markdown_table(headers: list[str], rows: list[tuple[Any, ...]]) -> str:
 
 def _bullet_list(items: list[str]) -> str:
     return "\n".join(f"- {item}" for item in items)
+
+
+def _band_label(band: str) -> str:
+    return {
+        "clear": "low",
+        "watch": "watch",
+        "advisory": "elevated",
+        "storm": "high",
+        "severe_storm": "critical",
+    }.get(band, band.replace("_", " "))
 
 
 def _escape_cell(value: Any) -> str:

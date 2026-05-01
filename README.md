@@ -1,12 +1,12 @@
-# GMP Compliance Weather Forecast
+# GMP Risiko-Cockpit
 
-Client-facing technical demo for a local, read-only GMP quality-risk forecasting dashboard.
+Client-facing technical demo for a local, read-only GMP quality-risk prioritization dashboard.
 
 Backlog age is not the same as GMP risk. This prototype helps QA teams identify which quality issues deserve human attention first.
 
 ## 1. What This Prototype Is
 
-GMP Compliance Weather Forecast is a Streamlit-based prototype that turns synthetic QMS-style data into advisory quality-risk signals.
+GMP Risiko-Cockpit is a Streamlit-based prototype that turns synthetic QMS-style data into advisory quality-risk signals.
 
 It demonstrates how deviations, CAPAs, audit findings, training records, SOPs, and change controls can be reviewed together in a transparent dashboard. The goal is to support QA prioritization discussions, not to automate regulated decisions.
 
@@ -29,12 +29,12 @@ It must not be used to:
 
 ## Regulatory Safety Boundary
 
-- Advisory only: outputs are quality-risk signals for review, not GMP decisions.
+- Erhöht only: outputs are quality-risk signals for review, not GMP decisions.
 - Read-only MVP: the app reads local CSV files and does not write back to a QMS.
 - Human QA review required: every recommendation is framed for qualified human review.
 - No autonomous GMP decisions: the app does not approve, reject, close, release, certify, qualify, or disposition anything.
 - Source-linked evidence: evidence cards link advisory signals to source record IDs.
-- Model versioning and audit log: forecast runs record model version, scoring config hash, source file hashes, selected filters, and generated output counts.
+- Model versioning and audit log: risk runs record model version, scoring config hash, source file hashes, selected filters, and generated output counts.
 
 ## 3. Target Users
 
@@ -69,8 +69,8 @@ The sample data includes two fictional sites, GMP departments, products, equipme
 3. Calculate transparent advisory risk scores.
 4. Generate source-linked evidence cards for medium and high signals.
 5. Display risk views across dashboard tabs.
-6. Show a weekly forecast briefing and guided demo story.
-7. Create a local forecast run log for traceability.
+6. Show a weekly priority briefing and guided demo story.
+7. Create a local risk run log for traceability.
 8. Export a 30-day Markdown diagnostic report for consulting review.
 
 The dashboard is designed for review conversations. It helps teams ask better prioritization questions, such as which overdue item has the strongest recurrence pattern or which SOP change has the clearest training drift signal.
@@ -81,11 +81,11 @@ The MVP uses transparent rule-based scoring, not black-box machine learning.
 
 Scores range from 0 to 100 and map to advisory risk bands:
 
-- Clear
-- Watch
-- Advisory
-- Storm
-- Severe storm
+- Niedrig
+- Beobachten
+- Erhöht
+- Hoch
+- Kritisch
 
 The active scoring rules are stored in:
 
@@ -122,14 +122,14 @@ Evidence card wording is intentionally cautious. It uses language such as "based
 
 The Streamlit dashboard includes:
 
-- Executive Weather Map: overall index, top risks, band counts, heatmap, weekly briefing, and Demo Story mode
-- Deviation & CAPA Storm Forecast: risky deviations, risky CAPAs, recurrence clusters, and owner workload
+- Executive Priority Map: overall index, top risks, band counts, heatmap, weekly briefing, and Demo Story mode
+- Deviation & CAPA Priority View: risky deviations, risky CAPAs, recurrence clusters, and owner workload
 - Audit Readiness: department/process gap scores, open findings, CAPA links, and SOP/training indicators
 - Training Drift: overdue training, recent SOP changes, and training drift scores
 - Evidence Cards: searchable source-linked evidence cards
 - Data Quality: readiness score, issue list, missing fields, broken references, and duplicate IDs
 - Backtesting: historical risk-ranking utility comparison
-- Governance: intended use, non-intended use, latest forecast run, config metadata, and source hashes
+- Governance: intended use, non-intended use, latest risk run, config metadata, and source hashes
 
 The sidebar also includes an `Export Diagnostic Report` button. It writes a local Markdown report to:
 
@@ -137,7 +137,7 @@ The sidebar also includes an `Export Diagnostic Report` button. It writes a loca
 output/diagnostic_report.md
 ```
 
-The report summarizes the current forecast, evidence cards, data quality assessment, historical backtest, audit log metadata, and recommended 90-day pilot scope. It remains advisory only and is not a GMP decision.
+The report summarizes the current prioritization, evidence cards, data quality assessment, historical backtest, audit log metadata, and recommended 90-day pilot scope. It remains advisory only and is not a GMP decision.
 
 Optional Vercel static preview:
 
@@ -150,7 +150,7 @@ The Vercel preview is a lightweight static demo generated from the same syntheti
 
 Screenshot placeholders:
 
-- [Screenshot placeholder: Executive Weather Map]
+- [Screenshot placeholder: Executive Priority Map]
 - [Screenshot placeholder: Demo Story panel]
 - [Screenshot placeholder: Evidence Cards tab]
 - [Screenshot placeholder: Governance and audit trail]
@@ -159,9 +159,9 @@ Screenshot placeholders:
 
 The backtesting module evaluates historical risk-ranking utility.
 
-For selected historical forecast dates, the app:
+For selected historical historical review dates, the app:
 
-1. Uses only records available up to the forecast date.
+1. Uses only records available up to the historical review date.
 2. Calculates advisory risk scores.
 3. Looks forward over the selected horizon.
 4. Checks whether future synthetic quality events appeared in top-ranked areas or entities.
@@ -180,9 +180,9 @@ The backtest is not proof of prevention and not a guarantee of future performanc
 
 ## 10. Governance And Audit Trail
 
-Every forecast run can produce a local audit log with:
+Every risk run can produce a local audit log with:
 
-- forecast run ID
+- risk run ID
 - generated timestamp
 - as-of date
 - model version
@@ -195,7 +195,7 @@ Every forecast run can produce a local audit log with:
 
 These logs support transparency for demo and review purposes. They do not create GMP records and do not write back to any source system.
 
-Optional LLM functionality is disabled by default. If future LLM support is enabled with `GMP_WEATHER_ENABLE_LLM=true`, outputs must remain source-grounded, marked as draft, and for human QA review only. Do not send real client data, personal data, batch records, deviation narratives, CAPA records, or other real GMP records to an LLM through this prototype.
+Optional LLM functionality is disabled by default. If future LLM support is enabled with `GMP_RISK_COCKPIT_ENABLE_LLM=true`, outputs must remain source-grounded, marked as draft, and for human QA review only. Do not send real client data, personal data, batch records, deviation narratives, CAPA records, or other real GMP records to an LLM through this prototype.
 
 ## 11. How To Run Locally
 

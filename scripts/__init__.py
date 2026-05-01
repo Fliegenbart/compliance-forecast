@@ -1,1 +1,1 @@
-"""Utility scripts for the GMP compliance weather forecast prototype."""
+"""Utility scripts for the GMP risk prioritization cockpit prototype."""

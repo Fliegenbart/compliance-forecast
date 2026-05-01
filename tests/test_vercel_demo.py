@@ -32,5 +32,5 @@ def test_build_vercel_demo_writes_forecast_json(tmp_path: Path):
 
     assert written_path == output_path
     text = output_path.read_text(encoding="utf-8")
-    assert "GMP Compliance Weather Forecast" in text
+    assert "GMP Risiko-Cockpit" in text
     assert "source_record_ids" in text
