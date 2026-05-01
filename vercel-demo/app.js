@@ -533,26 +533,118 @@ function renderHeatmap(rows) {
 function renderEvidenceCards(rows) {
   const container = byId("evidenceCards");
   container.innerHTML = "";
-  rows.slice(0, 8).forEach((row) => {
+  buildEvidenceClusters(rows).forEach((cluster) => {
     const item = document.createElement("article");
-    item.className = "evidence-row";
-    const visibleSources = row.source_records.slice(0, 8);
+    item.className = "evidence-row evidence-cluster";
     item.innerHTML = `
       <div class="evidence-topline">
         <div class="evidence-title">
-          ${escapeHtml(formatRiskType(row.risk_type))}
-          <small>${escapeHtml(row.card_id)} · ${escapeHtml(row.entity_id)}</small>
+          ${escapeHtml(cluster.title)}
+          <small>${escapeHtml(cluster.subtitle)}</small>
         </div>
-        <span class="band-pill ${classForBand(row.band)}">${formatBand(row.band)}</span>
+        <span class="band-pill ${classForBand(cluster.band)}">${formatBand(cluster.band)}</span>
       </div>
-      <p>${escapeHtml(germanRationale(row))}</p>
-      <strong>Menschliche Prüfung: ${escapeHtml(germanReview(row.risk_type))}</strong>
-      <div class="source-list">
-        ${visibleSources.map((source) => `<span class="source-chip">${escapeHtml(domainLabels[source.domain] || source.domain)}: ${escapeHtml(source.record_id)}</span>`).join("")}
+      <div class="source-list evidence-chip-row">
+        ${cluster.records.map((record) => recordChip(record)).join("")}
       </div>
+      ${cluster.records.map((record) => recordDrawer(record)).join("")}
+      <p>${escapeHtml(cluster.description)}</p>
+      <strong>Menschliche Prüfung: ${escapeHtml(cluster.recommendation)}</strong>
     `;
     container.appendChild(item);
   });
+}
+
+function buildEvidenceClusters(rows) {
+  const groups = new Map();
+  rows.forEach((row) => {
+    const key = `${row.risk_type}|${row.department || "bereichsübergreifend"}|${row.process || "prozessübergreifend"}`;
+    const group = groups.get(key) || [];
+    group.push(row);
+    groups.set(key, group);
+  });
+
+  return Array.from(groups.values()).slice(0, 4).map((group, index) => {
+    const first = group[0];
+    const records = group
+      .flatMap((row) =>
+        row.source_records.map((source) => ({
+          ...source,
+          score: row.score,
+          band: row.band,
+          entityId: row.entity_id,
+          owner: row.owner,
+          drivers: row.top_drivers,
+          riskType: row.risk_type,
+          department: row.department,
+          process: row.process,
+        })),
+      )
+      .filter((record, recordIndex, all) => all.findIndex((item) => item.record_id === record.record_id) === recordIndex)
+      .slice(0, 8);
+    return {
+      title: clusterTitle(first, records),
+      subtitle: `${formatRiskType(first.risk_type)} · ${first.department || "bereichsübergreifend"}${first.process ? ` · ${first.process}` : ""}`,
+      band: first.band,
+      records,
+      description: clusterDescription(first, records, index),
+      recommendation: clusterRecommendation(first, records, index),
+    };
+  });
+}
+
+function clusterTitle(row, records) {
+  if (row.risk_type === "deviation_recurrence") {
+    return `Abweichungs-Cluster ${row.process || row.department || "QMS"} (${records[0]?.record_id || row.entity_id} ff.)`;
+  }
+  if (row.risk_type === "capa_failure") return `CAPA-Cluster ${row.process || row.department || "QMS"} (${records[0]?.record_id || row.entity_id} ff.)`;
+  if (row.risk_type === "training_drift") return `Training-Drift ${row.process || row.department || "SOP"} (${records[0]?.record_id || row.entity_id} ff.)`;
+  return `${formatRiskType(row.risk_type)} (${records[0]?.record_id || row.entity_id} ff.)`;
+}
+
+function clusterDescription(row, records, index) {
+  const templates = [
+    `Die Records liegen nicht isoliert nebeneinander, sondern bilden ein erkennbares Muster in ${row.process || row.department}. Auffällig ist die Nähe der Signale: mehrere Quellen zeigen denselben Bereich, aber nicht zwingend dieselbe Ursache. Das ist ein guter Kandidat für eine gebündelte QA-Sichtung statt Einzelbearbeitung.`,
+    `Der Cluster verdichtet mehrere Hinweise zu einem gemeinsamen Wetterbild. Die Quell-IDs zeigen, wo die Analyse starten sollte; die Bewertung bleibt bewusst beratend und ersetzt keine fachliche GMP-Entscheidung.`,
+    `Hier wirkt weniger der einzelne Record entscheidend als die Wiederholung im Kontext. ${records.length} Quellrecords zeigen genug Nähe, um den Bereich im Quality Council fokussiert anzusehen.`,
+    `Das Signal ist vor allem als Lagebild relevant: gleicher Bereich, ähnliche Treiber, mehrere sichtbare Records. Für die Demo zählt diese Verdichtung stärker als das Alter eines einzelnen Backlog-Items.`,
+    `Die Evidenz spricht für einen Review-Block statt für verstreute Einzeldiskussionen. Die Quellen sollten zusammen gelesen werden, damit Wiederholungen, CAPA-Bezug und Trainingseffekte nicht getrennt bewertet werden.`,
+  ];
+  return templates[index % templates.length];
+}
+
+function clusterRecommendation(row, records, index) {
+  const templates = [
+    `QA sollte die ${records.length} Quellrecords gemeinsam sichten und prüfen, ob ein gemeinsamer Review-Pfad sinnvoll ist.`,
+    `Empfohlen ist eine kurze QA-Triage mit Blick auf Wiederholung, CAPA-Bezug und offene Trainings-/SOP-Effekte.`,
+    `Der Cluster sollte im nächsten Quality-Rhythmus als zusammenhängendes Signal besprochen werden, nicht als vier unabhängige Einzelpunkte.`,
+    `Owner und QA sollten die Quell-IDs nebeneinander legen und klären, ob eine bestehende Maßnahme noch ausreichend trägt.`,
+    `Für die menschliche Prüfung bietet sich eine Cluster-Review-Notiz an: Quellen, Zeitraum, Owner-Belastung und offene Maßnahmen zusammenführen.`,
+  ];
+  return templates[index % templates.length];
+}
+
+function recordChip(record) {
+  return `
+    <details class="record-chip">
+      <summary>${escapeHtml(record.record_id)}</summary>
+      <div class="source-list">
+        <span class="source-chip">${escapeHtml(domainLabels[record.domain] || record.domain)}</span>
+        <span class="source-chip">${escapeHtml(formatBand(record.band))}</span>
+        <span class="source-chip">Score ${escapeHtml(record.score)}</span>
+        ${record.owner ? `<span class="source-chip">${escapeHtml(record.owner)}</span>` : ""}
+      </div>
+    </details>
+  `;
+}
+
+function recordDrawer(record) {
+  return `
+    <details class="record-drawer">
+      <summary>Details zu ${escapeHtml(record.record_id)}</summary>
+      <p>${escapeHtml(domainLabels[record.domain] || record.domain)} in ${escapeHtml(record.department || "bereichsübergreifend")}${record.process ? ` / ${escapeHtml(record.process)}` : ""}. Sichtbare Treiber: ${escapeHtml(record.drivers.slice(0, 2).map(translateDriver).join("; "))}.</p>
+    </details>
+  `;
 }
 
 function renderQualityIssues(rows) {
@@ -562,15 +654,72 @@ function renderQualityIssues(rows) {
     container.innerHTML = `<div class="quality-row"><strong>Keine Top-Issues</strong><p>In der statischen Demo wurden keine priorisierten Datenqualitätsprobleme angezeigt.</p></div>`;
     return;
   }
-  rows.slice(0, 8).forEach((row) => {
+  aggregateQualityIssues(rows).slice(0, 8).forEach((row) => {
     const item = document.createElement("div");
-    item.className = "quality-row";
-    item.innerHTML = `
-      <strong>${escapeHtml(translateSeverity(row.severity))} · ${escapeHtml(row.record_id)}</strong>
-      <p>${escapeHtml(domainLabels[row.domain] || row.domain)}: ${escapeHtml(translateQualityMessage(row.message))}</p>
-    `;
+    item.className = row.records ? "quality-row quality-aggregate" : "quality-row";
+    item.innerHTML = row.records ? qualityAggregateMarkup(row) : `
+        <strong>${escapeHtml(translateSeverity(row.severity))} · ${escapeHtml(row.record_id)}</strong>
+        <p>${escapeHtml(domainLabels[row.domain] || row.domain)}: ${escapeHtml(translateQualityMessage(row.message))}</p>
+      `;
     container.appendChild(item);
   });
+}
+
+function aggregateQualityIssues(rows) {
+  const groups = new Map();
+  rows.forEach((row) => {
+    const date = row.message.match(/\d{4}-\d{2}-\d{2}/)?.[0] || "ohne Datum";
+    const issueType = row.message.replace(/\d{4}-\d{2}-\d{2}/g, "{date}");
+    const key = `${row.domain}|${issueType}|${date}`;
+    const group = groups.get(key) || {
+      domain: row.domain,
+      severity: row.severity,
+      issueType,
+      date,
+      records: [],
+    };
+    group.records.push(row.record_id);
+    groups.set(key, group);
+  });
+  return Array.from(groups.values()).map((group) => {
+    if (group.records.length < 3) {
+      return {
+        domain: group.domain,
+        record_id: group.records[0],
+        severity: group.severity,
+        message: group.issueType.replace("{date}", group.date),
+      };
+    }
+    return group;
+  });
+}
+
+function qualityAggregateMarkup(group) {
+  const firstRecords = group.records.slice(0, 4).join(", ");
+  const lastRecord = group.records.at(-1);
+  const rangeText = group.records.length > 4 ? `${firstRecords} … ${lastRecord}` : firstRecords;
+  return `
+    <strong>${group.records.length} ${escapeHtml(qualityDomainPlural(group.domain))}</strong>
+    <div>
+      <p>Identischer Stichtag ${escapeHtml(group.date)} (${escapeHtml(rangeText)}). Hinweis: gemeinsame Quelle? Bulk-Upload-Logs prüfen.</p>
+      <details class="quality-details">
+        <summary>Records anzeigen</summary>
+        <div class="source-list">${group.records.map((recordId) => `<span class="source-chip">${escapeHtml(recordId)}</span>`).join("")}</div>
+      </details>
+    </div>
+  `;
+}
+
+function qualityDomainPlural(domain) {
+  const labels = {
+    deviations: "Abweichungs-Records",
+    capas: "CAPA-Records",
+    audit_findings: "Audit-Finding-Records",
+    training_records: "Training-Records",
+    change_controls: "Change-Control-Records",
+    sops: "SOP-Records",
+  };
+  return labels[domain] || `${domain}-Records`;
 }
 
 function germanRationale(row) {
@@ -579,7 +728,7 @@ function germanRationale(row) {
 }
 
 function germanReview(riskType) {
-  if (riskType === "deviation_recurrence") return "QA sollte prüfen, ob die verknüpfte CAPA und die Wiederholungsmuster weiterhin angemessen adressiert sind.";
+  if (riskType === "deviation_recurrence") return "QA sollte die Quellrecords gemeinsam lesen und prüfen, ob ein gebündelter Review-Pfad sinnvoll ist.";
   if (riskType === "capa_failure") return "Der CAPA Owner sollte Maßnahme, Fälligkeit und Wirksamkeitsprüfung fachlich prüfen.";
   if (riskType === "training_drift") return "Der Training Owner sollte SOP-bezogene offene oder überfällige Trainings prüfen.";
   if (riskType === "audit_readiness_gap") return "Quality Council sollte Audit-Readiness-Signale und offene Maßnahmen prüfen.";

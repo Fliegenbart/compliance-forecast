@@ -891,12 +891,64 @@ main {
   border-top: 1px solid var(--line);
 }
 
+.evidence-cluster {
+  padding: 20px 0;
+}
+
 .evidence-row p,
 .quality-row p {
   margin: 0;
   color: #3f3f43;
   font-size: 15px;
   line-height: 1.5;
+}
+
+.evidence-chip-row {
+  margin-top: 0;
+}
+
+.record-chip {
+  display: inline-block;
+}
+
+.record-chip summary {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  padding: 5px 10px;
+  border: 1px solid rgba(0, 113, 227, 0.28);
+  border-radius: 999px;
+  background: rgba(0, 113, 227, 0.08);
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 780;
+  cursor: pointer;
+  list-style: none;
+}
+
+.record-chip summary::-webkit-details-marker {
+  display: none;
+}
+
+.record-chip[open] {
+  width: 100%;
+}
+
+.record-chip[open] summary {
+  margin-bottom: 8px;
+}
+
+.record-drawer {
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+
+.record-drawer summary,
+.quality-details summary {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 760;
+  cursor: pointer;
 }
 
 .evidence-row > strong {
@@ -909,9 +961,17 @@ main {
   grid-template-columns: 160px minmax(0, 1fr);
 }
 
+.quality-aggregate {
+  grid-template-columns: 210px minmax(0, 1fr);
+}
+
 .quality-row strong {
   font-size: 14px;
   text-transform: none;
+}
+
+.quality-details {
+  margin-top: 8px;
 }
 
 @media (prefers-reduced-motion: reduce) {
