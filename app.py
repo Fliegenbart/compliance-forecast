@@ -52,13 +52,16 @@ from gmp_weather.data_loader import load_qms_data_bundle
 from gmp_weather.data_quality import assess_data_quality
 from gmp_weather.evidence import evidence_cards_to_frame, generate_evidence_cards
 from gmp_weather.reporting import export_diagnostic_report, generate_markdown_diagnostic_report
-from gmp_weather.schemas import RiskBand, RiskHorizon
+from gmp_weather.schemas import QMSDataBundle, RiskBand, RiskHorizon
 from gmp_weather.scoring import calculate_all_scores
 
 
 @st.cache_data
 def _load_bundle(folder_path: str):
-    return load_qms_data_bundle(folder_path)
+    try:
+        return load_qms_data_bundle(folder_path)
+    except FileNotFoundError:
+        return QMSDataBundle()
 
 
 @st.cache_data

@@ -6,38 +6,7 @@ let activeStoryId = null;
 let activeOutlookId = "today";
 let outlookHorizons = [];
 
-const storyCopy = {
-  "packaging-priority": {
-    label: "Packaging-Priorität",
-    interpretation:
-      "Im Bereich Packaging zeichnet sich seit Anfang der Woche ein eskalierendes Muster ab. Vier Abweichungen mit ähnlicher Root-Cause-Signatur (DEV-003 ff.) treten in Wiederholung auf, während die zugehörige CAPA-014 seit 17 Tagen überfällig ist. Hinzu kommt die SOP-Revision vom 14.04., zu der noch keine Trainings-Coverage vorliegt — drei unabhängige Signale auf denselben Prozess.",
-    review: "QA-Lead sollte heute mit Process Owner Packaging sprechen, CAPA-014 Status verifizieren und Trainings-Lücke priorisieren.",
-  },
-  "capa-014": {
-    label: "CAPA-014 im Fokus",
-    interpretation:
-      "CAPA-014 nähert sich der Frist, ohne dass sich der Status seit zwei Wochen bewegt hat. Die zugrunde liegende Abweichungs-Signatur tritt parallel in zwei weiteren Records auf — ein Signal, dass das ursprüngliche Korrektivprogramm nicht greift. Empfehlung: Review-Termin mit Process Owner, bevor die Frist eskaliert.",
-    review: "Bevor weitere Records in dieses Cluster fallen, sollte die zugrunde liegende Root-Cause neu bewertet werden — gemeinsam mit Process Owner und Validierungsverantwortlichem.",
-  },
-  "sop-023": {
-    label: "Training nach SOP-Revision",
-    interpretation:
-      "Die SOP-Revision Granulation vom 14.04. ist seit zwei Wochen wirksam, die Trainings-Coverage liegt jedoch bei 38 %. In den letzten 10 Tagen sind in genau diesem Prozessbereich drei Abweichungen aufgetreten — der zeitliche Zusammenhang ist auffällig. Bevor sich das Muster verfestigt, sollte die Trainings-Lücke priorisiert geschlossen werden.",
-    review: "Empfohlen: Review-Termin mit Process Owner Granulation diese Woche. Trainings-Coverage prüfen, ggf. Pflicht-Refresh ansetzen.",
-  },
-  "sterile-filling": {
-    label: "Sterile Filling Watch",
-    interpretation:
-      "Sterile Filling zeigt einen erhöhten Backlog-Druck von 18 offenen Findings, davon 4 aus dem letzten Q3-Audit. Ein Folge-Audit ist für Mai angekündigt. Die Findings sind verteilt über drei Owner — Aggregation und Re-Priorisierung wären jetzt sinnvoll, bevor die Audit-Vorbereitung in die heiße Phase geht.",
-    review: "QA Operations sollte den Cluster im Quality Council ansprechen — die parallele Häufung deutet auf systemische Ursache hin, die in Einzel-Records nicht sichtbar wird.",
-  },
-  "qc-oos-oot": {
-    label: "QC OOS/OOT-Wiederholung",
-    interpretation:
-      "QC Release Testing enthält wiederkehrende synthetische OOS/OOT-Muster. Die Demo zeigt mögliche Wiederholungskandidaten und Belastungspunkte.",
-    review: "Re-Distribution prüfen: 6 der 9 Records liegen bei einem Owner. Backlog-Stau möglich.",
-  },
-};
+const storyCopy = {};
 
 const riskTypeLabels = {
   deviation_recurrence: "Abweichungs-Wiederholungsrisiko",
@@ -115,19 +84,31 @@ function renderMetrics(data) {
   setText("modelVersion", data.meta.model_version);
   setText("generatedAt", generatedAt);
   setText("asOfDate", asOfDate);
-  setText("sourceRecordCount", `${recordCount} synthetisch`);
+  setText("sourceRecordCount", recordCount ? `${recordCount} Records` : "0 Datensätze");
   setText("briefingEyebrow", `HEUTE — ${asOfDate}`);
   setText("focusStatus", briefing.status);
   setText("focusBriefing", briefing.prose);
   setText("focusWatchline", briefing.watchline);
   setText(
     "briefingFootnote",
-    `Stand ${generatedAt} · ${recordCount} synthetische Records · Datenreife ${data.summary.data_readiness_score}% · ${data.summary.risk_score_count} berechnete Signale · ${data.summary.evidence_card_count} Evidenzkarten`,
+    recordCount
+      ? `Stand ${generatedAt} · ${recordCount} Records · Datenreife ${data.summary.data_readiness_score}% · ${data.summary.risk_score_count} berechnete Signale · ${data.summary.evidence_card_count} Evidenzkarten`
+      : `Stand ${generatedAt} · keine gespeicherten Datensätze · Datenreife nicht bewertet · 0 berechnete Signale · 0 Evidenzkarten`,
   );
   byId("priorityMarker").className = `priority-marker-large ${classForBand(briefing.band)}`;
 }
 
 function buildPriorityBriefing(data) {
+  const recordCount = Object.values(data.summary.source_record_count || {}).reduce((sum, value) => sum + value, 0);
+  if (recordCount === 0) {
+    return {
+      band: "clear",
+      status: "Keine Datensätze geladen",
+      prose: "Die Demo enthält aktuell keine Datensätze. Nach dem Laden geprüfter synthetischer oder anonymisierter CSV-Daten priorisiert das Tool Abweichungen, CAPAs, Audit Findings, Trainingslücken, SOP-Revisionen und Change Controls.",
+      watchline: "Ergebnis bleibt beratend: QA prüft, das System entscheidet nicht.",
+    };
+  }
+
   const topRisk = data.top_risks[0] || {};
   const topBand = topRisk.band || "clear";
   const topArea = topRisk.process || topRisk.department || "dem Qualitätssystem";
@@ -150,7 +131,7 @@ function buildPriorityBriefing(data) {
     },
     advisory: {
       status: `Erhöhte Priorität · ${topArea}`,
-      prose: `${topArea} zeigt seit Anfang der Woche steigende Signal-Dichte. CAPA-014 Frist läuft in 4 Tagen aus.`,
+      prose: `${topArea} zeigt steigende Signal-Dichte. Fälligkeiten, Wiederholungsmuster oder Trainingslücken sollten zusammen geprüft werden.`,
       watchline: "Heute prüfen, bevor aus einem Signal ein operativer Engpass wird.",
     },
     [DATA_BAND_HIGH]: {
@@ -160,7 +141,7 @@ function buildPriorityBriefing(data) {
     },
     [DATA_BAND_CRITICAL]: {
       status: `Kritische Priorität · ${topArea}`,
-      prose: `4 Wiederholungs-Abweichungen (DEV-003 ff.), CAPA-014 seit 17 Tagen überfällig, SOP-Revision vom 14.04. ohne Trainings-Coverage — drei unabhängige Signale auf denselben Prozess.`,
+      prose: "Mehrere unabhängige Signale zeigen auf denselben Prozess. Das kann Wiederholungen, überfällige Maßnahmen, SOP-Änderungen oder offene Trainings betreffen.",
       watchline: "Quality Council heute zusammenrufen.",
     },
   };
@@ -175,6 +156,44 @@ function buildPriorityBriefing(data) {
 }
 
 function buildOutlookStrip(data) {
+  const recordCount = Object.values(data.summary.source_record_count || {}).reduce((sum, value) => sum + value, 0);
+  if (recordCount === 0) {
+    return [
+      {
+        id: "today",
+        label: "Heute",
+        status: "Keine Daten",
+        area: "QMS-Daten fehlen",
+        trigger: "CSV-Import nötig",
+        filter: () => false,
+      },
+      {
+        id: "plus1",
+        label: "+1 Tag",
+        status: "Nicht berechnet",
+        area: "Kein Signal",
+        trigger: "keine Records",
+        filter: () => false,
+      },
+      {
+        id: "plus3",
+        label: "+3 Tage",
+        status: "Nicht berechnet",
+        area: "Kein Signal",
+        trigger: "keine Fälligkeiten",
+        filter: () => false,
+      },
+      {
+        id: "plus7",
+        label: "+7 Tage",
+        status: "Nicht berechnet",
+        area: "Kein Signal",
+        trigger: "keine SOP-Daten",
+        filter: () => false,
+      },
+    ];
+  }
+
   const critical = data.top_risks.filter((row) => row.band === DATA_BAND_CRITICAL);
   const high = data.top_risks.filter((row) => row.band === DATA_BAND_HIGH || row.band === DATA_BAND_CRITICAL);
   const recurrence = data.top_risks.filter((row) => row.risk_type === "deviation_recurrence");
@@ -189,8 +208,8 @@ function buildOutlookStrip(data) {
   const training = data.top_risks.filter((row) => row.risk_type === "training_drift");
   const todayTop = critical[0] || high[0] || data.top_risks[0] || {};
   const plusOneTop = accelerated[0] || recurrence[0] || todayTop;
-  const plusThreeTop = capas.find((row) => row.entity_id === "CAPA-014") || capas[0] || todayTop;
-  const plusSevenTop = training.find((row) => String(row.entity_id).includes("SOP-023")) || training[0] || todayTop;
+  const plusThreeTop = capas[0] || todayTop;
+  const plusSevenTop = training[0] || todayTop;
   const observed = new Set(data.heatmap.filter((row) => row.max_score >= 50).map((row) => row.department));
 
   return [
@@ -224,8 +243,8 @@ function buildOutlookStrip(data) {
       id: "plus7",
       label: "+7 Tage",
       status: "Beobachten",
-      area: "CAPA-014",
-      trigger: "Frist · 38% Coverage",
+      area: plusSevenTop.process || plusSevenTop.department || "Training",
+      trigger: "Training-Coverage prüfen",
       filter: (row) => row.risk_type === "training_drift",
     },
   ];
@@ -259,6 +278,7 @@ function statusToBand(status) {
   if (status === "Hoch") return DATA_BAND_HIGH;
   if (status === "Erhöht") return "advisory";
   if (status === "Niedrig") return "clear";
+  if (status === "Keine Daten" || status === "Nicht berechnet") return "clear";
   return "watch";
 }
 
@@ -290,6 +310,15 @@ function renderPriorityList() {
 function renderStoryButtons(data) {
   const container = byId("storyButtons");
   container.innerHTML = "";
+  if (!data.demo_stories.length) {
+    container.innerHTML = `
+      <div class="empty-state compact">
+        <strong>Keine Datensätze geladen</strong>
+        <p>Demo-Fokus erscheint erst nach einem lokalen CSV-Import.</p>
+      </div>
+    `;
+    return;
+  }
   data.demo_stories.forEach((story, index) => {
     const localized = storyCopy[story.id] || story;
     const button = document.createElement("button");
@@ -306,6 +335,10 @@ function renderStoryButtons(data) {
 }
 
 function selectStory(storyId) {
+  if (!outlook.demo_stories.length) {
+    renderNoDataState();
+    return;
+  }
   activeStoryId = storyId;
   const story = outlook.demo_stories.find((item) => item.id === storyId) || outlook.demo_stories[0];
   const localized = storyCopy[story.id] || {
@@ -371,6 +404,15 @@ function heatmapBand(row) {
 function renderTopRisks(rows) {
   const container = byId("topRisks");
   container.innerHTML = "";
+  if (!rows.length) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <strong>Keine priorisierten Signale</strong>
+        <p>Es sind keine QMS-Datensätze geladen. Sobald synthetische oder anonymisierte CSVs vorliegen, zeigt diese Liste die wichtigsten QA-Prüfpunkte mit Treibern, Trend und Quellen-IDs.</p>
+      </div>
+    `;
+    return;
+  }
   generateMockSignals(rows)
     .sort((left, right) => right.escalationVelocity - left.escalationVelocity)
     .slice(0, 6)
@@ -430,7 +472,7 @@ function generateMockSignals(rows) {
       sparkline: [2, 3, 3, 4, 6, 7, 9, 12, 15, 19, 25, 34, 47, 64],
       escalationVelocity: 62,
       why: (row) => [
-        "CAPA-014 Frist in 4 Tagen",
+        "Maßnahmenfrist rückt näher",
         "+2 ähnliche Abweichungen seit Montag",
       ],
     },
@@ -452,8 +494,8 @@ function generateMockSignals(rows) {
       sparkline: [0, 0, 0, 0, 0, 1, 1, 2, 4, 7, 12, 20, 31, 45],
       escalationVelocity: 45,
       why: (row) => [
-        "SOP-Revision ohne Trainings-Coverage (38 %)",
-        "3 Findings im selben Prozessbereich seit 14.04.",
+        "SOP-Revision mit offener Trainings-Coverage",
+        "Mehrere Findings im selben Prozessbereich",
       ],
     },
     {
@@ -531,6 +573,15 @@ function sparklineSvg(values) {
 function renderHeatmap(rows) {
   const container = byId("heatmap");
   container.innerHTML = "";
+  if (!rows.length) {
+    container.innerHTML = `
+      <div class="empty-state compact">
+        <strong>Keine Bereichssignale</strong>
+        <p>Die Prioritätsverteilung benötigt geladene QMS-Daten.</p>
+      </div>
+    `;
+    return;
+  }
   rows.slice(0, 8).forEach((row) => {
     const item = document.createElement("div");
     item.className = "heat-row";
@@ -549,6 +600,15 @@ function renderHeatmap(rows) {
 function renderEvidenceCards(rows) {
   const container = byId("evidenceCards");
   container.innerHTML = "";
+  if (!rows.length) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <strong>Keine Evidenzkarten</strong>
+        <p>Evidenzkarten werden erst erzeugt, wenn Risikosignale aus geladenen Datensätzen berechnet wurden. Jede spätere Karte muss Quellen-IDs enthalten.</p>
+      </div>
+    `;
+    return;
+  }
   buildEvidenceClusters(rows).forEach((cluster) => {
     const item = document.createElement("article");
     item.className = "evidence-row evidence-cluster";
@@ -625,7 +685,7 @@ function clusterDescription(row, records, index) {
   const templates = [
     `Im Bereich ${area} zeichnet sich seit 12 Tagen ein eskalierendes Muster ab. ${count} Abweichungen mit ähnlicher Signatur treten in Wiederholung auf, die zugehörige CAPA ist seit 17 Tagen überfällig.`,
     `${area} zeigt eine ungewöhnliche Verdichtung von Abweichungen in einem engen Zeitfenster. Die betroffenen Records teilen ähnliche Root-Cause-Indikatoren — ein Signal für eine gemeinsame zugrunde liegende Ursache.`,
-    `Die parallele Häufung von ${count} Findings im Bereich ${area} fällt zeitlich mit der SOP-Revision vom 14.04. zusammen. Trainings-Coverage liegt bei 38 %. Der zeitliche Zusammenhang ist auffällig.`,
+    `Die parallele Häufung von ${count} Findings im Bereich ${area} fällt zeitlich mit einer SOP-Revision zusammen. Offene Trainings-Coverage macht den Zusammenhang prüfenswert.`,
     `${count} Records aus dem Cluster ${cluster} sind seit Tagen ohne Bewegung. Die ursprüngliche Bearbeitungsfrist ist überschritten, neue Records mit gleicher Signatur kommen weiter hinzu — der Backlog wächst schneller, als er abgebaut wird.`,
     `Cluster ${cluster} zeigt eine neue Verdichtung. ${count} Records innerhalb der letzten 10 Tage, alle aus demselben Prozessschritt — kurze Inspektion empfehlenswert, bevor die Häufung zum Pattern wird.`,
   ];
@@ -847,6 +907,10 @@ async function loadRiskData() {
   renderBandCounts(outlook);
   renderHeatmap(outlook.heatmap);
   renderQualityIssues(outlook.data_quality_issues);
+  if (!outlook.demo_stories.length) {
+    renderNoDataState();
+    return;
+  }
   selectStory(activeStoryId || outlook.demo_stories[0].id);
 }
 
@@ -855,3 +919,17 @@ loadRiskData().catch((error) => {
   byId("storyTitle").textContent = "Demo-Daten konnten nicht geladen werden";
   byId("storyInterpretation").textContent = "Bitte die statische Demo mit make vercel-demo neu erzeugen.";
 });
+
+function renderNoDataState() {
+  setText("storyTitle", "Bereit für QMS-Daten");
+  setRichText(
+    "storyInterpretation",
+    "Dieses Cockpit zeigt nach dem Laden von CSV-Daten, welche Qualitätsthemen zuerst geprüft werden sollten. Es verbindet Datensignale aus Abweichungen, CAPAs, Audit Findings, Trainingsrecords, SOP-Revisionen und Change Controls. Die Ausgabe ist read-only, erklärbar und bleibt eine Empfehlung für menschliche QA-Prüfung.",
+  );
+  setRichText(
+    "storyReviewAction",
+    "QA oder Data Owner lädt geprüfte synthetische oder anonymisierte CSV-Daten lokal. Danach prüft QA die priorisierten Signale anhand der Quellen-IDs.",
+  );
+  renderPriorityList();
+  renderEvidenceCards([]);
+}

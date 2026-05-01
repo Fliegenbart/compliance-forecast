@@ -6,11 +6,11 @@ Backlog age is not the same as GMP risk. This prototype helps QA teams identify 
 
 ## 1. What This Prototype Is
 
-GMP Risiko-Cockpit is a Streamlit-based prototype that turns synthetic QMS-style data into advisory quality-risk signals.
+GMP Risiko-Cockpit is a Streamlit-based prototype that turns local QMS-style CSV data into advisory quality-risk signals.
 
 It demonstrates how deviations, CAPAs, audit findings, training records, SOPs, and change controls can be reviewed together in a transparent dashboard. The goal is to support QA prioritization discussions, not to automate regulated decisions.
 
-The demo is built for Beispiel GmbH as a consulting prototype. It uses deterministic synthetic sample data and local rule-based scoring.
+The demo is built for Beispiel GmbH as a consulting prototype. The repository does not ship stored example records; synthetic data can be generated locally when needed.
 
 ## 2. What This Prototype Is Not
 
@@ -29,7 +29,7 @@ It must not be used to:
 
 ## Regulatory Safety Boundary
 
-- Erhöht only: outputs are quality-risk signals for review, not GMP decisions.
+- Advisory only: outputs are quality-risk signals for review, not GMP decisions.
 - Read-only MVP: the app reads local CSV files and does not write back to a QMS.
 - Human QA review required: every recommendation is framed for qualified human review.
 - No autonomous GMP decisions: the app does not approve, reject, close, release, certify, qualify, or disposition anything.
@@ -60,16 +60,16 @@ The current MVP supports these synthetic QMS-style domains:
 - Change controls
 - SOP metadata
 
-The sample data includes two fictional sites, GMP departments, products, equipment IDs, supplier IDs, SOP IDs, and owner assignments. No real client data is included.
+No real client data is included. If data is needed for a demo run, generate synthetic records locally with the sample-data command below.
 
 ## 5. Core Workflow
 
-1. Load local synthetic CSV data from `data/sample/`.
+1. Load local CSV data from `data/sample/` after generating or adding approved synthetic/anonymized files.
 2. Validate data structure and references.
 3. Calculate transparent advisory risk scores.
 4. Generate source-linked evidence cards for medium and high signals.
 5. Display risk views across dashboard tabs.
-6. Show a weekly priority briefing and guided demo story.
+6. Show a weekly priority briefing and guided review context.
 7. Create a local risk run log for traceability.
 8. Export a 30-day Markdown diagnostic report for consulting review.
 
@@ -224,13 +224,13 @@ make test
 
 ## 12. How To Generate Synthetic Data
 
-The repository includes deterministic synthetic sample data in:
+The repository intentionally does not include stored example CSV records. Generate deterministic synthetic data locally into:
 
 ```text
 data/sample/
 ```
 
-Files generated for the main dashboard:
+Files generated for the main dashboard when `make sample-data` is run:
 
 - `deviations.csv`
 - `capas.csv`
@@ -252,7 +252,7 @@ Use a different deterministic seed or output directory:
 python scripts/generate_sample_data.py --seed 12345 --output-dir data/sample
 ```
 
-The sample data is fictional. It must not be replaced with real client GMP records without a separate privacy, validation, security, and governance review.
+Generated sample data is fictional. It must not be replaced with real client GMP records without a separate privacy, validation, security, and governance review.
 
 ## 13. Known Limitations
 

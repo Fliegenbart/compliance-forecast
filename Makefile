@@ -19,8 +19,8 @@ run:
 lint:
 	$(PYTHON) -c "import importlib.util, subprocess, sys; cmd=[sys.executable, '-m', 'ruff', 'check', '.'] if importlib.util.find_spec('ruff') else [sys.executable, '-m', 'compileall', '-q', 'app.py', 'src', 'scripts', 'tests']; raise SystemExit(subprocess.call(cmd))"
 
-vercel-demo: sample-data
-	$(PYTHON) scripts/build_vercel_demo.py
+vercel-demo:
+	@echo "Vercel demo uses the checked-in empty payload. Run make sample-data locally only when synthetic records are needed."
 
 deploy-vercel-preview: vercel-demo
 	vercel deploy vercel-demo -y --target=preview
