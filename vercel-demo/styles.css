@@ -591,6 +591,172 @@ main {
 
 .risk-body {
   min-width: 0;
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.trend-strong-escalating .risk-body {
+  border-color: rgba(196, 59, 49, 0.34);
+  background: linear-gradient(135deg, rgba(255, 69, 58, 0.08), rgba(255, 255, 255, 0.7));
+}
+
+.trend-first-visible .risk-body,
+.trend-new-list .risk-body {
+  border-color: rgba(0, 113, 227, 0.25);
+}
+
+.trend-softening .risk-body {
+  opacity: 0.88;
+}
+
+.risk-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.trend-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: var(--ink);
+}
+
+.trend-arrow {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 50%;
+  background: #111113;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.trend-indicator strong {
+  font-size: 13px;
+  font-weight: 780;
+}
+
+.sparkline {
+  width: 92px;
+  height: 28px;
+  flex: 0 0 auto;
+}
+
+.sparkline polyline {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.5;
+}
+
+.sparkline circle {
+  fill: currentColor;
+}
+
+.trend-strong-escalating .sparkline,
+.trend-first-visible .sparkline {
+  color: var(--red);
+}
+
+.trend-stable-high .sparkline,
+.trend-oscillating .sparkline {
+  color: var(--amber);
+}
+
+.trend-softening .sparkline {
+  color: var(--green);
+}
+
+.trend-new-list .sparkline {
+  color: var(--blue);
+}
+
+.risk-title-block {
+  margin-top: 16px;
+}
+
+.risk-title-block h4 {
+  margin: 0;
+  font-size: clamp(22px, 2.1vw, 30px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+.risk-title-block p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 620;
+}
+
+.why-now {
+  margin-top: 16px;
+  padding: 13px 14px;
+  border-radius: 18px;
+  background: rgba(245, 245, 247, 0.9);
+}
+
+.why-now span {
+  color: var(--blue);
+  font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 780;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.why-now ul {
+  display: grid;
+  gap: 5px;
+  margin: 8px 0 0;
+  padding-left: 17px;
+  color: #2c2c2f;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.risk-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.risk-actions button {
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--ink);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 760;
+  cursor: pointer;
+}
+
+.risk-actions button:first-child {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: #ffffff;
+}
+
+.risk-details {
+  margin-top: 12px;
+}
+
+.risk-details summary {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 720;
+  cursor: pointer;
 }
 
 .risk-topline,

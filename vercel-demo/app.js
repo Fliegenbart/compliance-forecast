@@ -356,30 +356,161 @@ function renderBandCounts(data) {
 function renderTopRisks(rows) {
   const container = byId("topRisks");
   container.innerHTML = "";
-  rows.slice(0, 10).forEach((row, index) => {
+  generateMockSignals(rows)
+    .sort((left, right) => right.escalationVelocity - left.escalationVelocity)
+    .slice(0, 6)
+    .forEach((signal, index) => {
     const item = document.createElement("article");
-    item.className = "risk-row";
+    item.className = `risk-row trend-${signal.pattern}`;
     item.innerHTML = `
       <div class="risk-rank">${String(index + 1).padStart(2, "0")}</div>
       <div class="risk-body">
-        <div class="risk-topline">
-          <div class="risk-title">
-            ${escapeHtml(formatRiskType(row.risk_type))}
-            <small>${escapeHtml(row.entity_id)} · ${escapeHtml(row.department || "Bereichsübergreifend")}${row.process ? ` · ${escapeHtml(row.process)}` : ""}</small>
+        <div class="risk-card-head">
+          <div class="trend-indicator">
+            <span class="trend-arrow" aria-hidden="true">${escapeHtml(signal.trendIcon)}</span>
+            <strong>${escapeHtml(signal.trendLabel)}</strong>
           </div>
-          <span class="score-pill ${classForBand(row.band)}">${row.score}</span>
+          ${sparklineSvg(signal.sparkline)}
         </div>
-        <div class="risk-meta">
-          <span>${escapeHtml(formatBand(row.band))}</span>
-          <span>${escapeHtml(formatHorizon(row.horizon))}</span>
-          ${row.owner ? `<span>${escapeHtml(row.owner)}</span>` : ""}
-          <span>Konfidenz ${Math.round(row.confidence * 100)}%</span>
+
+        <div class="risk-title-block">
+          <h4>${escapeHtml(signal.headline)}</h4>
+          <p>${escapeHtml(signal.entity_id)} · ${escapeHtml(signal.department || "Bereichsübergreifend")}${signal.process ? ` · ${escapeHtml(signal.process)}` : ""}</p>
         </div>
-        <ul class="drivers">${row.top_drivers.map((driver) => `<li>${escapeHtml(translateDriver(driver))}</li>`).join("")}</ul>
+
+        <div class="why-now">
+          <span>Warum jetzt?</span>
+          <ul>${signal.whyNow.map((reason) => `<li>${escapeHtml(reason)}</li>`).join("")}</ul>
+        </div>
+
+        <div class="risk-actions" aria-label="Beratende Aktionen">
+          <button type="button">An QA übergeben</button>
+          <button type="button">Heute beobachten</button>
+          <button type="button">Bekannt markieren</button>
+        </div>
+
+        <details class="risk-details">
+          <summary>Regel-Treiber anzeigen</summary>
+          <div class="risk-meta">
+            <span>${escapeHtml(formatBand(signal.band))}</span>
+            <span>${escapeHtml(formatHorizon(signal.horizon))}</span>
+            ${signal.owner ? `<span>${escapeHtml(signal.owner)}</span>` : ""}
+            <span>Konfidenz ${Math.round(signal.confidence * 100)}%</span>
+            <span>Score ${signal.score}</span>
+          </div>
+          <ul class="drivers">${signal.top_drivers.map((driver) => `<li>${escapeHtml(translateDriver(driver))}</li>`).join("")}</ul>
+        </details>
       </div>
     `;
     container.appendChild(item);
   });
+}
+
+function generateMockSignals(rows) {
+  const patterns = [
+    {
+      pattern: "strong-escalating",
+      trendIcon: "↗",
+      trendLabel: "Eskaliert seit 3 Tagen",
+      sparkline: [2, 3, 3, 4, 6, 7, 9, 12, 15, 19, 25, 34, 47, 64],
+      escalationVelocity: 62,
+      why: (row) => [
+        `${row.process || row.department || "Bereich"} zieht innerhalb von 72 Stunden deutlich an`,
+        "2 ähnliche Abweichungen seit Montag",
+      ],
+    },
+    {
+      pattern: "stable-high",
+      trendIcon: "→",
+      trendLabel: "Stabil hoch",
+      sparkline: [52, 54, 53, 55, 54, 56, 55, 55, 56, 54, 55, 56, 55, 56],
+      escalationVelocity: 10,
+      why: (row) => [
+        `${formatBand(row.band)} bleibt ohne Entlastung sichtbar`,
+        `${row.owner || "Owner"} hält mehrere offene Signale`,
+      ],
+    },
+    {
+      pattern: "first-visible",
+      trendIcon: "↑",
+      trendLabel: "Erstmals sichtbar",
+      sparkline: [0, 0, 0, 0, 0, 1, 1, 2, 4, 7, 12, 20, 31, 45],
+      escalationVelocity: 45,
+      why: (row) => [
+        "Neues Cluster überschreitet heute die Beobachtungsschwelle",
+        `${row.entity_id} taucht erstmals in der Priorisierung auf`,
+      ],
+    },
+    {
+      pattern: "softening",
+      trendIcon: "↘",
+      trendLabel: "Leicht nachlassend",
+      sparkline: [68, 66, 64, 63, 61, 59, 58, 55, 52, 50, 48, 46, 45, 43],
+      escalationVelocity: -25,
+      why: () => [
+        "Signal bleibt relevant, verliert aber an Dichte",
+        "Heute beobachten statt sofort eskalieren",
+      ],
+    },
+    {
+      pattern: "oscillating",
+      trendIcon: "↕",
+      trendLabel: "Oszillierend",
+      sparkline: [20, 35, 22, 41, 28, 45, 31, 48, 34, 44, 36, 52, 39, 55],
+      escalationVelocity: 18,
+      why: (row) => [
+        `${row.department || "Bereich"} zeigt wiederkehrende Ausschläge`,
+        "Dichte schwankt, verschwindet aber nicht",
+      ],
+    },
+    {
+      pattern: "new-list",
+      trendIcon: "●",
+      trendLabel: "Neu auf der Liste",
+      sparkline: [0, 0, 0, 0, 0, 0, 1, 1, 2, 3, 5, 9, 15, 22],
+      escalationVelocity: 32,
+      why: (row) => [
+        `${formatRiskType(row.risk_type)} wurde neu priorisiert`,
+        "Frühes Signal mit noch begrenzter Evidenz",
+      ],
+    },
+  ];
+
+  return rows.map((row, index) => {
+    const template = patterns[index % patterns.length];
+    return {
+      ...row,
+      pattern: template.pattern,
+      trendIcon: template.trendIcon,
+      trendLabel: template.trendLabel,
+      sparkline: template.sparkline,
+      escalationVelocity: template.escalationVelocity,
+      whyNow: template.why(row),
+      headline: `${formatRiskType(row.risk_type)} in ${row.process || row.department || row.entity_id}`,
+    };
+  });
+}
+
+function sparklineSvg(values) {
+  const width = 92;
+  const height = 28;
+  const max = Math.max(...values, 1);
+  const min = Math.min(...values, 0);
+  const range = Math.max(max - min, 1);
+  const points = values
+    .map((value, index) => {
+      const x = (index / (values.length - 1)) * width;
+      const y = height - ((value - min) / range) * (height - 4) - 2;
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    })
+    .join(" ");
+  const [endX, endY] = points.split(" ").at(-1).split(",");
+  return `
+    <svg class="sparkline" viewBox="0 0 ${width} ${height}" aria-label="Signaldichte der letzten 14 Tage" role="img">
+      <polyline points="${points}" />
+      <circle cx="${endX}" cy="${endY}" r="3.2" />
+    </svg>
+  `;
 }
 
 function renderHeatmap(rows) {
