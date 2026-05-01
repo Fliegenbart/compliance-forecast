@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>GMP-Risikovorschau - Demo</title>
+    <title>GMP Risiko-Cockpit - Demo</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -33,6 +33,28 @@
               <span>Verbindet Abweichungen, CAPAs, Audits, Training, SOPs und Changes</span>
               <span>Erklärt jedes Signal mit Treibern und Quellen-IDs</span>
               <span>Read-only: keine GMP-Entscheidung, keine Freigabe</span>
+            </div>
+            <div class="capability-grid" aria-label="Was das Tool kann">
+              <article>
+                <span>01</span>
+                <strong>QMS-Daten lokal lesen</strong>
+                <p>CSV-Dateien aus Abweichungen, CAPAs, Audits, Training, SOPs und Changes werden zusammengeführt.</p>
+              </article>
+              <article>
+                <span>02</span>
+                <strong>Datenqualität prüfen</strong>
+                <p>Fehlende Felder, Dubletten, gebrochene Referenzen und überfällige offene Records werden sichtbar.</p>
+              </article>
+              <article>
+                <span>03</span>
+                <strong>Risiken priorisieren</strong>
+                <p>Regelbasierte Scores zeigen, welche Themen zuerst menschliche QA-Aufmerksamkeit verdienen.</p>
+              </article>
+              <article>
+                <span>04</span>
+                <strong>Evidenz nachvollziehen</strong>
+                <p>Jedes Signal muss Treiber, Grenzen und Quellen-IDs zeigen. Keine Blackbox, keine Entscheidung.</p>
+              </article>
             </div>
           </div>
 
@@ -68,7 +90,7 @@
           </ul>
         </details>
 
-        <section class="outlook-strip" aria-label="Risikoausblick">
+        <section class="outlook-strip" aria-label="Ablauf und Risikoausblick">
           <div id="outlookStrip" class="outlook-strip-grid"></div>
         </section>
       </section>

@@ -161,34 +161,34 @@ function buildOutlookStrip(data) {
     return [
       {
         id: "today",
-        label: "Heute",
-        status: "Keine Daten",
-        area: "QMS-Daten fehlen",
-        trigger: "CSV-Import nötig",
+        label: "1",
+        status: "Daten laden",
+        area: "CSV lokal",
+        trigger: "keine Cloud, keine externen Calls",
         filter: () => false,
       },
       {
         id: "plus1",
-        label: "+1 Tag",
-        status: "Nicht berechnet",
-        area: "Kein Signal",
-        trigger: "keine Records",
+        label: "2",
+        status: "Qualität prüfen",
+        area: "Pflichtfelder und Referenzen",
+        trigger: "Readiness vor Interpretation",
         filter: () => false,
       },
       {
         id: "plus3",
-        label: "+3 Tage",
-        status: "Nicht berechnet",
-        area: "Kein Signal",
-        trigger: "keine Fälligkeiten",
+        label: "3",
+        status: "Risiken priorisieren",
+        area: "Treiber statt Backlog-Alter",
+        trigger: "transparent, regelbasiert",
         filter: () => false,
       },
       {
         id: "plus7",
-        label: "+7 Tage",
-        status: "Nicht berechnet",
-        area: "Kein Signal",
-        trigger: "keine SOP-Daten",
+        label: "4",
+        status: "QA Review",
+        area: "Mensch entscheidet",
+        trigger: "keine Freigabe durch System",
         filter: () => false,
       },
     ];
@@ -278,7 +278,9 @@ function statusToBand(status) {
   if (status === "Hoch") return DATA_BAND_HIGH;
   if (status === "Erhöht") return "advisory";
   if (status === "Niedrig") return "clear";
-  if (status === "Keine Daten" || status === "Nicht berechnet") return "clear";
+  if (status === "Daten laden" || status === "Qualität prüfen") return "clear";
+  if (status === "Risiken priorisieren") return "advisory";
+  if (status === "QA Review") return "watch";
   return "watch";
 }
 
