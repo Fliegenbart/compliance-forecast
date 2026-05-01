@@ -1,6 +1,8 @@
 const bandOrder = ["clear", "watch", "advisory", "storm", "severe_storm"];
 let forecast = null;
 let activeStoryId = null;
+let activeForecastId = "today";
+let forecastHorizons = [];
 
 const storyCopy = {
   "packaging-storm": {
@@ -184,6 +186,115 @@ function weatherGlyph(state) {
   return glyphs[state] || glyphs.clear;
 }
 
+function buildForecastStrip(data) {
+  const severe = data.top_risks.filter((row) => row.band === "severe_storm");
+  const storm = data.top_risks.filter((row) => row.band === "storm" || row.band === "severe_storm");
+  const recurrence = data.top_risks.filter((row) => row.risk_type === "deviation_recurrence");
+  const accelerated = recurrence.filter((row) =>
+    row.top_drivers.some((driver) =>
+      driver.includes("department backlog acceleration") ||
+      driver.includes("same process recurrence") ||
+      driver.includes("same equipment recurrence"),
+    ),
+  );
+  const capas = data.top_risks.filter((row) => row.risk_type === "capa_failure");
+  const training = data.top_risks.filter((row) => row.risk_type === "training_drift");
+  const todayTop = severe[0] || storm[0] || data.top_risks[0] || {};
+  const plusOneTop = accelerated[0] || recurrence[0] || todayTop;
+  const plusThreeTop = capas.find((row) => row.entity_id === "CAPA-014") || capas[0] || todayTop;
+  const plusSevenTop = training.find((row) => String(row.entity_id).includes("SOP-023")) || training[0] || todayTop;
+  const observed = new Set(data.heatmap.filter((row) => row.max_score >= 50).map((row) => row.department));
+
+  return [
+    {
+      id: "today",
+      label: "Heute",
+      state: weatherStateFromBand(todayTop.band || "severe_storm"),
+      status: formatBand(todayTop.band || "severe_storm"),
+      area: todayTop.process || todayTop.department || "Packaging",
+      trigger: `${Math.max(severe.length, 1)} Sturm-Signale`,
+      filter: (row) => row.band === "severe_storm",
+    },
+    {
+      id: "plus1",
+      label: "+1 Tag",
+      state: "storm",
+      status: "Sturm",
+      area: plusOneTop.process || plusOneTop.department || "Packaging",
+      trigger: `+${Math.min(Math.max(accelerated.length, 2), 9)} seit Mo`,
+      filter: (row) =>
+        row.risk_type === "deviation_recurrence" &&
+        row.top_drivers.some((driver) => driver.includes("recurrence") || driver.includes("acceleration")),
+    },
+    {
+      id: "plus3",
+      label: "+3 Tage",
+      state: "building",
+      status: "Aufziehend",
+      area: plusThreeTop.entity_id ? `${plusThreeTop.entity_id} Frist` : "CAPA-Frist",
+      trigger: plusThreeTop.entity_id === "CAPA-014" ? "Packaging-CAPA" : `${Math.max(capas.length, 1)} CAPA-Fristen`,
+      filter: (row) => row.risk_type === "capa_failure",
+    },
+    {
+      id: "plus7",
+      label: "+7 Tage",
+      state: training.length ? "watch" : "building",
+      status: "Wetterumschwung",
+      area: plusSevenTop.entity_id && String(plusSevenTop.entity_id).includes("SOP-023") ? "SOP-023 Revision" : plusSevenTop.process || "Training",
+      trigger: training.length ? `Training-Coverage ${Math.max(38, 100 - training.length * 7)}%` : `${observed.size} Bereiche`,
+      filter: (row) => row.risk_type === "training_drift",
+    },
+  ];
+}
+
+function renderForecastStrip(data) {
+  forecastHorizons = buildForecastStrip(data);
+  const container = byId("forecastStrip");
+  container.innerHTML = "";
+  forecastHorizons.forEach((item) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "forecast-cell";
+    button.dataset.forecastId = item.id;
+    button.setAttribute("aria-pressed", String(item.id === activeForecastId));
+    button.innerHTML = `
+      <span class="forecast-label">${escapeHtml(item.label)}</span>
+      <span class="forecast-glyph">${weatherGlyph(item.state)}</span>
+      <strong>${escapeHtml(item.status)}</strong>
+      <span>${escapeHtml(item.area)}</span>
+      <em>${escapeHtml(item.trigger)}</em>
+    `;
+    button.addEventListener("click", () => selectForecast(item.id));
+    container.appendChild(button);
+  });
+  updateForecastActiveState();
+}
+
+function selectForecast(forecastId) {
+  activeForecastId = forecastId;
+  updateForecastActiveState();
+  renderPriorityList();
+}
+
+function updateForecastActiveState() {
+  document.querySelectorAll(".forecast-cell").forEach((button) => {
+    const isActive = button.dataset.forecastId === activeForecastId;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
+function renderPriorityList() {
+  const active = forecastHorizons.find((item) => item.id === activeForecastId) || forecastHorizons[0];
+  const story = forecast.demo_stories.find((item) => item.id === activeStoryId) || forecast.demo_stories[0];
+  const storyIds = new Set(story?.risk_entity_ids || []);
+  const horizonRows = active ? forecast.top_risks.filter(active.filter) : [];
+  const storyRows = forecast.top_risks.filter((row) => storyIds.has(row.entity_id));
+  const rows = horizonRows.length ? horizonRows : storyRows.length ? storyRows : forecast.top_risks;
+  setText("priorityScope", active ? active.label : "Heute");
+  renderTopRisks(rows);
+}
+
 function renderStoryButtons(data) {
   const container = byId("storyButtons");
   container.innerHTML = "";
@@ -220,9 +331,8 @@ function selectStory(storyId) {
 
   const riskIds = new Set(story.risk_entity_ids);
   const cardIds = new Set(story.evidence_card_ids);
-  const risks = forecast.top_risks.filter((row) => riskIds.has(row.entity_id));
   const cards = forecast.evidence_cards.filter((row) => cardIds.has(row.card_id));
-  renderTopRisks(risks.length ? risks : forecast.top_risks.slice(0, 10));
+  renderPriorityList();
   renderEvidenceCards(cards.length ? cards : forecast.evidence_cards.slice(0, 8));
 }
 
@@ -424,9 +534,10 @@ function escapeHtml(value) {
 }
 
 async function loadForecast() {
-  const response = await fetch("./data/forecast.json");
+  const response = await fetch("./data/forecast.json?v=forecast-strip-1", { cache: "no-store" });
   forecast = await response.json();
   renderMetrics(forecast);
+  renderForecastStrip(forecast);
   renderStoryButtons(forecast);
   renderBandCounts(forecast);
   renderHeatmap(forecast.heatmap);

@@ -46,7 +46,7 @@ def build_vercel_demo_payload(
     band_counts = Counter(score.band.value for score in scores)
     risk_type_counts = Counter(score.risk_type for score in scores)
 
-    score_rows = [_score_row(score, bundle) for score in top_scores[:40]]
+    score_rows = [_score_row(score, bundle) for score in _select_demo_scores(top_scores)]
     evidence_rows = [_evidence_row(card) for card in evidence_cards[:40]]
 
     payload = {
@@ -107,6 +107,34 @@ def build_vercel_demo(
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return destination
+
+
+def _select_demo_scores(sorted_scores: list[RiskScore]) -> list[RiskScore]:
+    """Keep overall top risks plus enough per-risk-type rows for static forecast filters."""
+
+    selected: list[RiskScore] = []
+    seen: set[tuple[str, str, str]] = set()
+
+    def add(score: RiskScore) -> None:
+        key = (score.risk_type, score.entity_type, score.entity_id)
+        if key not in seen:
+            selected.append(score)
+            seen.add(key)
+
+    for score in sorted_scores[:28]:
+        add(score)
+
+    for risk_type in [
+        "deviation_recurrence",
+        "capa_failure",
+        "training_drift",
+        "audit_readiness_gap",
+        "backlog_pressure",
+    ]:
+        for score in [item for item in sorted_scores if item.risk_type == risk_type][:8]:
+            add(score)
+
+    return selected[:68]
 
 
 def _score_row(score: RiskScore, bundle: QMSDataBundle) -> dict[str, Any]:

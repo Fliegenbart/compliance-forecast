@@ -268,6 +268,122 @@ main {
   line-height: 1.45;
 }
 
+.forecast-strip {
+  max-width: 1360px;
+  margin: 22px auto 0;
+}
+
+.forecast-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  min-height: 92px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.forecast-cell {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  grid-template-areas:
+    "label label"
+    "glyph status"
+    "glyph area"
+    "glyph trigger";
+  gap: 2px 12px;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 0;
+  border-left: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.forecast-cell:first-child {
+  border-left: 0;
+}
+
+.forecast-cell:hover,
+.forecast-cell.active {
+  background: rgba(255, 255, 255, 0.66);
+}
+
+.forecast-cell.active {
+  box-shadow: inset 0 3px 0 var(--blue);
+}
+
+.forecast-label,
+.forecast-cell em {
+  font-family:
+    "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  letter-spacing: 0;
+}
+
+.forecast-label {
+  grid-area: label;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 760;
+  text-transform: uppercase;
+}
+
+.forecast-glyph {
+  grid-area: glyph;
+  align-self: center;
+  width: 28px;
+  height: 28px;
+  color: var(--ink);
+}
+
+.forecast-glyph svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 4.4;
+}
+
+.forecast-cell strong {
+  grid-area: status;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 780;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.forecast-cell span:not(.forecast-label):not(.forecast-glyph) {
+  grid-area: area;
+  min-width: 0;
+  overflow: hidden;
+  color: #3f3f43;
+  font-size: 13px;
+  font-weight: 680;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.forecast-cell em {
+  grid-area: trigger;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .experience {
   display: grid;
   grid-template-columns: 300px minmax(0, 1fr);
@@ -702,9 +818,23 @@ main {
   margin-left: 0;
 }
 
-.safety-strip ul {
-  grid-template-columns: 1fr;
-}
+  .safety-strip ul {
+    grid-template-columns: 1fr;
+  }
+
+  .forecast-strip-grid {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .forecast-cell {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .forecast-cell:first-child {
+    border-top: 0;
+  }
 
   .experience {
     padding-top: 8px;

@@ -2,7 +2,7 @@
   "meta": {
     "app_name": "GMP Compliance Weather Forecast",
     "client_name": "Gruene Wald GmbH",
-    "generated_at": "2026-05-01T09:45:12.249878+00:00",
+    "generated_at": "2026-05-01T15:02:49.382417+00:00",
     "as_of_date": "2026-04-30",
     "model_version": "rules-v0.1",
     "scoring_config_file": "config/scoring_rules_v0_1.yaml",
@@ -542,219 +542,579 @@
       ]
     },
     {
-      "score": 100.0,
+      "score": 94.0,
       "band": "severe_storm",
       "horizon": "4_weeks",
-      "entity_type": "deviation",
-      "entity_id": "DEV-047",
-      "risk_type": "deviation_recurrence",
-      "department": "Packaging",
-      "process": "Packaging",
+      "entity_type": "capa",
+      "entity_id": "CAPA-021",
+      "risk_type": "capa_failure",
+      "department": "Production",
+      "process": "Granulation",
       "owner": "QA Owner 01",
-      "confidence": 0.82,
+      "confidence": 0.88,
       "top_drivers": [
-        "severity: major (+22)",
-        "confidence reduced: missing due_date",
-        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16)",
-        "same equipment recurrence: EQ-001; deviations: DEV-010, DEV-056 (+14)"
+        "overdue or due soon: CAPA due date overdue by 128 days (+25)",
+        "linked deviations count: 2 linked (+10)",
+        "Retraining Only action: action_type equals Retraining Only (+15)",
+        "effectiveness check overdue: due 2026-02-01 (+14)"
       ]
     },
     {
-      "score": 100.0,
+      "score": 91.0,
       "band": "severe_storm",
       "horizon": "4_weeks",
-      "entity_type": "deviation",
-      "entity_id": "DEV-049",
-      "risk_type": "deviation_recurrence",
-      "department": "Packaging",
-      "process": "Packaging",
-      "owner": "QA Owner 01",
-      "confidence": 0.74,
-      "top_drivers": [
-        "severity: major (+22)",
-        "confidence reduced: missing due_date",
-        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16)",
-        "same equipment recurrence: EQ-014; deviations: DEV-019, DEV-020, DEV-021, DEV-024, DEV-029, DEV-030, DEV-031, DEV-042, DEV-043, DEV-109, DEV-197 (+18)"
-      ]
-    },
-    {
-      "score": 100.0,
-      "band": "severe_storm",
-      "horizon": "4_weeks",
-      "entity_type": "deviation",
-      "entity_id": "DEV-051",
-      "risk_type": "deviation_recurrence",
+      "entity_type": "capa",
+      "entity_id": "CAPA-014",
+      "risk_type": "capa_failure",
       "department": "Packaging",
       "process": "Packaging",
       "owner": "Packaging Owner 01",
-      "confidence": 0.74,
+      "confidence": 0.88,
       "top_drivers": [
-        "severity: major (+22)",
-        "confidence reduced: missing due_date",
-        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16)",
-        "same equipment recurrence: EQ-009; deviations: DEV-034, DEV-070, DEV-118 (+18)"
+        "overdue or due soon: CAPA due date overdue by 26 days (+25)",
+        "linked deviations count: 6 linked (+15)",
+        "repeated root cause after CAPA opened: deviations: DEV-004, DEV-012, DEV-014, DEV-017, DEV-019, DEV-020, DEV-021, DEV-025, DEV-029, DEV-030, DEV-031, DEV-033, DEV-035, DEV-037, DEV-040, DEV-041, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048 (+18)",
+        "Retraining Only action: action_type equals Retraining Only (+15)"
       ]
     },
     {
-      "score": 100.0,
+      "score": 87.0,
       "band": "severe_storm",
       "horizon": "4_weeks",
-      "entity_type": "deviation",
-      "entity_id": "DEV-054",
-      "risk_type": "deviation_recurrence",
+      "entity_type": "capa",
+      "entity_id": "CAPA-016",
+      "risk_type": "capa_failure",
       "department": "Packaging",
       "process": "Packaging",
       "owner": "Packaging Owner 01",
-      "confidence": 0.82,
+      "confidence": 0.88,
       "top_drivers": [
-        "severity: major (+22)",
-        "confidence reduced: missing due_date",
-        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053 (+16)",
-        "same equipment recurrence: EQ-017; deviations: DEV-037, DEV-038, DEV-040, DEV-093, DEV-096, DEV-098, DEV-105, DEV-199 (+18)"
+        "overdue or due soon: CAPA due date overdue by 187 days (+25)",
+        "linked deviations count: 3 linked (+15)",
+        "Retraining Only action: action_type equals Retraining Only (+15)",
+        "effectiveness check overdue: due 2026-01-08 (+14)"
       ]
     },
     {
-      "score": 100.0,
-      "band": "severe_storm",
+      "score": 77.0,
+      "band": "storm",
       "horizon": "4_weeks",
-      "entity_type": "deviation",
-      "entity_id": "DEV-055",
-      "risk_type": "deviation_recurrence",
+      "entity_type": "capa",
+      "entity_id": "CAPA-020",
+      "risk_type": "capa_failure",
       "department": "Production",
-      "process": "Sterile Filling",
-      "owner": "Production Owner 02",
-      "confidence": 0.82,
+      "process": "Cleaning",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.88,
       "top_drivers": [
-        "severity: critical (+32)",
-        "age: 109 days open (+12)",
-        "due-date proximity: deviation due date overdue by 86 days (+25)",
-        "same process recurrence: deviations: DEV-057, DEV-059, DEV-060, DEV-065, DEV-067, DEV-068, DEV-069, DEV-071, DEV-072, DEV-078 (+16)"
+        "overdue or due soon: CAPA due date overdue by 53 days (+25)",
+        "linked deviations count: 1 linked (+5)",
+        "Retraining Only action: action_type equals Retraining Only (+15)",
+        "effectiveness check overdue: due 2026-04-18 (+14)"
       ]
     },
     {
-      "score": 100.0,
-      "band": "severe_storm",
+      "score": 70.0,
+      "band": "storm",
       "horizon": "4_weeks",
-      "entity_type": "deviation",
-      "entity_id": "DEV-056",
-      "risk_type": "deviation_recurrence",
-      "department": "Production",
-      "process": "Sterile Filling",
-      "owner": "Production Owner 02",
-      "confidence": 0.82,
-      "top_drivers": [
-        "severity: critical (+32)",
-        "age: 54 days open (+7)",
-        "due-date proximity: deviation due date overdue by 26 days (+25)",
-        "same process recurrence: deviations: DEV-055, DEV-057, DEV-058, DEV-059, DEV-060, DEV-063, DEV-065, DEV-067, DEV-070, DEV-073, DEV-075, DEV-076, DEV-077, DEV-078 (+16)"
-      ]
-    },
-    {
-      "score": 100.0,
-      "band": "severe_storm",
-      "horizon": "4_weeks",
-      "entity_type": "deviation",
-      "entity_id": "DEV-061",
-      "risk_type": "deviation_recurrence",
-      "department": "Production",
-      "process": "Sterile Filling",
-      "owner": "Production Owner 02",
-      "confidence": 0.9,
-      "top_drivers": [
-        "severity: critical (+32)",
-        "age: 45 days open (+7)",
-        "due-date proximity: deviation due date overdue by 7 days (+25)",
-        "same process recurrence: deviations: DEV-055, DEV-056, DEV-058, DEV-059, DEV-060, DEV-063, DEV-065, DEV-067, DEV-070, DEV-073, DEV-075, DEV-076, DEV-077, DEV-078 (+16)"
-      ]
-    },
-    {
-      "score": 100.0,
-      "band": "severe_storm",
-      "horizon": "4_weeks",
-      "entity_type": "deviation",
-      "entity_id": "DEV-062",
-      "risk_type": "deviation_recurrence",
-      "department": "Production",
-      "process": "Sterile Filling",
-      "owner": "Production Owner 02",
-      "confidence": 0.9,
-      "top_drivers": [
-        "severity: critical (+32)",
-        "age: 39 days open (+7)",
-        "due-date proximity: deviation due date due within 1 days (+16)",
-        "same process recurrence: deviations: DEV-055, DEV-056, DEV-058, DEV-059, DEV-060, DEV-061, DEV-063, DEV-065, DEV-067, DEV-070, DEV-073, DEV-075, DEV-076, DEV-077 (+16)"
-      ]
-    },
-    {
-      "score": 100.0,
-      "band": "severe_storm",
-      "horizon": "4_weeks",
-      "entity_type": "deviation",
-      "entity_id": "DEV-063",
-      "risk_type": "deviation_recurrence",
-      "department": "Production",
-      "process": "Sterile Filling",
+      "entity_type": "capa",
+      "entity_id": "CAPA-002",
+      "risk_type": "capa_failure",
+      "department": "QC Lab",
+      "process": "QC Release Testing",
       "owner": "QA Owner 02",
-      "confidence": 0.9,
+      "confidence": 0.88,
       "top_drivers": [
-        "severity: major (+22)",
-        "age: 56 days open (+7)",
-        "due-date proximity: deviation due date overdue by 36 days (+25)",
-        "same process recurrence: deviations: DEV-055, DEV-057, DEV-058, DEV-059, DEV-060, DEV-065, DEV-067, DEV-070, DEV-073, DEV-075, DEV-076, DEV-077, DEV-078 (+16)"
+        "overdue or due soon: CAPA due date overdue by 4 days (+25)",
+        "linked deviations count: 3 linked (+15)",
+        "owner workload: QA Owner 02 has 61 open items (+14)",
+        "related audit finding severity: audit finding FIND-002 is critical (+16)"
       ]
     },
     {
-      "score": 100.0,
-      "band": "severe_storm",
+      "score": 70.0,
+      "band": "storm",
       "horizon": "4_weeks",
-      "entity_type": "deviation",
-      "entity_id": "DEV-065",
-      "risk_type": "deviation_recurrence",
-      "department": "Production",
-      "process": "Sterile Filling",
-      "owner": "Production Owner 02",
-      "confidence": 0.9,
-      "top_drivers": [
-        "severity: critical (+32)",
-        "age: 124 days open (+12)",
-        "due-date proximity: deviation due date overdue by 101 days (+25)",
-        "same process recurrence: deviations: DEV-057, DEV-067, DEV-068, DEV-069, DEV-071, DEV-072, DEV-078 (+16)"
-      ]
-    },
-    {
-      "score": 100.0,
-      "band": "severe_storm",
-      "horizon": "4_weeks",
-      "entity_type": "deviation",
-      "entity_id": "DEV-066",
-      "risk_type": "deviation_recurrence",
-      "department": "Production",
-      "process": "Sterile Filling",
+      "entity_type": "capa",
+      "entity_id": "CAPA-017",
+      "risk_type": "capa_failure",
+      "department": "QC Lab",
+      "process": "QC Release Testing",
       "owner": "QA Owner 02",
+      "confidence": 0.88,
+      "top_drivers": [
+        "overdue or due soon: CAPA due date overdue by 3 days (+25)",
+        "linked deviations count: 1 linked (+5)",
+        "Retraining Only action: action_type equals Retraining Only (+15)",
+        "owner workload: QA Owner 02 has 61 open items (+14)"
+      ]
+    },
+    {
+      "score": 68.0,
+      "band": "advisory",
+      "horizon": "4_weeks",
+      "entity_type": "capa",
+      "entity_id": "CAPA-032",
+      "risk_type": "capa_failure",
+      "department": "Production",
+      "process": "Weighing",
+      "owner": "QA Owner 02",
+      "confidence": 0.88,
+      "top_drivers": [
+        "overdue or due soon: CAPA due date overdue by 121 days (+25)",
+        "linked deviations count: 3 linked (+15)",
+        "effectiveness check overdue: due 2026-02-12 (+14)",
+        "owner workload: QA Owner 02 has 61 open items (+14)"
+      ]
+    },
+    {
+      "score": 68.0,
+      "band": "advisory",
+      "horizon": "4_weeks",
+      "entity_type": "capa",
+      "entity_id": "CAPA-043",
+      "risk_type": "capa_failure",
+      "department": "Engineering",
+      "process": "Equipment Maintenance",
+      "owner": "QA Owner 01",
+      "confidence": 0.88,
+      "top_drivers": [
+        "overdue or due soon: CAPA due date overdue by 42 days (+25)",
+        "linked deviations count: 3 linked (+15)",
+        "effectiveness check overdue: due 2026-04-19 (+14)",
+        "owner workload: QA Owner 01 has 49 open items (+14)"
+      ]
+    },
+    {
+      "score": 81.0,
+      "band": "storm",
+      "horizon": "4_weeks",
+      "entity_type": "department_process_sop",
+      "entity_id": "Packaging|Packaging|SOP-023",
+      "risk_type": "training_drift",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "",
+      "confidence": 0.86,
+      "top_drivers": [
+        "overdue training count: 5 overdue (+25)",
+        "SOP recently revised: SOP-023 (+14)",
+        "training due date proximity: 2 due within 14 days (+8)",
+        "open deviations linked to SOP or process: deviations: DEV-002, DEV-003, DEV-004, DEV-005, DEV-007, DEV-008, DEV-009, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-033, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-041, DEV-042, DEV-043, DEV-044, DEV-045, DEV-046, DEV-047, DEV-048, DEV-049, DEV-050, DEV-051, DEV-053, DEV-054 (+18)"
+      ]
+    },
+    {
+      "score": 62.0,
+      "band": "advisory",
+      "horizon": "4_weeks",
+      "entity_type": "department_process_sop",
+      "entity_id": "QA Operations|Packaging|SOP-004",
+      "risk_type": "training_drift",
+      "department": "QA Operations",
+      "process": "Packaging",
+      "owner": "",
+      "confidence": 0.86,
+      "top_drivers": [
+        "overdue training count: 2 overdue (+10)",
+        "SOP recently revised: SOP-004 (+14)",
+        "training due date proximity: 1 due within 14 days (+4)",
+        "open deviations linked to SOP or process: deviations: DEV-002, DEV-003, DEV-004, DEV-005, DEV-007, DEV-008, DEV-009, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-033, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-041, DEV-042, DEV-043, DEV-044, DEV-045, DEV-046, DEV-047, DEV-048, DEV-049, DEV-050, DEV-051, DEV-053, DEV-054 (+18)"
+      ]
+    },
+    {
+      "score": 58.0,
+      "band": "advisory",
+      "horizon": "4_weeks",
+      "entity_type": "department_process_sop",
+      "entity_id": "Packaging|Packaging|SOP-020",
+      "risk_type": "training_drift",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "",
+      "confidence": 0.86,
+      "top_drivers": [
+        "overdue training count: 2 overdue (+10)",
+        "SOP recently revised: SOP-020 (+14)",
+        "open deviations linked to SOP or process: deviations: DEV-002, DEV-003, DEV-004, DEV-005, DEV-007, DEV-008, DEV-009, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-033, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-041, DEV-042, DEV-043, DEV-044, DEV-045, DEV-046, DEV-047, DEV-048, DEV-049, DEV-050, DEV-051, DEV-053, DEV-054 (+18)",
+        "training-impacting change controls: change controls: CC-001, CC-002, CC-004, CC-006, CC-014, CC-027, CC-031, CC-051, CC-076, CC-093, CC-104 (+16)"
+      ]
+    },
+    {
+      "score": 58.0,
+      "band": "advisory",
+      "horizon": "4_weeks",
+      "entity_type": "department_process_sop",
+      "entity_id": "Production|Weighing|SOP-001",
+      "risk_type": "training_drift",
+      "department": "Production",
+      "process": "Weighing",
+      "owner": "",
+      "confidence": 0.86,
+      "top_drivers": [
+        "overdue training count: 2 overdue (+10)",
+        "SOP recently revised: SOP-001 (+14)",
+        "open deviations linked to SOP or process: deviations: DEV-093, DEV-140, DEV-148, DEV-149, DEV-155, DEV-166, DEV-203, DEV-205, DEV-209, DEV-212, DEV-213, DEV-234, DEV-249 (+18)",
+        "training-impacting change controls: change controls: CC-005, CC-015, CC-028, CC-043, CC-051, CC-058, CC-060, CC-083, CC-085 (+16)"
+      ]
+    },
+    {
+      "score": 57.0,
+      "band": "advisory",
+      "horizon": "4_weeks",
+      "entity_type": "department_process_sop",
+      "entity_id": "Warehouse|Weighing|SOP-009",
+      "risk_type": "training_drift",
+      "department": "Warehouse",
+      "process": "Weighing",
+      "owner": "",
+      "confidence": 0.86,
+      "top_drivers": [
+        "overdue training count: 1 overdue (+5)",
+        "SOP recently revised: SOP-009 (+14)",
+        "training due date proximity: 1 due within 14 days (+4)",
+        "open deviations linked to SOP or process: deviations: DEV-014, DEV-140, DEV-148, DEV-149, DEV-152, DEV-155, DEV-166, DEV-203, DEV-205, DEV-209, DEV-212, DEV-213, DEV-234, DEV-249 (+18)"
+      ]
+    },
+    {
+      "score": 57.0,
+      "band": "advisory",
+      "horizon": "4_weeks",
+      "entity_type": "department_process_sop",
+      "entity_id": "Packaging|Sterile Filling|SOP-011",
+      "risk_type": "training_drift",
+      "department": "Packaging",
+      "process": "Sterile Filling",
+      "owner": "",
+      "confidence": 0.86,
+      "top_drivers": [
+        "overdue training count: 1 overdue (+5)",
+        "SOP recently revised: SOP-011 (+14)",
+        "training due date proximity: 1 due within 14 days (+4)",
+        "open deviations linked to SOP or process: deviations: DEV-055, DEV-056, DEV-061, DEV-062, DEV-063, DEV-064, DEV-065, DEV-066, DEV-067, DEV-070, DEV-071, DEV-072, DEV-075, DEV-078 (+18)"
+      ]
+    },
+    {
+      "score": 57.0,
+      "band": "advisory",
+      "horizon": "4_weeks",
+      "entity_type": "department_process_sop",
+      "entity_id": "Production|Granulation|SOP-018",
+      "risk_type": "training_drift",
+      "department": "Production",
+      "process": "Granulation",
+      "owner": "",
+      "confidence": 0.86,
+      "top_drivers": [
+        "overdue training count: 1 overdue (+5)",
+        "SOP recently revised: SOP-018 (+14)",
+        "training due date proximity: 1 due within 14 days (+4)",
+        "open deviations linked to SOP or process: deviations: DEV-130, DEV-131, DEV-132, DEV-143, DEV-144, DEV-152, DEV-187, DEV-206, DEV-248 (+18)"
+      ]
+    },
+    {
+      "score": 57.0,
+      "band": "advisory",
+      "horizon": "4_weeks",
+      "entity_type": "department_process_sop",
+      "entity_id": "QA Operations|Granulation|SOP-002",
+      "risk_type": "training_drift",
+      "department": "QA Operations",
+      "process": "Granulation",
+      "owner": "",
+      "confidence": 0.86,
+      "top_drivers": [
+        "overdue training count: 1 overdue (+5)",
+        "SOP recently revised: SOP-002 (+14)",
+        "training due date proximity: 1 due within 14 days (+4)",
+        "open deviations linked to SOP or process: deviations: DEV-008, DEV-075, DEV-130, DEV-131, DEV-132, DEV-143, DEV-144, DEV-152, DEV-187, DEV-248 (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "department_process",
+      "entity_id": "Packaging|Packaging",
+      "risk_type": "audit_readiness_gap",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "",
+      "confidence": 0.84,
+      "top_drivers": [
+        "open major/critical deviations: deviations: DEV-003, DEV-004, DEV-005, DEV-007, DEV-008, DEV-011, DEV-017, DEV-018, DEV-021, DEV-026, DEV-033, DEV-036, DEV-040, DEV-041, DEV-042, DEV-043, DEV-044, DEV-045, DEV-047, DEV-049, DEV-051, DEV-054 (+24)",
+        "overdue CAPAs: CAPAs: CAPA-014, CAPA-016, CAPA-035, CAPA-037, CAPA-048, CAPA-050, CAPA-068, CAPA-075 (+22)",
+        "open audit findings: audit findings: FIND-012, FIND-014, FIND-032, FIND-037 (+18)",
+        "recent SOP changes with incomplete training: 23 incomplete training records (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "department_process",
+      "entity_id": "Production|Granulation",
+      "risk_type": "audit_readiness_gap",
+      "department": "Production",
+      "process": "Granulation",
+      "owner": "",
+      "confidence": 0.84,
+      "top_drivers": [
+        "open major/critical deviations: deviations: DEV-131, DEV-143, DEV-144, DEV-152, DEV-187 (+24)",
+        "overdue CAPAs: CAPAs: CAPA-013, CAPA-021, CAPA-078 (+22)",
+        "open audit findings: audit findings: FIND-006, FIND-019, FIND-023, FIND-025, FIND-039 (+18)",
+        "recent SOP changes with incomplete training: 11 incomplete training records (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "department_process",
+      "entity_id": "Production|Sterile Filling",
+      "risk_type": "audit_readiness_gap",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "",
+      "confidence": 0.84,
+      "top_drivers": [
+        "open major/critical deviations: deviations: DEV-055, DEV-056, DEV-061, DEV-062, DEV-063, DEV-064, DEV-065, DEV-066, DEV-067, DEV-070, DEV-071, DEV-072, DEV-075, DEV-078 (+24)",
+        "overdue CAPAs: CAPAs: CAPA-003, CAPA-006, CAPA-007, CAPA-015, CAPA-067 (+22)",
+        "open audit findings: audit findings: FIND-002, FIND-004, FIND-015, FIND-017, FIND-033, FIND-034, FIND-036 (+18)",
+        "recent SOP changes with incomplete training: 11 incomplete training records (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "department_process",
+      "entity_id": "Production|Weighing",
+      "risk_type": "audit_readiness_gap",
+      "department": "Production",
+      "process": "Weighing",
+      "owner": "",
+      "confidence": 0.84,
+      "top_drivers": [
+        "open major/critical deviations: deviations: DEV-140, DEV-212, DEV-213, DEV-249 (+24)",
+        "overdue CAPAs: CAPAs: CAPA-010, CAPA-032, CAPA-044, CAPA-073, CAPA-077, CAPA-079, CAPA-080 (+22)",
+        "open audit findings: audit findings: FIND-008, FIND-009, FIND-011, FIND-013 (+18)",
+        "recent SOP changes with incomplete training: 12 incomplete training records (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "department_process",
+      "entity_id": "QC Lab|QC Release Testing",
+      "risk_type": "audit_readiness_gap",
+      "department": "QC Lab",
+      "process": "QC Release Testing",
+      "owner": "",
+      "confidence": 0.84,
+      "top_drivers": [
+        "open major/critical deviations: deviations: DEV-088, DEV-090, DEV-093, DEV-111, DEV-116, DEV-120, DEV-121, DEV-123 (+24)",
+        "overdue CAPAs: CAPAs: CAPA-001, CAPA-002, CAPA-005, CAPA-009, CAPA-011, CAPA-017, CAPA-023, CAPA-061, CAPA-065 (+22)",
+        "open audit findings: audit findings: FIND-021, FIND-026, FIND-038 (+18)",
+        "recent SOP changes with incomplete training: 9 incomplete training records (+18)"
+      ]
+    },
+    {
+      "score": 96.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "department_process",
+      "entity_id": "Engineering|Equipment Maintenance",
+      "risk_type": "audit_readiness_gap",
+      "department": "Engineering",
+      "process": "Equipment Maintenance",
+      "owner": "",
+      "confidence": 0.84,
+      "top_drivers": [
+        "open major/critical deviations: deviations: DEV-157, DEV-176, DEV-181, DEV-201, DEV-221, DEV-245 (+24)",
+        "overdue CAPAs: CAPAs: CAPA-004, CAPA-008, CAPA-012, CAPA-036, CAPA-043, CAPA-059 (+22)",
+        "open audit findings: audit findings: FIND-028, FIND-030 (+12)",
+        "recent SOP changes with incomplete training: 7 incomplete training records (+18)"
+      ]
+    },
+    {
+      "score": 96.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "department_process",
+      "entity_id": "Production|Cleaning",
+      "risk_type": "audit_readiness_gap",
+      "department": "Production",
+      "process": "Cleaning",
+      "owner": "",
+      "confidence": 0.84,
+      "top_drivers": [
+        "open major/critical deviations: deviations: DEV-127, DEV-136, DEV-153, DEV-177, DEV-182, DEV-199 (+24)",
+        "overdue CAPAs: CAPAs: CAPA-020, CAPA-022, CAPA-038, CAPA-070, CAPA-074 (+22)",
+        "open audit findings: audit findings: FIND-007, FIND-031 (+12)",
+        "recent SOP changes with incomplete training: 6 incomplete training records (+18)"
+      ]
+    },
+    {
+      "score": 94.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "department_process",
+      "entity_id": "QA Operations|Supplier Qualification",
+      "risk_type": "audit_readiness_gap",
+      "department": "QA Operations",
+      "process": "Supplier Qualification",
+      "owner": "",
+      "confidence": 0.84,
+      "top_drivers": [
+        "open major/critical deviations: deviations: DEV-227, DEV-237 (+16)",
+        "overdue CAPAs: CAPAs: CAPA-047, CAPA-060, CAPA-069 (+22)",
+        "open audit findings: audit findings: FIND-001, FIND-010, FIND-024, FIND-027, FIND-040 (+18)",
+        "recent SOP changes with incomplete training: 6 incomplete training records (+18)"
+      ]
+    },
+    {
+      "score": 96.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "owner",
+      "entity_id": "Packaging Owner 01",
+      "risk_type": "backlog_pressure",
+      "department": "",
+      "process": "",
+      "owner": "Packaging Owner 01",
       "confidence": 0.82,
       "top_drivers": [
-        "severity: major (+22)",
-        "age: 37 days open (+7)",
-        "due-date proximity: deviation due date due within 4 days (+16)",
-        "same process recurrence: deviations: DEV-055, DEV-056, DEV-058, DEV-059, DEV-060, DEV-061, DEV-062, DEV-063, DEV-065, DEV-070, DEV-073, DEV-075, DEV-076, DEV-077 (+16)"
+        "open deviations: 41 (+20)",
+        "open CAPAs: 12 (+20)",
+        "overdue items: 27 (+24)",
+        "average age: 95.6 days (+16)"
       ]
     },
     {
-      "score": 100.0,
+      "score": 96.0,
       "band": "severe_storm",
       "horizon": "4_weeks",
-      "entity_type": "deviation",
-      "entity_id": "DEV-067",
-      "risk_type": "deviation_recurrence",
-      "department": "Production",
-      "process": "Sterile Filling",
-      "owner": "QA Owner 02",
+      "entity_type": "owner",
+      "entity_id": "Production Owner 01",
+      "risk_type": "backlog_pressure",
+      "department": "",
+      "process": "",
+      "owner": "Production Owner 01",
       "confidence": 0.82,
       "top_drivers": [
-        "severity: critical (+32)",
-        "age: 128 days open (+12)",
-        "due-date proximity: deviation due date overdue by 94 days (+25)",
-        "same process recurrence: deviations: DEV-057, DEV-068, DEV-069, DEV-071, DEV-072, DEV-078 (+16)"
+        "open deviations: 11 (+20)",
+        "open CAPAs: 6 (+20)",
+        "overdue items: 11 (+24)",
+        "average age: 82.9 days (+16)"
+      ]
+    },
+    {
+      "score": 96.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "owner",
+      "entity_id": "QA Owner 01",
+      "risk_type": "backlog_pressure",
+      "department": "",
+      "process": "",
+      "owner": "QA Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "open deviations: 22 (+20)",
+        "open CAPAs: 10 (+20)",
+        "overdue items: 14 (+24)",
+        "average age: 77.3 days (+16)"
+      ]
+    },
+    {
+      "score": 89.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "department",
+      "entity_id": "Packaging",
+      "risk_type": "backlog_pressure",
+      "department": "Packaging",
+      "process": "",
+      "owner": "",
+      "confidence": 0.82,
+      "top_drivers": [
+        "open deviations: 47 (+20)",
+        "open CAPAs: 10 (+20)",
+        "overdue items: 11 (+24)",
+        "average age: 35.7 days (+9)"
+      ]
+    },
+    {
+      "score": 84.0,
+      "band": "storm",
+      "horizon": "4_weeks",
+      "entity_type": "department",
+      "entity_id": "QA Operations",
+      "risk_type": "backlog_pressure",
+      "department": "QA Operations",
+      "process": "",
+      "owner": "",
+      "confidence": 0.82,
+      "top_drivers": [
+        "open deviations: 7 (+20)",
+        "open CAPAs: 4 (+20)",
+        "overdue items: 10 (+24)",
+        "average age: 193.3 days (+16)"
+      ]
+    },
+    {
+      "score": 80.0,
+      "band": "storm",
+      "horizon": "4_weeks",
+      "entity_type": "department",
+      "entity_id": "Engineering",
+      "risk_type": "backlog_pressure",
+      "department": "Engineering",
+      "process": "",
+      "owner": "",
+      "confidence": 0.82,
+      "top_drivers": [
+        "open deviations: 15 (+20)",
+        "open CAPAs: 7 (+20)",
+        "overdue items: 21 (+24)",
+        "average age: 184.8 days (+16)"
+      ]
+    },
+    {
+      "score": 80.0,
+      "band": "storm",
+      "horizon": "4_weeks",
+      "entity_type": "department",
+      "entity_id": "Production",
+      "risk_type": "backlog_pressure",
+      "department": "Production",
+      "process": "",
+      "owner": "",
+      "confidence": 0.82,
+      "top_drivers": [
+        "open deviations: 41 (+20)",
+        "open CAPAs: 26 (+20)",
+        "overdue items: 58 (+24)",
+        "average age: 136.9 days (+16)"
+      ]
+    },
+    {
+      "score": 80.0,
+      "band": "storm",
+      "horizon": "4_weeks",
+      "entity_type": "department",
+      "entity_id": "QC Lab",
+      "risk_type": "backlog_pressure",
+      "department": "QC Lab",
+      "process": "",
+      "owner": "",
+      "confidence": 0.82,
+      "top_drivers": [
+        "open deviations: 12 (+20)",
+        "open CAPAs: 10 (+20)",
+        "overdue items: 19 (+24)",
+        "average age: 118.6 days (+16)"
       ]
     }
   ],
@@ -2523,7 +2883,9 @@
       "label": "CAPA recurrence risk",
       "business_interpretation": "CAPA-014 is used as the synthetic story record for overdue CAPA and repeat packaging deviation signals.",
       "suggested_human_review_action": "CAPA owner should review action adequacy and effectiveness check design.",
-      "risk_entity_ids": [],
+      "risk_entity_ids": [
+        "CAPA-014"
+      ],
       "evidence_card_ids": [
         "EC-deviation-recurrence-dev-019",
         "EC-deviation-recurrence-dev-020",
@@ -2536,7 +2898,9 @@
       "label": "Training drift after SOP revision",
       "business_interpretation": "SOP-023 was recently revised in the synthetic scenario. The demo highlights training drift signals where records remain incomplete.",
       "suggested_human_review_action": "Training owner should review SOP-related overdue or incomplete training.",
-      "risk_entity_ids": [],
+      "risk_entity_ids": [
+        "Packaging|Packaging|SOP-023"
+      ],
       "evidence_card_ids": []
     },
     {
@@ -2545,12 +2909,8 @@
       "business_interpretation": "Sterile Filling has fewer synthetic deviations, but severity can increase the advisory risk signal.",
       "suggested_human_review_action": "Site Quality Lead should review severe open deviation context and related controls.",
       "risk_entity_ids": [
-        "DEV-055",
-        "DEV-056",
-        "DEV-061",
-        "DEV-062",
-        "DEV-063",
-        "DEV-065"
+        "Packaging|Sterile Filling|SOP-011",
+        "Production|Sterile Filling"
       ],
       "evidence_card_ids": [
         "EC-deviation-recurrence-dev-055",
@@ -2564,7 +2924,12 @@
       "label": "QC Lab OOS/OOT recurrence",
       "business_interpretation": "QC Lab release testing contains repeated synthetic OOS/OOT-related deviation patterns.",
       "suggested_human_review_action": "QA and QC owners should review recurrence candidates and investigation workload.",
-      "risk_entity_ids": [],
+      "risk_entity_ids": [
+        "CAPA-002",
+        "CAPA-017",
+        "QC Lab|QC Release Testing",
+        "QC Lab"
+      ],
       "evidence_card_ids": []
     }
   ]

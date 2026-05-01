@@ -59,6 +59,10 @@
             <li>keine regulatorische Meldeentscheidung</li>
           </ul>
         </details>
+
+        <section class="forecast-strip" aria-label="Forecast-Zeitleiste">
+          <div id="forecastStrip" class="forecast-strip-grid"></div>
+        </section>
       </section>
 
       <section class="experience" aria-label="Demo Arbeitsfläche">
@@ -110,7 +114,7 @@
                   <p class="section-kicker">Priorisierung</p>
                   <h3>Worauf QA zuerst schauen sollte</h3>
                 </div>
-                <span>2-8 Wochen</span>
+                <span id="priorityScope">Heute</span>
               </div>
               <div id="topRisks" class="risk-list"></div>
             </div>
@@ -160,6 +164,6 @@
       </section>
     </main>
 
-    <script src="./app.js"></script>
+    <script src="./app.js?v=forecast-strip-1"></script>
   </body>
 </html>
