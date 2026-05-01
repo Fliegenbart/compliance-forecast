@@ -14,7 +14,7 @@ SAMPLE_DATA_DIR = PROJECT_ROOT / "data" / "sample"
 SCORING_CONFIG_PATH = PROJECT_ROOT / "config" / "scoring_rules_v0_1.yaml"
 FORECAST_LOG_DIR = PROJECT_ROOT / "logs" / "forecast_runs"
 APP_TITLE = "GMP Compliance Weather Forecast"
-CLIENT_NAME = "Grüne Wald GmbH"
+CLIENT_NAME = "Beispiel GmbH"
 SAFETY_BOUNDARY = (
     "Advisory prototype only. It must not be used for batch release, CAPA approval, "
     "regulatory filing decisions, or any other final GMP decision."

@@ -1,7 +1,7 @@
 {
   "meta": {
     "app_name": "GMP Compliance Weather Forecast",
-    "client_name": "Gruene Wald GmbH",
+    "client_name": "Beispiel GmbH",
     "generated_at": "2026-05-01T15:02:49.382417+00:00",
     "as_of_date": "2026-04-30",
     "model_version": "rules-v0.1",

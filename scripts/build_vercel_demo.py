@@ -52,7 +52,7 @@ def build_vercel_demo_payload(
     payload = {
         "meta": {
             "app_name": "GMP Compliance Weather Forecast",
-            "client_name": "Gruene Wald GmbH",
+            "client_name": "Beispiel GmbH",
             "generated_at": generated_at.isoformat(),
             "as_of_date": as_of_date.isoformat(),
             "model_version": scoring_config.model_version,

@@ -10,7 +10,7 @@ GMP Compliance Weather Forecast is a Streamlit-based prototype that turns synthe
 
 It demonstrates how deviations, CAPAs, audit findings, training records, SOPs, and change controls can be reviewed together in a transparent dashboard. The goal is to support QA prioritization discussions, not to automate regulated decisions.
 
-The demo is built for Grüne Wald GmbH as a consulting prototype. It uses deterministic synthetic sample data and local rule-based scoring.
+The demo is built for Beispiel GmbH as a consulting prototype. It uses deterministic synthetic sample data and local rule-based scoring.
 
 ## 2. What This Prototype Is Not
 
