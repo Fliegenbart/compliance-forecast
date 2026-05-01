@@ -1,0 +1,2571 @@
+{
+  "meta": {
+    "app_name": "GMP Compliance Weather Forecast",
+    "client_name": "Gruene Wald GmbH",
+    "generated_at": "2026-05-01T09:45:12.249878+00:00",
+    "as_of_date": "2026-04-30",
+    "model_version": "rules-v0.1",
+    "scoring_config_file": "config/scoring_rules_v0_1.yaml",
+    "safety_boundary": "Advisory quality-risk signals only. This static demo does not make GMP decisions. Human QA review is required."
+  },
+  "summary": {
+    "overall_weather_index": 100.0,
+    "data_readiness_score": 57,
+    "risk_score_count": 476,
+    "evidence_card_count": 229,
+    "source_record_count": {
+      "deviations": 250,
+      "capas": 80,
+      "audit_findings": 40,
+      "training_records": 400,
+      "change_controls": 120,
+      "sops": 100
+    }
+  },
+  "risk_band_counts": {
+    "advisory": 80,
+    "clear": 8,
+    "severe_storm": 134,
+    "storm": 15,
+    "watch": 239
+  },
+  "risk_type_counts": {
+    "audit_readiness_gap": 8,
+    "backlog_pressure": 16,
+    "capa_failure": 57,
+    "deviation_recurrence": 122,
+    "training_drift": 273
+  },
+  "top_risks": [
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-003",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 35 days open (+7)",
+        "due-date proximity: deviation due date due within 1 days (+16)",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-004 (+15)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-005",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 31 days open (+7)",
+        "due-date proximity: deviation due date due within 12 days (+9)",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-007",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Production Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 29 days open (+4)",
+        "due-date proximity: deviation due date overdue by 5 days (+25)",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-008 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-008",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Production Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 31 days open (+7)",
+        "due-date proximity: deviation due date overdue by 7 days (+25)",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-009",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 28 days open (+4)",
+        "due-date proximity: deviation due date due within 1 days (+16)",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-010 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-011",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 22 days open (+4)",
+        "due-date proximity: deviation due date due within 8 days (+9)",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-012, DEV-017 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-014",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "confidence": 0.9,
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 22 days open (+4)",
+        "due-date proximity: deviation due date due within 5 days (+16)",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-012, DEV-017 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-015",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "confidence": 0.9,
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 22 days open (+4)",
+        "due-date proximity: deviation due date due within 7 days (+16)",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-012, DEV-017 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-016",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 21 days open (+4)",
+        "due-date proximity: deviation due date due within 6 days (+16)",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-017, DEV-018 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-017",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 24 days open (+4)",
+        "due-date proximity: deviation due date due within 8 days (+9)",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-018",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Production Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 22 days open (+4)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-012, DEV-017 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-019",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 15 days open (+4)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-020, DEV-022, DEV-023, DEV-026, DEV-027, DEV-028 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-020",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.9,
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 16 days open (+4)",
+        "due-date proximity: deviation due date due within 11 days (+9)",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-022, DEV-023, DEV-026, DEV-027 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-021",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 15 days open (+4)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-020, DEV-022, DEV-023, DEV-026, DEV-027, DEV-028 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-024",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 15 days open (+4)",
+        "due-date proximity: deviation due date due within 5 days (+16)",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-020, DEV-022, DEV-023, DEV-026, DEV-027, DEV-028 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-025",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 15 days open (+4)",
+        "due-date proximity: deviation due date due within 11 days (+9)",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-020, DEV-022, DEV-023, DEV-026, DEV-027, DEV-028 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-026",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 17 days open (+4)",
+        "due-date proximity: deviation due date due within 9 days (+9)",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-028",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 16 days open (+4)",
+        "due-date proximity: deviation due date due within 10 days (+9)",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-022, DEV-023, DEV-026, DEV-027 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-029",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: minor (+8)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-033, DEV-035, DEV-037, DEV-038, DEV-040 (+16)",
+        "same equipment recurrence: EQ-014; deviations: DEV-019, DEV-020, DEV-021, DEV-024, DEV-109, DEV-197 (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-030",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: minor (+8)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-031, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16)",
+        "same equipment recurrence: EQ-014; deviations: DEV-019, DEV-020, DEV-021, DEV-024, DEV-029, DEV-031, DEV-109, DEV-197 (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-031",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Production Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: minor (+8)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-033, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16)",
+        "same equipment recurrence: EQ-014; deviations: DEV-019, DEV-020, DEV-021, DEV-024, DEV-029, DEV-109, DEV-197 (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-033",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Production Owner 01",
+      "confidence": 0.74,
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028 (+16)",
+        "same equipment recurrence: EQ-010; deviations: DEV-001, DEV-062, DEV-082, DEV-166 (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-036",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-033, DEV-035, DEV-037, DEV-038, DEV-040 (+16)",
+        "same equipment recurrence: EQ-004; deviations: DEV-007, DEV-016, DEV-216 (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-040",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.74,
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028 (+16)",
+        "same equipment recurrence: EQ-017; deviations: DEV-093, DEV-096, DEV-098, DEV-105, DEV-199 (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-041",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Production Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16)",
+        "same equipment recurrence: EQ-014; deviations: DEV-019, DEV-020, DEV-021, DEV-024, DEV-029, DEV-030, DEV-031, DEV-042, DEV-043, DEV-109, DEV-197 (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-042",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: critical (+32)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-046, DEV-051, DEV-052, DEV-053 (+16)",
+        "same equipment recurrence: EQ-014; deviations: DEV-019, DEV-020, DEV-021, DEV-024, DEV-029, DEV-030, DEV-031, DEV-109, DEV-197 (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-043",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053 (+16)",
+        "same equipment recurrence: EQ-014; deviations: DEV-019, DEV-020, DEV-021, DEV-024, DEV-029, DEV-030, DEV-031, DEV-042, DEV-109, DEV-197 (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-044",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.74,
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-046, DEV-051, DEV-052, DEV-053 (+16)",
+        "same equipment recurrence: EQ-015; deviations: DEV-066, DEV-075, DEV-107, DEV-183 (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-047",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16)",
+        "same equipment recurrence: EQ-001; deviations: DEV-010, DEV-056 (+14)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-049",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "confidence": 0.74,
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16)",
+        "same equipment recurrence: EQ-014; deviations: DEV-019, DEV-020, DEV-021, DEV-024, DEV-029, DEV-030, DEV-031, DEV-042, DEV-043, DEV-109, DEV-197 (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-051",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.74,
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16)",
+        "same equipment recurrence: EQ-009; deviations: DEV-034, DEV-070, DEV-118 (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-054",
+      "risk_type": "deviation_recurrence",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053 (+16)",
+        "same equipment recurrence: EQ-017; deviations: DEV-037, DEV-038, DEV-040, DEV-093, DEV-096, DEV-098, DEV-105, DEV-199 (+18)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-055",
+      "risk_type": "deviation_recurrence",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "Production Owner 02",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: critical (+32)",
+        "age: 109 days open (+12)",
+        "due-date proximity: deviation due date overdue by 86 days (+25)",
+        "same process recurrence: deviations: DEV-057, DEV-059, DEV-060, DEV-065, DEV-067, DEV-068, DEV-069, DEV-071, DEV-072, DEV-078 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-056",
+      "risk_type": "deviation_recurrence",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "Production Owner 02",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: critical (+32)",
+        "age: 54 days open (+7)",
+        "due-date proximity: deviation due date overdue by 26 days (+25)",
+        "same process recurrence: deviations: DEV-055, DEV-057, DEV-058, DEV-059, DEV-060, DEV-063, DEV-065, DEV-067, DEV-070, DEV-073, DEV-075, DEV-076, DEV-077, DEV-078 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-061",
+      "risk_type": "deviation_recurrence",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "Production Owner 02",
+      "confidence": 0.9,
+      "top_drivers": [
+        "severity: critical (+32)",
+        "age: 45 days open (+7)",
+        "due-date proximity: deviation due date overdue by 7 days (+25)",
+        "same process recurrence: deviations: DEV-055, DEV-056, DEV-058, DEV-059, DEV-060, DEV-063, DEV-065, DEV-067, DEV-070, DEV-073, DEV-075, DEV-076, DEV-077, DEV-078 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-062",
+      "risk_type": "deviation_recurrence",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "Production Owner 02",
+      "confidence": 0.9,
+      "top_drivers": [
+        "severity: critical (+32)",
+        "age: 39 days open (+7)",
+        "due-date proximity: deviation due date due within 1 days (+16)",
+        "same process recurrence: deviations: DEV-055, DEV-056, DEV-058, DEV-059, DEV-060, DEV-061, DEV-063, DEV-065, DEV-067, DEV-070, DEV-073, DEV-075, DEV-076, DEV-077 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-063",
+      "risk_type": "deviation_recurrence",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "QA Owner 02",
+      "confidence": 0.9,
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 56 days open (+7)",
+        "due-date proximity: deviation due date overdue by 36 days (+25)",
+        "same process recurrence: deviations: DEV-055, DEV-057, DEV-058, DEV-059, DEV-060, DEV-065, DEV-067, DEV-070, DEV-073, DEV-075, DEV-076, DEV-077, DEV-078 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-065",
+      "risk_type": "deviation_recurrence",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "Production Owner 02",
+      "confidence": 0.9,
+      "top_drivers": [
+        "severity: critical (+32)",
+        "age: 124 days open (+12)",
+        "due-date proximity: deviation due date overdue by 101 days (+25)",
+        "same process recurrence: deviations: DEV-057, DEV-067, DEV-068, DEV-069, DEV-071, DEV-072, DEV-078 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-066",
+      "risk_type": "deviation_recurrence",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "QA Owner 02",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 37 days open (+7)",
+        "due-date proximity: deviation due date due within 4 days (+16)",
+        "same process recurrence: deviations: DEV-055, DEV-056, DEV-058, DEV-059, DEV-060, DEV-061, DEV-062, DEV-063, DEV-065, DEV-070, DEV-073, DEV-075, DEV-076, DEV-077 (+16)"
+      ]
+    },
+    {
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "entity_type": "deviation",
+      "entity_id": "DEV-067",
+      "risk_type": "deviation_recurrence",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "QA Owner 02",
+      "confidence": 0.82,
+      "top_drivers": [
+        "severity: critical (+32)",
+        "age: 128 days open (+12)",
+        "due-date proximity: deviation due date overdue by 94 days (+25)",
+        "same process recurrence: deviations: DEV-057, DEV-068, DEV-069, DEV-071, DEV-072, DEV-078 (+16)"
+      ]
+    }
+  ],
+  "heatmap": [
+    {
+      "department": "Packaging",
+      "process": "Packaging",
+      "max_score": 100.0,
+      "average_score": 86.9,
+      "signal_count": 64
+    },
+    {
+      "department": "Production",
+      "process": "Sterile Filling",
+      "max_score": 100.0,
+      "average_score": 76.2,
+      "signal_count": 27
+    },
+    {
+      "department": "QC Lab",
+      "process": "QC Release Testing",
+      "max_score": 100.0,
+      "average_score": 73.9,
+      "signal_count": 27
+    },
+    {
+      "department": "Production",
+      "process": "Cleaning",
+      "max_score": 100.0,
+      "average_score": 72.3,
+      "signal_count": 18
+    },
+    {
+      "department": "Production",
+      "process": "Granulation",
+      "max_score": 100.0,
+      "average_score": 72.0,
+      "signal_count": 18
+    },
+    {
+      "department": "Engineering",
+      "process": "Equipment Maintenance",
+      "max_score": 100.0,
+      "average_score": 77.8,
+      "signal_count": 27
+    },
+    {
+      "department": "QA Operations",
+      "process": "Supplier Qualification",
+      "max_score": 100.0,
+      "average_score": 67.0,
+      "signal_count": 18
+    },
+    {
+      "department": "Production",
+      "process": "Weighing",
+      "max_score": 100.0,
+      "average_score": 70.6,
+      "signal_count": 29
+    },
+    {
+      "department": "Cross-functional",
+      "process": "All processes",
+      "max_score": 96.0,
+      "average_score": 72.1,
+      "signal_count": 11
+    },
+    {
+      "department": "Packaging",
+      "process": "All processes",
+      "max_score": 89.0,
+      "average_score": 89.0,
+      "signal_count": 1
+    },
+    {
+      "department": "QA Operations",
+      "process": "All processes",
+      "max_score": 84.0,
+      "average_score": 84.0,
+      "signal_count": 1
+    },
+    {
+      "department": "Engineering",
+      "process": "All processes",
+      "max_score": 80.0,
+      "average_score": 80.0,
+      "signal_count": 1
+    },
+    {
+      "department": "Production",
+      "process": "All processes",
+      "max_score": 80.0,
+      "average_score": 80.0,
+      "signal_count": 1
+    },
+    {
+      "department": "QC Lab",
+      "process": "All processes",
+      "max_score": 80.0,
+      "average_score": 80.0,
+      "signal_count": 1
+    },
+    {
+      "department": "QA Operations",
+      "process": "Packaging",
+      "max_score": 62.0,
+      "average_score": 47.2,
+      "signal_count": 5
+    },
+    {
+      "department": "Warehouse",
+      "process": "Weighing",
+      "max_score": 57.0,
+      "average_score": 44.2,
+      "signal_count": 6
+    },
+    {
+      "department": "Packaging",
+      "process": "Sterile Filling",
+      "max_score": 57.0,
+      "average_score": 50.2,
+      "signal_count": 6
+    },
+    {
+      "department": "QA Operations",
+      "process": "Granulation",
+      "max_score": 57.0,
+      "average_score": 44.1,
+      "signal_count": 7
+    },
+    {
+      "department": "QC Lab",
+      "process": "Cleaning",
+      "max_score": 56.0,
+      "average_score": 41.7,
+      "signal_count": 6
+    },
+    {
+      "department": "Warehouse",
+      "process": "Sterile Filling",
+      "max_score": 53.0,
+      "average_score": 42.5,
+      "signal_count": 6
+    },
+    {
+      "department": "Warehouse",
+      "process": "Packaging",
+      "max_score": 53.0,
+      "average_score": 42.2,
+      "signal_count": 8
+    },
+    {
+      "department": "Engineering",
+      "process": "Weighing",
+      "max_score": 53.0,
+      "average_score": 43.3,
+      "signal_count": 6
+    },
+    {
+      "department": "Production",
+      "process": "Packaging",
+      "max_score": 53.0,
+      "average_score": 42.9,
+      "signal_count": 7
+    },
+    {
+      "department": "Packaging",
+      "process": "Granulation",
+      "max_score": 53.0,
+      "average_score": 41.6,
+      "signal_count": 5
+    }
+  ],
+  "evidence_cards": [
+    {
+      "card_id": "EC-deviation-recurrence-dev-003",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-003",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 35 days open (+7)",
+        "due-date proximity: deviation due date due within 1 days (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-003"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-003"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-003 over horizon 4_weeks. Top drivers: severity: major (+22); age: 35 days open (+7); due-date proximity: deviation due date due within 1 days (+16). Source record IDs: DEV-003.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-005",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-005",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 31 days open (+7)",
+        "due-date proximity: deviation due date due within 12 days (+9)"
+      ],
+      "source_record_ids": [
+        "DEV-005"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-005"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-005 over horizon 4_weeks. Top drivers: severity: major (+22); age: 31 days open (+7); due-date proximity: deviation due date due within 12 days (+9). Source record IDs: DEV-005.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-007",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-007",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Production Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 29 days open (+4)",
+        "due-date proximity: deviation due date overdue by 5 days (+25)"
+      ],
+      "source_record_ids": [
+        "DEV-007"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-007"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-007 over horizon 4_weeks. Top drivers: severity: major (+22); age: 29 days open (+4); due-date proximity: deviation due date overdue by 5 days (+25). Source record IDs: DEV-007.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-008",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-008",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Production Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 31 days open (+7)",
+        "due-date proximity: deviation due date overdue by 7 days (+25)"
+      ],
+      "source_record_ids": [
+        "DEV-008"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-008"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-008 over horizon 4_weeks. Top drivers: severity: major (+22); age: 31 days open (+7); due-date proximity: deviation due date overdue by 7 days (+25). Source record IDs: DEV-008.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-009",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-009",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 28 days open (+4)",
+        "due-date proximity: deviation due date due within 1 days (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-009"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-009"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-009 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 28 days open (+4); due-date proximity: deviation due date due within 1 days (+16). Source record IDs: DEV-009.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-011",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-011",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 22 days open (+4)",
+        "due-date proximity: deviation due date due within 8 days (+9)"
+      ],
+      "source_record_ids": [
+        "DEV-011"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-011"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-011 over horizon 4_weeks. Top drivers: severity: major (+22); age: 22 days open (+4); due-date proximity: deviation due date due within 8 days (+9). Source record IDs: DEV-011.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-014",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-014",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 22 days open (+4)",
+        "due-date proximity: deviation due date due within 5 days (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-014",
+        "CAPA-004"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-014"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-004"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-014 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 22 days open (+4); due-date proximity: deviation due date due within 5 days (+16). Source record IDs: DEV-014, CAPA-004.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-015",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-015",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 22 days open (+4)",
+        "due-date proximity: deviation due date due within 7 days (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-015",
+        "CAPA-024"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-015"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-024"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-015 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 22 days open (+4); due-date proximity: deviation due date due within 7 days (+16). Source record IDs: DEV-015, CAPA-024.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-016",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-016",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 21 days open (+4)",
+        "due-date proximity: deviation due date due within 6 days (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-016"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-016"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-016 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 21 days open (+4); due-date proximity: deviation due date due within 6 days (+16). Source record IDs: DEV-016.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-017",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-017",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 24 days open (+4)",
+        "due-date proximity: deviation due date due within 8 days (+9)"
+      ],
+      "source_record_ids": [
+        "DEV-017"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-017"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-017 over horizon 4_weeks. Top drivers: severity: major (+22); age: 24 days open (+4); due-date proximity: deviation due date due within 8 days (+9). Source record IDs: DEV-017.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-018",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-018",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Production Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 22 days open (+4)",
+        "confidence reduced: missing due_date"
+      ],
+      "source_record_ids": [
+        "DEV-018",
+        "CAPA-048"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-018"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-048"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-018 over horizon 4_weeks. Top drivers: severity: major (+22); age: 22 days open (+4); confidence reduced: missing due_date. Source record IDs: DEV-018, CAPA-048.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-019",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-019",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 15 days open (+4)",
+        "confidence reduced: missing due_date"
+      ],
+      "source_record_ids": [
+        "DEV-019",
+        "CAPA-014"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-019"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-014"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-019 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 15 days open (+4); confidence reduced: missing due_date. Source record IDs: DEV-019, CAPA-014.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-020",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-020",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 16 days open (+4)",
+        "due-date proximity: deviation due date due within 11 days (+9)"
+      ],
+      "source_record_ids": [
+        "DEV-020",
+        "CAPA-014"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-020"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-014"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-020 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 16 days open (+4); due-date proximity: deviation due date due within 11 days (+9). Source record IDs: DEV-020, CAPA-014.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-021",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-021",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 15 days open (+4)",
+        "confidence reduced: missing due_date"
+      ],
+      "source_record_ids": [
+        "DEV-021",
+        "CAPA-014"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-021"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-014"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-021 over horizon 4_weeks. Top drivers: severity: major (+22); age: 15 days open (+4); confidence reduced: missing due_date. Source record IDs: DEV-021, CAPA-014.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-024",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-024",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 15 days open (+4)",
+        "due-date proximity: deviation due date due within 5 days (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-024"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-024"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-024 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 15 days open (+4); due-date proximity: deviation due date due within 5 days (+16). Source record IDs: DEV-024.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-025",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-025",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 15 days open (+4)",
+        "due-date proximity: deviation due date due within 11 days (+9)"
+      ],
+      "source_record_ids": [
+        "DEV-025"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-025"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-025 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 15 days open (+4); due-date proximity: deviation due date due within 11 days (+9). Source record IDs: DEV-025.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-026",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-026",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 17 days open (+4)",
+        "due-date proximity: deviation due date due within 9 days (+9)"
+      ],
+      "source_record_ids": [
+        "DEV-026"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-026"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-026 over horizon 4_weeks. Top drivers: severity: major (+22); age: 17 days open (+4); due-date proximity: deviation due date due within 9 days (+9). Source record IDs: DEV-026.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-028",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-028",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "top_drivers": [
+        "severity: minor (+8)",
+        "age: 16 days open (+4)",
+        "due-date proximity: deviation due date due within 10 days (+9)"
+      ],
+      "source_record_ids": [
+        "DEV-028"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-028"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-028 over horizon 4_weeks. Top drivers: severity: minor (+8); age: 16 days open (+4); due-date proximity: deviation due date due within 10 days (+9). Source record IDs: DEV-028.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-029",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-029",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: minor (+8)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-033, DEV-035, DEV-037, DEV-038, DEV-040 (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-029",
+        "CAPA-014"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-029"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-014"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-029 over horizon 4_weeks. Top drivers: severity: minor (+8); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-033, DEV-035, DEV-037, DEV-038, DEV-040 (+16). Source record IDs: DEV-029, CAPA-014.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-030",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-030",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: minor (+8)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-031, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-030",
+        "CAPA-014"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-030"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-014"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-030 over horizon 4_weeks. Top drivers: severity: minor (+8); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-031, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16). Source record IDs: DEV-030, CAPA-014.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-031",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-031",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Production Owner 01",
+      "top_drivers": [
+        "severity: minor (+8)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-033, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-031",
+        "CAPA-014"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-031"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-014"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-031 over horizon 4_weeks. Top drivers: severity: minor (+8); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-033, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16). Source record IDs: DEV-031, CAPA-014.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-033",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-033",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Production Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028 (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-033"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-033"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-033 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028 (+16). Source record IDs: DEV-033.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-036",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-036",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-033, DEV-035, DEV-037, DEV-038, DEV-040 (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-036",
+        "CAPA-032"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-036"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-032"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-036 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-033, DEV-035, DEV-037, DEV-038, DEV-040 (+16). Source record IDs: DEV-036, CAPA-032.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-040",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-040",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028 (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-040"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-040"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-040 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028 (+16). Source record IDs: DEV-040.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-041",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-041",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Production Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-041",
+        "CAPA-014"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-041"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-014"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-041 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16). Source record IDs: DEV-041, CAPA-014.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-042",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-042",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: critical (+32)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-046, DEV-051, DEV-052, DEV-053 (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-042",
+        "CAPA-014"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-042"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-014"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-042 over horizon 4_weeks. Top drivers: severity: critical (+32); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-046, DEV-051, DEV-052, DEV-053 (+16). Source record IDs: DEV-042, CAPA-014.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-043",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-043",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053 (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-043",
+        "CAPA-014"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-043"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-014"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-043 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053 (+16). Source record IDs: DEV-043, CAPA-014.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-044",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-044",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-046, DEV-051, DEV-052, DEV-053 (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-044"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-044"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-044 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-046, DEV-051, DEV-052, DEV-053 (+16). Source record IDs: DEV-044.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-047",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-047",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-047",
+        "CAPA-037"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-047"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-037"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-047 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16). Source record IDs: DEV-047, CAPA-037.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-049",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-049",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "QA Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-049"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-049"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-049 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-043, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053, DEV-054 (+16). Source record IDs: DEV-049.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-051",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-051",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-051"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-051"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-051 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040 (+16). Source record IDs: DEV-051.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-054",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-054",
+      "department": "Packaging",
+      "process": "Packaging",
+      "owner": "Packaging Owner 01",
+      "top_drivers": [
+        "severity: major (+22)",
+        "confidence reduced: missing due_date",
+        "same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053 (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-054",
+        "CAPA-056"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-054"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-056"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-054 over horizon 4_weeks. Top drivers: severity: major (+22); confidence reduced: missing due_date; same process recurrence: deviations: DEV-001, DEV-002, DEV-003, DEV-004, DEV-005, DEV-006, DEV-007, DEV-008, DEV-009, DEV-010, DEV-011, DEV-012, DEV-013, DEV-014, DEV-015, DEV-016, DEV-017, DEV-018, DEV-019, DEV-020, DEV-021, DEV-022, DEV-023, DEV-024, DEV-025, DEV-026, DEV-027, DEV-028, DEV-029, DEV-030, DEV-031, DEV-032, DEV-033, DEV-034, DEV-035, DEV-036, DEV-037, DEV-038, DEV-039, DEV-040, DEV-042, DEV-044, DEV-046, DEV-048, DEV-051, DEV-052, DEV-053 (+16). Source record IDs: DEV-054, CAPA-056.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-055",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-055",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "Production Owner 02",
+      "top_drivers": [
+        "severity: critical (+32)",
+        "age: 109 days open (+12)",
+        "due-date proximity: deviation due date overdue by 86 days (+25)"
+      ],
+      "source_record_ids": [
+        "DEV-055"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-055"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-055 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 109 days open (+12); due-date proximity: deviation due date overdue by 86 days (+25). Source record IDs: DEV-055.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-056",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-056",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "Production Owner 02",
+      "top_drivers": [
+        "severity: critical (+32)",
+        "age: 54 days open (+7)",
+        "due-date proximity: deviation due date overdue by 26 days (+25)"
+      ],
+      "source_record_ids": [
+        "DEV-056"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-056"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-056 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 54 days open (+7); due-date proximity: deviation due date overdue by 26 days (+25). Source record IDs: DEV-056.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-061",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-061",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "Production Owner 02",
+      "top_drivers": [
+        "severity: critical (+32)",
+        "age: 45 days open (+7)",
+        "due-date proximity: deviation due date overdue by 7 days (+25)"
+      ],
+      "source_record_ids": [
+        "DEV-061",
+        "CAPA-021"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-061"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-021"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-061 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 45 days open (+7); due-date proximity: deviation due date overdue by 7 days (+25). Source record IDs: DEV-061, CAPA-021.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-062",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-062",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "Production Owner 02",
+      "top_drivers": [
+        "severity: critical (+32)",
+        "age: 39 days open (+7)",
+        "due-date proximity: deviation due date due within 1 days (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-062",
+        "CAPA-036"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-062"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-036"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-062 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 39 days open (+7); due-date proximity: deviation due date due within 1 days (+16). Source record IDs: DEV-062, CAPA-036.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-063",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-063",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "QA Owner 02",
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 56 days open (+7)",
+        "due-date proximity: deviation due date overdue by 36 days (+25)"
+      ],
+      "source_record_ids": [
+        "DEV-063",
+        "CAPA-062"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-063"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-062"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-063 over horizon 4_weeks. Top drivers: severity: major (+22); age: 56 days open (+7); due-date proximity: deviation due date overdue by 36 days (+25). Source record IDs: DEV-063, CAPA-062.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-065",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-065",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "Production Owner 02",
+      "top_drivers": [
+        "severity: critical (+32)",
+        "age: 124 days open (+12)",
+        "due-date proximity: deviation due date overdue by 101 days (+25)"
+      ],
+      "source_record_ids": [
+        "DEV-065",
+        "CAPA-050"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-065"
+        },
+        {
+          "domain": "capas",
+          "record_id": "CAPA-050"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-065 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 124 days open (+12); due-date proximity: deviation due date overdue by 101 days (+25). Source record IDs: DEV-065, CAPA-050.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-066",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-066",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "QA Owner 02",
+      "top_drivers": [
+        "severity: major (+22)",
+        "age: 37 days open (+7)",
+        "due-date proximity: deviation due date due within 4 days (+16)"
+      ],
+      "source_record_ids": [
+        "DEV-066"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-066"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-066 over horizon 4_weeks. Top drivers: severity: major (+22); age: 37 days open (+7); due-date proximity: deviation due date due within 4 days (+16). Source record IDs: DEV-066.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    },
+    {
+      "card_id": "EC-deviation-recurrence-dev-067",
+      "score": 100.0,
+      "band": "severe_storm",
+      "horizon": "4_weeks",
+      "risk_type": "deviation_recurrence",
+      "entity_type": "deviation",
+      "entity_id": "DEV-067",
+      "department": "Production",
+      "process": "Sterile Filling",
+      "owner": "QA Owner 02",
+      "top_drivers": [
+        "severity: critical (+32)",
+        "age: 128 days open (+12)",
+        "due-date proximity: deviation due date overdue by 94 days (+25)"
+      ],
+      "source_record_ids": [
+        "DEV-067"
+      ],
+      "source_records": [
+        {
+          "domain": "deviations",
+          "record_id": "DEV-067"
+        }
+      ],
+      "rationale": "Based on available data, this elevated risk signal is recommended for QA review. The advisory score is 100.0 (severe storm) for deviation DEV-067 over horizon 4_weeks. Top drivers: severity: critical (+32); age: 128 days open (+12); due-date proximity: deviation due date overdue by 94 days (+25). Source record IDs: DEV-067.",
+      "recommended_human_review": "QA should review whether linked CAPA remains adequate.",
+      "limitations": [
+        "Advisory decision support only; this card does not make a GMP decision.",
+        "Based on available data in the loaded synthetic or anonymized dataset.",
+        "Human QA review is mandatory before any regulated quality action."
+      ]
+    }
+  ],
+  "data_quality_issues": [
+    {
+      "domain": "deviations",
+      "record_id": "DEV-002",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-007",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-008",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-055",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-056",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-061",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-063",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-065",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-067",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-070",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-071",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-072",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-075",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-078",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-081",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-087",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-088",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-090",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-093",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-103",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-111",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-116",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-120",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-123",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    },
+    {
+      "domain": "deviations",
+      "record_id": "DEV-127",
+      "severity": "medium",
+      "message": "Record is overdue as of 2026-04-30."
+    }
+  ],
+  "demo_stories": [
+    {
+      "id": "packaging-storm",
+      "label": "Packaging storm",
+      "business_interpretation": "Packaging shows a rising advisory signal. The demo highlights repeat deviations, owner pressure, and source-linked evidence for QA prioritization.",
+      "suggested_human_review_action": "QA should review packaging recurrence patterns and whether linked CAPAs remain adequate.",
+      "risk_entity_ids": [
+        "DEV-003",
+        "DEV-005",
+        "DEV-007",
+        "DEV-008",
+        "DEV-009",
+        "DEV-011"
+      ],
+      "evidence_card_ids": [
+        "EC-deviation-recurrence-dev-003",
+        "EC-deviation-recurrence-dev-005",
+        "EC-deviation-recurrence-dev-007",
+        "EC-deviation-recurrence-dev-008"
+      ]
+    },
+    {
+      "id": "capa-014",
+      "label": "CAPA recurrence risk",
+      "business_interpretation": "CAPA-014 is used as the synthetic story record for overdue CAPA and repeat packaging deviation signals.",
+      "suggested_human_review_action": "CAPA owner should review action adequacy and effectiveness check design.",
+      "risk_entity_ids": [],
+      "evidence_card_ids": [
+        "EC-deviation-recurrence-dev-019",
+        "EC-deviation-recurrence-dev-020",
+        "EC-deviation-recurrence-dev-021",
+        "EC-deviation-recurrence-dev-029"
+      ]
+    },
+    {
+      "id": "sop-023",
+      "label": "Training drift after SOP revision",
+      "business_interpretation": "SOP-023 was recently revised in the synthetic scenario. The demo highlights training drift signals where records remain incomplete.",
+      "suggested_human_review_action": "Training owner should review SOP-related overdue or incomplete training.",
+      "risk_entity_ids": [],
+      "evidence_card_ids": []
+    },
+    {
+      "id": "sterile-filling",
+      "label": "Sterile Filling high-severity watch",
+      "business_interpretation": "Sterile Filling has fewer synthetic deviations, but severity can increase the advisory risk signal.",
+      "suggested_human_review_action": "Site Quality Lead should review severe open deviation context and related controls.",
+      "risk_entity_ids": [
+        "DEV-055",
+        "DEV-056",
+        "DEV-061",
+        "DEV-062",
+        "DEV-063",
+        "DEV-065"
+      ],
+      "evidence_card_ids": [
+        "EC-deviation-recurrence-dev-055",
+        "EC-deviation-recurrence-dev-056",
+        "EC-deviation-recurrence-dev-061",
+        "EC-deviation-recurrence-dev-062"
+      ]
+    },
+    {
+      "id": "qc-oos-oot",
+      "label": "QC Lab OOS/OOT recurrence",
+      "business_interpretation": "QC Lab release testing contains repeated synthetic OOS/OOT-related deviation patterns.",
+      "suggested_human_review_action": "QA and QC owners should review recurrence candidates and investigation workload.",
+      "risk_entity_ids": [],
+      "evidence_card_ids": []
+    }
+  ]
+}

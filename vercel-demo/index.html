@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GMP Compliance Weather Forecast - Vercel Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Gruene Wald GmbH - static Vercel preview</p>
+        <h1>GMP Compliance Weather Forecast</h1>
+      </div>
+      <div class="status-block">
+        <span>Model version</span>
+        <strong id="modelVersion">rules-v0.1</strong>
+      </div>
+    </header>
+
+    <main>
+      <section class="disclaimer">
+        <strong>Advisory prototype only.</strong>
+        This preview provides quality-risk signals for human QA review. It does not make GMP decisions, approve CAPAs,
+        close deviations, release batches, qualify suppliers, or approve validation outcomes.
+      </section>
+
+      <section class="workspace">
+        <aside class="rail">
+          <p class="rail-label">Demo story</p>
+          <div id="storyButtons" class="story-buttons"></div>
+          <div class="meta-list">
+            <div>
+              <span>Last forecast</span>
+              <strong id="generatedAt">Loading</strong>
+            </div>
+            <div>
+              <span>As-of date</span>
+              <strong id="asOfDate">Loading</strong>
+            </div>
+            <div>
+              <span>Data source</span>
+              <strong>Synthetic CSV</strong>
+            </div>
+          </div>
+        </aside>
+
+        <section class="main-panel">
+          <div class="metric-row">
+            <div class="metric">
+              <span>Compliance Weather Index</span>
+              <strong id="weatherIndex">0</strong>
+            </div>
+            <div class="metric">
+              <span>Data Readiness</span>
+              <strong id="readinessScore">0</strong>
+            </div>
+            <div class="metric">
+              <span>Risk Scores</span>
+              <strong id="riskScoreCount">0</strong>
+            </div>
+            <div class="metric">
+              <span>Evidence Cards</span>
+              <strong id="evidenceCardCount">0</strong>
+            </div>
+          </div>
+
+          <section class="story-panel">
+            <div>
+              <p class="eyebrow">Selected advisory scenario</p>
+              <h2 id="storyTitle">Loading demo story</h2>
+              <p id="storyInterpretation"></p>
+            </div>
+            <div class="review-action">
+              <span>Suggested human review</span>
+              <strong id="storyReviewAction"></strong>
+            </div>
+          </section>
+
+          <section class="grid-two">
+            <div class="panel">
+              <div class="panel-head">
+                <h2>Top Risk Entities</h2>
+                <span>2-8 week advisory view</span>
+              </div>
+              <div id="topRisks" class="risk-list"></div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-head">
+                <h2>Risk Band Counts</h2>
+                <span>Transparent rule output</span>
+              </div>
+              <div id="bandCounts" class="band-stack"></div>
+              <div class="panel-head lower">
+                <h2>Heatmap Signals</h2>
+                <span>Department / process</span>
+              </div>
+              <div id="heatmap" class="heatmap-list"></div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Evidence Cards</h2>
+              <span>Every card includes source record IDs</span>
+            </div>
+            <div id="evidenceCards" class="evidence-list"></div>
+          </section>
+
+          <section class="panel compact">
+            <div class="panel-head">
+              <h2>Data Quality Notes</h2>
+              <span>Readiness issues for human data-owner review</span>
+            </div>
+            <div id="qualityIssues" class="quality-list"></div>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

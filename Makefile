@@ -1,6 +1,6 @@
 PYTHON ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3.11)
 
-.PHONY: install sample-data test run lint
+.PHONY: install sample-data test run lint vercel-demo deploy-vercel-preview
 
 install:
 	python3.11 -m venv .venv
@@ -18,3 +18,9 @@ run:
 
 lint:
 	$(PYTHON) -c "import importlib.util, subprocess, sys; cmd=[sys.executable, '-m', 'ruff', 'check', '.'] if importlib.util.find_spec('ruff') else [sys.executable, '-m', 'compileall', '-q', 'app.py', 'src', 'scripts', 'tests']; raise SystemExit(subprocess.call(cmd))"
+
+vercel-demo: sample-data
+	$(PYTHON) scripts/build_vercel_demo.py
+
+deploy-vercel-preview: vercel-demo
+	vercel deploy vercel-demo -y --target=preview

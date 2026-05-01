@@ -139,6 +139,15 @@ output/diagnostic_report.md
 
 The report summarizes the current forecast, evidence cards, data quality assessment, historical backtest, audit log metadata, and recommended 90-day pilot scope. It remains advisory only and is not a GMP decision.
 
+Optional Vercel static preview:
+
+```bash
+make vercel-demo
+vercel deploy vercel-demo -y --target=preview
+```
+
+The Vercel preview is a lightweight static demo generated from the same synthetic data and transparent scores. It is not the full Streamlit dashboard and remains advisory only.
+
 Screenshot placeholders:
 
 - [Screenshot placeholder: Executive Weather Map]
