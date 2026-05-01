@@ -6,6 +6,10 @@ function formatBand(value) {
   return String(value || "").replaceAll("_", " ");
 }
 
+function formatRiskType(value) {
+  return String(value || "").replaceAll("_", " ");
+}
+
 function classForBand(value) {
   return `band-${value || "clear"}`;
 }
@@ -19,9 +23,11 @@ function setText(id, value) {
 }
 
 function renderMetrics(data) {
+  const recordCount = Object.values(data.summary.source_record_count || {}).reduce((sum, value) => sum + value, 0);
   setText("modelVersion", data.meta.model_version);
   setText("generatedAt", new Date(data.meta.generated_at).toLocaleString());
   setText("asOfDate", data.meta.as_of_date);
+  setText("sourceRecordCount", `${recordCount} synthetic`);
   setText("weatherIndex", `${data.summary.overall_weather_index}/100`);
   setText("readinessScore", `${data.summary.data_readiness_score}/100`);
   setText("riskScoreCount", data.summary.risk_score_count);
@@ -88,8 +94,14 @@ function renderTopRisks(rows) {
     item.innerHTML = `
       <div class="risk-topline">
         <div class="risk-title">
-          ${row.risk_type.replaceAll("_", " ")} - ${row.entity_id}
-          <small>${row.department || "Cross-functional"}${row.process ? ` / ${row.process}` : ""}${row.owner ? ` / ${row.owner}` : ""}</small>
+          ${escapeHtml(formatRiskType(row.risk_type))} - ${escapeHtml(row.entity_id)}
+          <small>${escapeHtml(row.department || "Cross-functional")}${row.process ? ` / ${escapeHtml(row.process)}` : ""}</small>
+          <div class="risk-meta">
+            <span>${escapeHtml(formatBand(row.band))}</span>
+            <span>${escapeHtml(row.horizon.replaceAll("_", " "))}</span>
+            ${row.owner ? `<span>${escapeHtml(row.owner)}</span>` : ""}
+            <span>confidence ${Math.round(row.confidence * 100)}%</span>
+          </div>
         </div>
         <span class="score-pill ${classForBand(row.band)}">${row.score}</span>
       </div>
@@ -107,7 +119,7 @@ function renderHeatmap(rows) {
     item.className = "heat-row";
     item.innerHTML = `
       <div>
-        <strong>${row.department} / ${row.process}</strong>
+        <strong>${escapeHtml(row.department)} / ${escapeHtml(row.process)}</strong>
         <span>${row.signal_count} signals, average ${row.average_score}</span>
       </div>
       <span class="score-pill ${classForBand(scoreBand(row.max_score))}">${row.max_score}</span>
@@ -122,17 +134,20 @@ function renderEvidenceCards(rows) {
   rows.slice(0, 8).forEach((row) => {
     const item = document.createElement("article");
     item.className = "evidence-row";
+    const visibleSources = row.source_records.slice(0, 8);
     item.innerHTML = `
       <div class="evidence-topline">
         <div class="evidence-title">
-          ${row.card_id}
-          <small>${row.risk_type.replaceAll("_", " ")} - ${row.entity_id}</small>
+          ${escapeHtml(row.card_id)}
+          <small>${escapeHtml(formatRiskType(row.risk_type))} - ${escapeHtml(row.entity_id)}</small>
         </div>
         <span class="band-pill ${classForBand(row.band)}">${formatBand(row.band)}</span>
       </div>
       <p>${escapeHtml(row.rationale)}</p>
-      <strong>Recommended human review: ${escapeHtml(row.recommended_human_review)}</strong>
-      <ul class="sources">${row.source_records.map((source) => `<li>${source.domain}: ${source.record_id}</li>`).join("")}</ul>
+      <strong>Human review: ${escapeHtml(row.recommended_human_review)}</strong>
+      <div class="source-list">
+        ${visibleSources.map((source) => `<span class="source-chip">${escapeHtml(source.domain)}: ${escapeHtml(source.record_id)}</span>`).join("")}
+      </div>
     `;
     container.appendChild(item);
   });
@@ -149,8 +164,8 @@ function renderQualityIssues(rows) {
     const item = document.createElement("div");
     item.className = "quality-row";
     item.innerHTML = `
-      <strong>${row.severity} - ${row.record_id}</strong>
-      <p>${row.domain}: ${escapeHtml(row.message)}</p>
+      <strong>${escapeHtml(row.severity)} - ${escapeHtml(row.record_id)}</strong>
+      <p>${escapeHtml(row.domain)}: ${escapeHtml(row.message)}</p>
     `;
     container.appendChild(item);
   });

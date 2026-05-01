@@ -4,66 +4,89 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>GMP Compliance Weather Forecast - Vercel Demo</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <header class="topbar">
-      <div>
-        <p class="eyebrow">Gruene Wald GmbH - static Vercel preview</p>
-        <h1>GMP Compliance Weather Forecast</h1>
+      <div class="brand-lockup">
+        <div class="brand-mark" aria-hidden="true">GW</div>
+        <div>
+          <p class="eyebrow">Gruene Wald GmbH / static Vercel demo</p>
+          <h1>GMP Compliance Weather Forecast</h1>
+          <p class="subtitle">
+            Backlog age is not the same as GMP risk. This demo helps QA teams see which quality issues deserve human attention first.
+          </p>
+        </div>
       </div>
-      <div class="status-block">
+      <div class="model-card">
         <span>Model version</span>
         <strong id="modelVersion">rules-v0.1</strong>
+        <small>transparent rules, synthetic data</small>
       </div>
     </header>
 
     <main>
-      <section class="disclaimer">
-        <strong>Advisory prototype only.</strong>
-        This preview provides quality-risk signals for human QA review. It does not make GMP decisions, approve CAPAs,
-        close deviations, release batches, qualify suppliers, or approve validation outcomes.
+      <section class="safety-strip" aria-label="Regulatory safety boundary">
+        <strong>Advisory decision support only.</strong>
+        <span>Human QA review required.</span>
+        <span>No batch release, CAPA approval, deviation closure, supplier qualification, or validation approval logic.</span>
       </section>
 
       <section class="workspace">
         <aside class="rail">
-          <p class="rail-label">Demo story</p>
-          <div id="storyButtons" class="story-buttons"></div>
-          <div class="meta-list">
-            <div>
-              <span>Last forecast</span>
-              <strong id="generatedAt">Loading</strong>
+          <div class="rail-section">
+            <p class="rail-label">Demo path</p>
+            <div id="storyButtons" class="story-buttons"></div>
+          </div>
+
+          <div class="rail-section">
+            <p class="rail-label">Forecast facts</p>
+            <div class="meta-list">
+              <div>
+                <span>Last generated</span>
+                <strong id="generatedAt">Loading</strong>
+              </div>
+              <div>
+                <span>As-of date</span>
+                <strong id="asOfDate">Loading</strong>
+              </div>
+              <div>
+                <span>Source records</span>
+                <strong id="sourceRecordCount">Loading</strong>
+              </div>
             </div>
-            <div>
-              <span>As-of date</span>
-              <strong id="asOfDate">Loading</strong>
-            </div>
-            <div>
-              <span>Data source</span>
-              <strong>Synthetic CSV</strong>
-            </div>
+          </div>
+
+          <div class="boundary-note">
+            <strong>Read-only preview</strong>
+            <p>No external calls. No real client data. Evidence is linked to synthetic source IDs.</p>
           </div>
         </aside>
 
         <section class="main-panel">
-          <div class="metric-row">
-            <div class="metric">
+          <section class="metric-row" aria-label="Forecast summary">
+            <div class="metric metric-primary">
               <span>Compliance Weather Index</span>
               <strong id="weatherIndex">0</strong>
+              <small>Overall advisory signal</small>
             </div>
             <div class="metric">
               <span>Data Readiness</span>
               <strong id="readinessScore">0</strong>
+              <small>Quality of loaded sample data</small>
             </div>
             <div class="metric">
               <span>Risk Scores</span>
               <strong id="riskScoreCount">0</strong>
+              <small>Explainable rule outputs</small>
             </div>
             <div class="metric">
               <span>Evidence Cards</span>
               <strong id="evidenceCardCount">0</strong>
+              <small>Source-linked review notes</small>
             </div>
-          </div>
+          </section>
 
           <section class="story-panel">
             <div>
@@ -78,23 +101,32 @@
           </section>
 
           <section class="grid-two">
-            <div class="panel">
+            <div class="panel panel-risks">
               <div class="panel-head">
-                <h2>Top Risk Entities</h2>
-                <span>2-8 week advisory view</span>
+                <div>
+                  <h2>Priority Review List</h2>
+                  <p>Highest advisory signals for the selected demo story.</p>
+                </div>
+                <span>2-8 week horizon</span>
               </div>
               <div id="topRisks" class="risk-list"></div>
             </div>
 
             <div class="panel">
               <div class="panel-head">
-                <h2>Risk Band Counts</h2>
-                <span>Transparent rule output</span>
+                <div>
+                  <h2>Weather Distribution</h2>
+                  <p>Risk bands from the active transparent rule set.</p>
+                </div>
+                <span>rules-v0.1</span>
               </div>
               <div id="bandCounts" class="band-stack"></div>
+
               <div class="panel-head lower">
-                <h2>Heatmap Signals</h2>
-                <span>Department / process</span>
+                <div>
+                  <h2>Department / Process Map</h2>
+                  <p>Where the strongest review signals cluster.</p>
+                </div>
               </div>
               <div id="heatmap" class="heatmap-list"></div>
             </div>
@@ -102,16 +134,22 @@
 
           <section class="panel">
             <div class="panel-head">
-              <h2>Evidence Cards</h2>
-              <span>Every card includes source record IDs</span>
+              <div>
+                <h2>Evidence Cards</h2>
+                <p>Plain-language rationale, visible drivers, and source record IDs.</p>
+              </div>
+              <span>human QA review</span>
             </div>
             <div id="evidenceCards" class="evidence-list"></div>
           </section>
 
           <section class="panel compact">
             <div class="panel-head">
-              <h2>Data Quality Notes</h2>
-              <span>Readiness issues for human data-owner review</span>
+              <div>
+                <h2>Data Quality Notes</h2>
+                <p>Issues to review before relying on any advisory signal.</p>
+              </div>
+              <span>data owner review</span>
             </div>
             <div id="qualityIssues" class="quality-list"></div>
           </section>
