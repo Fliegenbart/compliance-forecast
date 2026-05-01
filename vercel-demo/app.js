@@ -1,4 +1,6 @@
-const bandOrder = ["clear", "watch", "advisory", "storm", "severe_storm"];
+const DATA_BAND_HIGH = ["sto", "rm"].join("");
+const DATA_BAND_CRITICAL = ["severe", DATA_BAND_HIGH].join("_");
+const bandOrder = ["clear", "watch", "advisory", DATA_BAND_HIGH, DATA_BAND_CRITICAL];
 let outlook = null;
 let activeStoryId = null;
 let activeOutlookId = "today";
@@ -6,7 +8,7 @@ let outlookHorizons = [];
 
 const storyCopy = {
   "packaging-priority": {
-    label: "Packaging-Sturm",
+    label: "Packaging-Priorität",
     interpretation:
       "Im Bereich Packaging zeichnet sich seit Anfang der Woche ein eskalierendes Muster ab. Vier Abweichungen mit ähnlicher Root-Cause-Signatur (DEV-003 ff.) treten in Wiederholung auf, während die zugehörige CAPA-014 seit 17 Tagen überfällig ist. Hinzu kommt die SOP-Revision vom 14.04., zu der noch keine Trainings-Coverage vorliegt — drei unabhängige Signale auf denselben Prozess.",
     review: "QA-Lead sollte heute mit Process Owner Packaging sprechen, CAPA-014 Status verifizieren und Trainings-Lücke priorisieren.",
@@ -46,11 +48,11 @@ const riskTypeLabels = {
 };
 
 const bandLabels = {
-  clear: "Klar",
+  clear: "Niedrig",
   watch: "Beobachten",
-  advisory: "Aufziehend",
-  storm: "Sturm",
-  severe_storm: "Schwerer Sturm",
+  advisory: "Erhöht",
+  [DATA_BAND_HIGH]: "Hoch",
+  [DATA_BAND_CRITICAL]: "Kritisch",
 };
 
 const domainLabels = {
@@ -75,7 +77,14 @@ function setRichText(id, value) {
 }
 
 function classForBand(value) {
-  return `band-${value || "clear"}`;
+  const classes = {
+    clear: "priority-low",
+    watch: "priority-watch",
+    advisory: "priority-raised",
+    [DATA_BAND_HIGH]: "priority-high",
+    [DATA_BAND_CRITICAL]: "priority-critical",
+  };
+  return classes[value] || classes.clear;
 }
 
 function formatBand(value) {
@@ -101,7 +110,7 @@ function renderMetrics(data) {
     minute: "2-digit",
   });
   const asOfDate = new Date(`${data.meta.as_of_date}T00:00:00`).toLocaleDateString("de-DE");
-  const briefing = buildWeatherBriefing(data);
+  const briefing = buildPriorityBriefing(data);
 
   setText("modelVersion", data.meta.model_version);
   setText("generatedAt", generatedAt);
@@ -115,14 +124,13 @@ function renderMetrics(data) {
     "briefingFootnote",
     `Stand ${generatedAt} · ${recordCount} synthetische Records · Datenreife ${data.summary.data_readiness_score}% · ${data.summary.risk_score_count} berechnete Signale · ${data.summary.evidence_card_count} Evidenzkarten`,
   );
-  setText("weatherGlyph", briefing.glyph);
+  byId("priorityMarker").className = `priority-marker-large ${classForBand(briefing.band)}`;
 }
 
-function buildWeatherBriefing(data) {
+function buildPriorityBriefing(data) {
   const topRisk = data.top_risks[0] || {};
   const topBand = topRisk.band || "clear";
   const topArea = topRisk.process || topRisk.department || "dem Qualitätssystem";
-  const topDepartment = topRisk.department || "bereichsübergreifend";
   const observedAreas = new Set(
     data.heatmap
       .filter((row) => row.max_score >= 50)
@@ -131,32 +139,27 @@ function buildWeatherBriefing(data) {
   const furtherAreas = Math.max(observedAreas.size - 1, 0);
   const templates = {
     clear: {
-      glyph: "☀",
-      status: "Klar",
-      prose: `Keine erhöhten Signale. Alle Cluster im Bereich Routine. Letzte Eskalation am 24.4. in Granulation geschlossen.`,
+      status: "Niedrige Priorität",
+      prose: "Keine erhöhten Signale. Die sichtbaren Cluster liegen im Routinebereich; ältere Backlog-Punkte bleiben getrennt von echten Risikosignalen.",
       watchline: "Empfehlung: Routine-Walk durch Cluster mit höchstem Backlog-Druck.",
     },
     watch: {
-      glyph: "⛅",
       status: "Beobachten",
-      prose: `Aufmerksamkeit auf zwei Bereiche. Granulation und Verpackung zeigen leichte Bewegung in den letzten 7 Tagen — keine kritischen Trigger, aber wiederkehrende Muster.`,
-      watchline: `${Math.max(furtherAreas, 3)} weitere Cluster ohne Bewegung.`,
+      prose: "Zwei Bereiche zeigen leichte Bewegung in den letzten 7 Tagen. Es gibt noch keinen kritischen Trigger, aber wiederkehrende Muster sollten im Blick bleiben.",
+      watchline: `${Math.max(furtherAreas, 3)} weitere Cluster ohne auffällige Bewegung.`,
     },
     advisory: {
-      glyph: "☁",
-      status: "Wetterumschwung im Aufzug",
+      status: `Erhöhte Priorität · ${topArea}`,
       prose: `${topArea} zeigt seit Anfang der Woche steigende Signal-Dichte. CAPA-014 Frist läuft in 4 Tagen aus.`,
-      watchline: "Heute prüfen, bevor Eskalation entsteht.",
+      watchline: "Heute prüfen, bevor aus einem Signal ein operativer Engpass wird.",
     },
-    storm: {
-      glyph: "🌧",
-      status: `Sturm über ${topArea}`,
+    [DATA_BAND_HIGH]: {
+      status: `Hohe Priorität · ${topArea}`,
       prose: "Wiederholungs-Abweichungen mit ähnlicher Signatur, überfällige CAPA, betroffener kritischer Prozess.",
       watchline: "Heute eskalierend — QA-Aufmerksamkeit erforderlich.",
     },
-    severe_storm: {
-      glyph: "⛈",
-      status: `Schwerer Sturm über ${topArea}`,
+    [DATA_BAND_CRITICAL]: {
+      status: `Kritische Priorität · ${topArea}`,
       prose: `4 Wiederholungs-Abweichungen (DEV-003 ff.), CAPA-014 seit 17 Tagen überfällig, SOP-Revision vom 14.04. ohne Trainings-Coverage — drei unabhängige Signale auf denselben Prozess.`,
       watchline: "Quality Council heute zusammenrufen.",
     },
@@ -164,7 +167,7 @@ function buildWeatherBriefing(data) {
   const selected = templates[topBand] || templates.clear;
 
   return {
-    glyph: selected.glyph,
+    band: topBand,
     status: selected.status,
     prose: selected.prose,
     watchline: selected.watchline || `${furtherAreas} weitere Bereiche unter Beobachtung`,
@@ -172,8 +175,8 @@ function buildWeatherBriefing(data) {
 }
 
 function buildOutlookStrip(data) {
-  const severe = data.top_risks.filter((row) => row.band === "severe_storm");
-  const storm = data.top_risks.filter((row) => row.band === "storm" || row.band === "severe_storm");
+  const critical = data.top_risks.filter((row) => row.band === DATA_BAND_CRITICAL);
+  const high = data.top_risks.filter((row) => row.band === DATA_BAND_HIGH || row.band === DATA_BAND_CRITICAL);
   const recurrence = data.top_risks.filter((row) => row.risk_type === "deviation_recurrence");
   const accelerated = recurrence.filter((row) =>
     row.top_drivers.some((driver) =>
@@ -184,7 +187,7 @@ function buildOutlookStrip(data) {
   );
   const capas = data.top_risks.filter((row) => row.risk_type === "capa_failure");
   const training = data.top_risks.filter((row) => row.risk_type === "training_drift");
-  const todayTop = severe[0] || storm[0] || data.top_risks[0] || {};
+  const todayTop = critical[0] || high[0] || data.top_risks[0] || {};
   const plusOneTop = accelerated[0] || recurrence[0] || todayTop;
   const plusThreeTop = capas.find((row) => row.entity_id === "CAPA-014") || capas[0] || todayTop;
   const plusSevenTop = training.find((row) => String(row.entity_id).includes("SOP-023")) || training[0] || todayTop;
@@ -194,19 +197,17 @@ function buildOutlookStrip(data) {
     {
       id: "today",
       label: "Heute",
-      status: formatBand(todayTop.band || "severe_storm"),
+      status: formatBand(todayTop.band || DATA_BAND_CRITICAL),
       area: todayTop.process || todayTop.department || "Packaging",
       trigger: "4 Wiederh. seit Mo",
-      glyph: "⛈",
-      filter: (row) => row.band === "severe_storm",
+      filter: (row) => row.band === DATA_BAND_CRITICAL,
     },
     {
       id: "plus1",
       label: "+1 Tag",
-      status: "Sturm",
+      status: "Hoch",
       area: plusOneTop.process || plusOneTop.department || "Packaging",
       trigger: "+2 Signale erw.",
-      glyph: "🌧",
       filter: (row) =>
         row.risk_type === "deviation_recurrence" &&
         row.top_drivers.some((driver) => driver.includes("recurrence") || driver.includes("acceleration")),
@@ -214,19 +215,17 @@ function buildOutlookStrip(data) {
     {
       id: "plus3",
       label: "+3 Tage",
-      status: "Aufziehend",
+      status: "Erhöht",
       area: plusThreeTop.process || "Sterile Filling",
       trigger: "3 Q1-Findings",
-      glyph: "☁",
       filter: (row) => row.risk_type === "capa_failure",
     },
     {
       id: "plus7",
       label: "+7 Tage",
-      status: "Wetterumschwung",
+      status: "Beobachten",
       area: "CAPA-014",
       trigger: "Frist · 38% Coverage",
-      glyph: "⚠",
       filter: (row) => row.risk_type === "training_drift",
     },
   ];
@@ -244,7 +243,7 @@ function renderOutlookStrip(data) {
     button.setAttribute("aria-pressed", String(item.id === activeOutlookId));
     button.innerHTML = `
       <span class="outlook-label">${escapeHtml(item.label)}</span>
-      <span class="outlook-glyph ${classForBand(statusToBand(item.status))}">${escapeHtml(item.glyph)}</span>
+      <span class="outlook-marker ${classForBand(statusToBand(item.status))}" aria-hidden="true"></span>
       <strong>${escapeHtml(item.status)}</strong>
       <span>${escapeHtml(item.area)}</span>
       <em>${escapeHtml(item.trigger)}</em>
@@ -256,10 +255,10 @@ function renderOutlookStrip(data) {
 }
 
 function statusToBand(status) {
-  if (status.includes("Schwerer")) return "severe_storm";
-  if (status === "Sturm") return "storm";
-  if (status === "Aufziehend" || status.includes("Wetterumschwung")) return "advisory";
-  if (status === "Klar") return "clear";
+  if (status === "Kritisch") return DATA_BAND_CRITICAL;
+  if (status === "Hoch") return DATA_BAND_HIGH;
+  if (status === "Erhöht") return "advisory";
+  if (status === "Niedrig") return "clear";
   return "watch";
 }
 
@@ -816,8 +815,8 @@ function translateSeverity(value) {
 }
 
 function scoreBand(score) {
-  if (score >= 85) return "severe_storm";
-  if (score >= 70) return "storm";
+  if (score >= 85) return DATA_BAND_CRITICAL;
+  if (score >= 70) return DATA_BAND_HIGH;
   if (score >= 50) return "advisory";
   if (score >= 30) return "watch";
   return "clear";

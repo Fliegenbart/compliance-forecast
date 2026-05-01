@@ -14,8 +14,8 @@
   --clear: #e8edf0;
   --watch: #e8dcc4;
   --advisory: #d4a55a;
-  --storm: #b8551f;
-  --severe_storm: #6b2818;
+  --priority-high: #b8551f;
+  --priority-critical: #6b2818;
   --shadow-soft: 0 22px 80px rgba(0, 0, 0, 0.08);
   --shadow-tight: 0 10px 28px rgba(0, 0, 0, 0.08);
 }
@@ -192,10 +192,28 @@ main {
   line-height: 0.98;
 }
 
-.weather-glyph {
+.priority-marker-large {
+  position: relative;
+  display: block;
+  width: 74px;
+  height: 14px;
   margin-top: 26px;
-  font-size: 54px;
-  line-height: 1;
+  border-radius: 999px;
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.08),
+    0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+.priority-marker-large::after {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 24px;
+  height: 24px;
+  border: 4px solid #ffffff;
+  border-radius: 999px;
+  background: inherit;
+  content: "";
 }
 
 #focusBriefing {
@@ -349,16 +367,13 @@ main {
   text-transform: uppercase;
 }
 
-.outlook-glyph {
+.outlook-marker {
   grid-area: glyph;
   align-self: center;
-  display: grid;
   width: 30px;
-  height: 30px;
-  place-items: center;
+  height: 8px;
   border-radius: 999px;
-  font-size: 18px;
-  line-height: 1;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 .outlook-cell strong {
@@ -372,7 +387,7 @@ main {
   white-space: nowrap;
 }
 
-.outlook-cell span:not(.outlook-label):not(.outlook-glyph) {
+.outlook-cell span:not(.outlook-label):not(.outlook-marker) {
   grid-area: area;
   min-width: 0;
   overflow: hidden;
@@ -676,7 +691,7 @@ main {
 
 .trend-strong-escalating .sparkline,
 .trend-first-visible .sparkline {
-  color: var(--severe_storm);
+  color: var(--priority-critical);
 }
 
 .trend-stable-high .sparkline,
@@ -811,25 +826,25 @@ main {
   font-weight: 800;
 }
 
-.band-clear {
+.priority-low {
   background: var(--clear);
 }
 
-.band-watch {
+.priority-watch {
   background: var(--watch);
 }
 
-.band-advisory {
+.priority-raised {
   background: var(--advisory);
 }
 
-.band-storm {
-  background: var(--storm);
+.priority-high {
+  background: var(--priority-high);
   color: #ffffff;
 }
 
-.band-severe_storm {
-  background: var(--severe_storm);
+.priority-critical {
+  background: var(--priority-critical);
   color: #ffffff;
 }
 
@@ -866,28 +881,28 @@ main {
   border-color: transparent;
 }
 
-.source-chip.priority-source.band-clear {
+.source-chip.priority-source.priority-low {
   background: var(--clear);
 }
 
-.source-chip.priority-source.band-watch {
+.source-chip.priority-source.priority-watch {
   background: var(--watch);
 }
 
-.source-chip.priority-source.band-advisory {
+.source-chip.priority-source.priority-raised {
   background: var(--advisory);
 }
 
-.source-chip.priority-source.band-storm {
-  background: var(--storm);
+.source-chip.priority-source.priority-high {
+  background: var(--priority-high);
 }
 
-.source-chip.priority-source.band-severe_storm {
-  background: var(--severe_storm);
+.source-chip.priority-source.priority-critical {
+  background: var(--priority-critical);
 }
 
-.source-chip.priority-source.band-storm,
-.source-chip.priority-source.band-severe_storm {
+.source-chip.priority-source.priority-high,
+.source-chip.priority-source.priority-critical {
   color: #ffffff;
 }
 
@@ -967,8 +982,8 @@ main {
   white-space: nowrap;
 }
 
-.priority-status.band-storm,
-.priority-status.band-severe_storm {
+.priority-status.priority-high,
+.priority-status.priority-critical {
   color: #ffffff;
 }
 
