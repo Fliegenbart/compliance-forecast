@@ -9,6 +9,7 @@
   --glass: rgba(255, 255, 255, 0.72);
   --brand: #9b1b6a;
   --brand-soft: rgba(155, 27, 106, 0.1);
+  --blueprint: rgba(42, 58, 78, 0.08);
   --green: #2f7b58;
   --amber: #a47733;
   --orange: #b8551f;
@@ -35,8 +36,8 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    linear-gradient(90deg, rgba(17, 17, 19, 0.035) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(17, 17, 19, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 17, 19, 0.04) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(17, 17, 19, 0.04) 1px, transparent 1px),
     radial-gradient(circle at 10% 8%, rgba(155, 27, 106, 0.08), transparent 28rem),
     radial-gradient(circle at 86% 16%, rgba(184, 85, 31, 0.12), transparent 32rem),
     linear-gradient(180deg, #ffffff 0%, #f6f6f8 52%, #ffffff 100%);
@@ -163,12 +164,38 @@ a:focus-visible {
   letter-spacing: -0.01em;
 }
 
+.thesis-card {
+  display: grid;
+  max-width: 780px;
+  gap: 7px;
+  margin-top: 22px;
+  padding: 16px 18px;
+  border: 1px solid rgba(155, 27, 106, 0.16);
+  border-left: 4px solid var(--brand);
+  border-radius: 20px;
+  background:
+    linear-gradient(90deg, rgba(155, 27, 106, 0.085), rgba(255, 255, 255, 0.72));
+  box-shadow: var(--shadow-hairline);
+}
+
+.thesis-card strong {
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.thesis-card span {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.42;
+}
+
 .hero-answers {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   max-width: 760px;
-  margin-top: 24px;
+  margin-top: 18px;
 }
 
 .hero-answers span {
@@ -191,6 +218,7 @@ a:focus-visible {
 }
 
 .capability-grid article {
+  position: relative;
   min-width: 0;
   padding: 16px;
   border: 1px solid rgba(18, 18, 23, 0.09);
@@ -199,6 +227,27 @@ a:focus-visible {
     linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.62));
   box-shadow: var(--shadow-hairline);
   backdrop-filter: blur(22px);
+  overflow: hidden;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.capability-grid article::after {
+  position: absolute;
+  inset: auto 16px 16px 16px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #111113, rgba(155, 27, 106, 0.36), transparent);
+  content: "";
+  opacity: 0.32;
+}
+
+.capability-grid article:hover {
+  transform: translateY(-2px);
+  border-color: rgba(155, 27, 106, 0.2);
+  box-shadow: var(--shadow-tight);
 }
 
 .capability-grid span {
@@ -307,6 +356,59 @@ a:focus-visible {
   color: #3f3f43;
   font-size: 17px;
   line-height: 1.48;
+}
+
+.decision-flow {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.flow-node {
+  position: relative;
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  gap: 4px 12px;
+  align-items: center;
+  min-height: 58px;
+  padding: 12px 14px;
+  border: 1px solid rgba(18, 18, 23, 0.08);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.66);
+  box-shadow: var(--shadow-hairline);
+}
+
+.flow-node::before {
+  position: absolute;
+  left: -1px;
+  top: 14px;
+  bottom: 14px;
+  width: 4px;
+  border-radius: 999px;
+  background: var(--brand);
+  content: "";
+}
+
+.flow-node span {
+  grid-row: span 2;
+  color: var(--muted);
+  font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.flow-node strong {
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.flow-node small {
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .focus-reasons {
@@ -472,7 +574,7 @@ a:focus-visible {
   grid-area: status;
   min-width: 0;
   overflow: hidden;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 780;
   line-height: 1.1;
   text-overflow: ellipsis;
@@ -484,7 +586,7 @@ a:focus-visible {
   min-width: 0;
   overflow: hidden;
   color: #3f3f43;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 680;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1275,6 +1377,18 @@ a:focus-visible {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .decision-flow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .flow-node {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-node span {
+    grid-row: auto;
+  }
+
   .story-rail {
     position: static;
   }
@@ -1303,6 +1417,10 @@ a:focus-visible {
   }
 
   .capability-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .decision-flow {
     grid-template-columns: 1fr;
   }
 
