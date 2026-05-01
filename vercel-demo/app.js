@@ -87,14 +87,101 @@ function formatHorizon(value) {
 
 function renderMetrics(data) {
   const recordCount = Object.values(data.summary.source_record_count || {}).reduce((sum, value) => sum + value, 0);
+  const generatedAt = new Date(data.meta.generated_at).toLocaleString("de-DE", {
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  const asOfDate = new Date(`${data.meta.as_of_date}T00:00:00`).toLocaleDateString("de-DE");
+  const briefing = buildWeatherBriefing(data);
+
   setText("modelVersion", data.meta.model_version);
-  setText("generatedAt", new Date(data.meta.generated_at).toLocaleString("de-DE"));
-  setText("asOfDate", new Date(`${data.meta.as_of_date}T00:00:00`).toLocaleDateString("de-DE"));
+  setText("generatedAt", generatedAt);
+  setText("asOfDate", asOfDate);
   setText("sourceRecordCount", `${recordCount} synthetisch`);
-  setText("weatherIndex", `${data.summary.overall_weather_index}/100`);
-  setText("readinessScore", `${data.summary.data_readiness_score}/100`);
-  setText("riskScoreCount", data.summary.risk_score_count);
-  setText("evidenceCardCount", data.summary.evidence_card_count);
+  setText("briefingEyebrow", `HEUTE · ${asOfDate}`);
+  setText("weatherStatus", briefing.status);
+  setText("weatherBriefing", briefing.prose);
+  setText("weatherWatchline", briefing.watchline);
+  setText(
+    "briefingFootnote",
+    `Stand ${generatedAt} · ${recordCount} synthetische Records · Datenreife ${data.summary.data_readiness_score}%`,
+  );
+  byId("weatherGlyph").innerHTML = weatherGlyph(briefing.state);
+}
+
+function buildWeatherBriefing(data) {
+  const topRisk = data.top_risks[0] || {};
+  const topBand = topRisk.band || "clear";
+  const state = weatherStateFromBand(topBand);
+  const topArea = topRisk.process || topRisk.department || "dem Qualitätssystem";
+  const topDepartment = topRisk.department || "bereichsübergreifend";
+  const severeCount = data.risk_band_counts.severe_storm || 0;
+  const stormCount = data.risk_band_counts.storm || 0;
+  const watchCount = data.risk_band_counts.watch || 0;
+  const advisoryCount = data.risk_band_counts.advisory || 0;
+  const observedAreas = new Set(
+    data.heatmap
+      .filter((row) => row.max_score >= 50)
+      .map((row) => `${row.department}/${row.process}`),
+  );
+  const furtherAreas = Math.max(observedAreas.size - 1, 0);
+  const recurrence = data.top_risks.filter((row) => row.risk_type === "deviation_recurrence").length;
+  const capa = data.top_risks.find((row) => row.risk_type === "capa_failure");
+  const training = data.top_risks.find((row) => row.risk_type === "training_drift");
+  const capaPhrase = capa ? `eine CAPA unter Druck (${capa.entity_id})` : "CAPA-Signale ohne dominierenden Einzelpunkt";
+  const trainingPhrase = training ? `Training-Drift um ${training.entity_id.split("|").pop()}` : "keine führende Training-Drift im Top-Signal";
+
+  const templates = {
+    clear: {
+      status: "Klare Lage",
+      prose: `Die regelbasierte Sicht zeigt heute keine dominierende Sturmfront. ${topDepartment} bleibt sichtbar, aber ohne akuten Spitzenwert. Backlog und Evidenz sollten weiter im QA-Rhythmus geprüft werden.`,
+    },
+    watch: {
+      status: `Beobachten in ${topArea}`,
+      prose: `Die Lage ist noch kontrolliert, aber nicht leer. ${watchCount} Beobachtungssignale deuten auf Themen hin, die im nächsten QA-Termin bewusst priorisiert werden sollten.`,
+    },
+    building: {
+      status: `Aufziehend über ${topArea}`,
+      prose: `${recurrence} Wiederholungs-Signale, ${capaPhrase} und ${trainingPhrase} verdichten sich zu einer aufziehenden Wetterlage. Das ist kein GMP-Befund, sondern ein Hinweis für fokussierte QA-Prüfung.`,
+    },
+    storm: {
+      status: `Sturm über ${topArea}`,
+      prose: `${stormCount} Sturm-Signale und ${recurrence} Wiederholungs-Signale zeigen eine klare Verdichtung. ${capaPhrase}; ${trainingPhrase}. QA sollte die Quellenlage priorisiert ansehen.`,
+    },
+    "severe-storm": {
+      status: `Schwerer Sturm über ${topArea}`,
+      prose: `${severeCount} schwere Sturm-Signale, ${recurrence} Wiederholungs-Signale und ${capaPhrase} prägen die heutige Lage. Besonders ${topDepartment} sollte anhand der Quell-IDs menschlich geprüft werden.`,
+    },
+  };
+
+  return {
+    state,
+    status: templates[state].status,
+    prose: templates[state].prose,
+    watchline: `${furtherAreas} weitere Bereiche unter Beobachtung`,
+  };
+}
+
+function weatherStateFromBand(band) {
+  if (band === "severe_storm") return "severe-storm";
+  if (band === "storm") return "storm";
+  if (band === "advisory") return "building";
+  if (band === "watch") return "watch";
+  return "clear";
+}
+
+function weatherGlyph(state) {
+  const glyphs = {
+    clear: `<svg viewBox="0 0 80 80" role="img" aria-label="Klar"><circle cx="40" cy="40" r="15"/><path d="M40 8v10M40 62v10M8 40h10M62 40h10M17.4 17.4l7.1 7.1M55.5 55.5l7.1 7.1M62.6 17.4l-7.1 7.1M24.5 55.5l-7.1 7.1"/></svg>`,
+    watch: `<svg viewBox="0 0 80 80" role="img" aria-label="Beobachten"><path d="M23 53h32a13 13 0 0 0 0-26 18 18 0 0 0-34-5 15 15 0 0 0 2 31Z"/><path d="M24 64h34"/></svg>`,
+    building: `<svg viewBox="0 0 80 80" role="img" aria-label="Aufziehend"><path d="M20 52h35a14 14 0 0 0 1-28 19 19 0 0 0-36-4 16 16 0 0 0 0 32Z"/><path d="M22 64h36M30 70h20"/></svg>`,
+    storm: `<svg viewBox="0 0 80 80" role="img" aria-label="Sturm"><path d="M20 48h35a13 13 0 0 0 0-26 19 19 0 0 0-35-4 15 15 0 0 0 0 30Z"/><path d="m40 48-8 15h11l-6 12 18-20H44l7-7"/></svg>`,
+    "severe-storm": `<svg viewBox="0 0 80 80" role="img" aria-label="Schwerer Sturm"><path d="M19 46h36a14 14 0 0 0 0-28 20 20 0 0 0-36-4 16 16 0 0 0 0 32Z"/><path d="m40 46-9 17h12l-6 13 20-22H45l8-8"/><path d="M24 63h-8M62 64h-8"/></svg>`,
+  };
+  return glyphs[state] || glyphs.clear;
 }
 
 function renderStoryButtons(data) {

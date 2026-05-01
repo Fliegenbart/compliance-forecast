@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>GMP Compliance Weather Forecast - Demo</title>
+    <title>GMP-Risikowetter - Demo</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -30,37 +30,35 @@
             </p>
           </div>
 
-          <aside class="forecast-glass" aria-label="Aktuelle Vorschau">
-            <div class="glass-topline">
-              <span>Compliance-Wetterindex</span>
-              <strong id="weatherIndex">0</strong>
-            </div>
-            <div class="mini-metrics">
-              <div>
-                <span>Datenreife</span>
-                <strong id="readinessScore">0</strong>
-              </div>
-              <div>
-                <span>Risikoscores</span>
-                <strong id="riskScoreCount">0</strong>
-              </div>
-              <div>
-                <span>Evidenzkarten</span>
-                <strong id="evidenceCardCount">0</strong>
-              </div>
-            </div>
-            <p>
-              Regelbasiert, transparent und ausschließlich mit synthetischen QMS-Daten.
+          <aside class="forecast-glass" aria-label="Heutiges Wetter-Briefing">
+            <div class="briefing-eyebrow" id="briefingEyebrow">HEUTE · lädt</div>
+            <div class="weather-glyph" id="weatherGlyph" aria-hidden="true"></div>
+            <h2 id="weatherStatus">Wetterlage wird geladen</h2>
+            <p id="weatherBriefing">
+              Die regelbasierte Lagebeschreibung wird aus den synthetischen QMS-Signalen erzeugt.
             </p>
+            <div class="watchline" id="weatherWatchline">Weitere Bereiche werden geprüft.</div>
+            <div class="briefing-footnote" id="briefingFootnote">Stand lädt · synthetische Records · Datenreife lädt</div>
           </aside>
         </div>
 
-        <section class="safety-strip" aria-label="Regulatorische Sicherheitsgrenze">
-          <strong>Nur beratende Entscheidungsunterstützung.</strong>
-          <span>Keine GMP-Entscheidung.</span>
-          <span>Human QA Review ist verpflichtend.</span>
-          <span>Keine Batchfreigabe, CAPA-Genehmigung, Deviation-Schließung oder Validierungsfreigabe.</span>
-        </section>
+        <details class="safety-strip" aria-label="Regulatorische Sicherheitsgrenze">
+          <summary>
+            <strong>Beratendes System.</strong>
+            <span>Keine GMP-Entscheidung.</span>
+            <span>Human QA Review verpflichtend.</span>
+            <em>› Was dieses System nicht entscheidet</em>
+          </summary>
+          <ul>
+            <li>keine Batchfreigabe</li>
+            <li>keine CAPA-Genehmigung</li>
+            <li>keine Deviation-Schließung</li>
+            <li>keine finale Root-Cause-Bestätigung</li>
+            <li>keine Supplier Qualification</li>
+            <li>keine Validierungsfreigabe</li>
+            <li>keine regulatorische Meldeentscheidung</li>
+          </ul>
+        </details>
       </section>
 
       <section class="experience" aria-label="Demo Arbeitsfläche">
