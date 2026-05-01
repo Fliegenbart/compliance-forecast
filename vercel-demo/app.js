@@ -48,7 +48,7 @@ const riskTypeLabels = {
 const bandLabels = {
   clear: "Klar",
   watch: "Beobachten",
-  advisory: "Hinweis",
+  advisory: "Aufziehend",
   storm: "Sturm",
   severe_storm: "Schwerer Sturm",
 };
@@ -147,7 +147,7 @@ function buildWeatherBriefing(data) {
     },
     building: {
       status: `Aufziehend über ${topArea}`,
-      prose: `${recurrence} Wiederholungs-Signale, ${capaPhrase} und ${trainingPhrase} verdichten sich zu einer aufziehenden Wetterlage. Das ist kein GMP-Befund, sondern ein Hinweis für fokussierte QA-Prüfung.`,
+      prose: `${recurrence} Wiederholungs-Signale, ${capaPhrase} und ${trainingPhrase} verdichten sich zu einer aufziehenden Wetterlage. Das ist kein GMP-Befund, sondern ein Signal für fokussierte QA-Prüfung.`,
     },
     storm: {
       status: `Sturm über ${topArea}`,
@@ -338,19 +338,39 @@ function selectStory(storyId) {
 
 function renderBandCounts(data) {
   const container = byId("bandCounts");
-  const max = Math.max(...Object.values(data.risk_band_counts), 1);
+  const total = bandOrder.reduce((sum, band) => sum + (data.risk_band_counts[band] || 0), 0) || 1;
   container.innerHTML = "";
-  bandOrder.forEach((band) => {
-    const count = data.risk_band_counts[band] || 0;
-    const row = document.createElement("div");
-    row.className = "band-bar";
-    row.innerHTML = `
-      <strong>${formatBand(band)}</strong>
-      <span class="bar-track"><span class="bar-fill ${classForBand(band)}" style="width:${Math.max((count / max) * 100, 4)}%"></span></span>
-      <span>${count}</span>
-    `;
-    container.appendChild(row);
-  });
+  const segments = bandOrder
+    .map((band) => {
+      const count = data.risk_band_counts[band] || 0;
+      const width = (count / total) * 100;
+      return `<span class="band-stack-segment ${classForBand(band)}" style="width:${width}%"></span>`;
+    })
+    .join("");
+  const labels = bandOrder
+    .map((band) => {
+      const count = data.risk_band_counts[band] || 0;
+      return `<span><i class="${classForBand(band)}"></i>${formatBand(band)} <strong>${count}</strong></span>`;
+    })
+    .join("");
+  container.innerHTML = `
+    <div class="band-distribution" aria-label="Verteilung der Risikobänder">${segments}</div>
+    <div class="band-distribution-labels">${labels}</div>
+  `;
+}
+
+function weatherStatusMarkup(band) {
+  const state = weatherStateFromBand(band);
+  return `
+    <span class="weather-status ${classForBand(band)}">
+      <span class="weather-status-glyph" aria-hidden="true">${weatherGlyph(state)}</span>
+      <span>${escapeHtml(formatBand(band))}</span>
+    </span>
+  `;
+}
+
+function heatmapBand(row) {
+  return scoreBand(row.max_score);
 }
 
 function renderTopRisks(rows) {
@@ -519,12 +539,13 @@ function renderHeatmap(rows) {
   rows.slice(0, 8).forEach((row) => {
     const item = document.createElement("div");
     item.className = "heat-row";
+    const band = heatmapBand(row);
     item.innerHTML = `
       <div>
         <strong>${escapeHtml(row.department)} / ${escapeHtml(row.process)}</strong>
         <span>${row.signal_count} Signale, Durchschnitt ${row.average_score}</span>
       </div>
-      <span class="score-pill ${classForBand(scoreBand(row.max_score))}">${row.max_score}</span>
+      ${weatherStatusMarkup(band)}
     `;
     container.appendChild(item);
   });
@@ -542,7 +563,7 @@ function renderEvidenceCards(rows) {
           ${escapeHtml(cluster.title)}
           <small>${escapeHtml(cluster.subtitle)}</small>
         </div>
-        <span class="band-pill ${classForBand(cluster.band)}">${formatBand(cluster.band)}</span>
+        ${weatherStatusMarkup(cluster.band)}
       </div>
       <div class="source-list evidence-chip-row">
         ${cluster.records.map((record) => recordChip(record)).join("")}
@@ -605,7 +626,7 @@ function clusterTitle(row, records) {
 function clusterDescription(row, records, index) {
   const templates = [
     `Die Records liegen nicht isoliert nebeneinander, sondern bilden ein erkennbares Muster in ${row.process || row.department}. Auffällig ist die Nähe der Signale: mehrere Quellen zeigen denselben Bereich, aber nicht zwingend dieselbe Ursache. Das ist ein guter Kandidat für eine gebündelte QA-Sichtung statt Einzelbearbeitung.`,
-    `Der Cluster verdichtet mehrere Hinweise zu einem gemeinsamen Wetterbild. Die Quell-IDs zeigen, wo die Analyse starten sollte; die Bewertung bleibt bewusst beratend und ersetzt keine fachliche GMP-Entscheidung.`,
+    `Der Cluster verdichtet mehrere Signale zu einem gemeinsamen Wetterbild. Die Quell-IDs zeigen, wo die Analyse starten sollte; die Bewertung bleibt bewusst beratend und ersetzt keine fachliche GMP-Entscheidung.`,
     `Hier wirkt weniger der einzelne Record entscheidend als die Wiederholung im Kontext. ${records.length} Quellrecords zeigen genug Nähe, um den Bereich im Quality Council fokussiert anzusehen.`,
     `Das Signal ist vor allem als Lagebild relevant: gleicher Bereich, ähnliche Treiber, mehrere sichtbare Records. Für die Demo zählt diese Verdichtung stärker als das Alter eines einzelnen Backlog-Items.`,
     `Die Evidenz spricht für einen Review-Block statt für verstreute Einzeldiskussionen. Die Quellen sollten zusammen gelesen werden, damit Wiederholungen, CAPA-Bezug und Trainingseffekte nicht getrennt bewertet werden.`,
@@ -630,8 +651,7 @@ function recordChip(record) {
       <summary>${escapeHtml(record.record_id)}</summary>
       <div class="source-list">
         <span class="source-chip">${escapeHtml(domainLabels[record.domain] || record.domain)}</span>
-        <span class="source-chip">${escapeHtml(formatBand(record.band))}</span>
-        <span class="source-chip">Score ${escapeHtml(record.score)}</span>
+        <span class="source-chip weather-source ${escapeHtml(classForBand(record.band))}">${escapeHtml(formatBand(record.band))}</span>
         ${record.owner ? `<span class="source-chip">${escapeHtml(record.owner)}</span>` : ""}
       </div>
     </details>
@@ -701,7 +721,7 @@ function qualityAggregateMarkup(group) {
   return `
     <strong>${group.records.length} ${escapeHtml(qualityDomainPlural(group.domain))}</strong>
     <div>
-      <p>Identischer Stichtag ${escapeHtml(group.date)} (${escapeHtml(rangeText)}). Hinweis: gemeinsame Quelle? Bulk-Upload-Logs prüfen.</p>
+      <p>Identischer Stichtag ${escapeHtml(group.date)} (${escapeHtml(rangeText)}). Signal: gemeinsame Quelle? Bulk-Upload-Logs prüfen.</p>
       <details class="quality-details">
         <summary>Records anzeigen</summary>
         <div class="source-list">${group.records.map((recordId) => `<span class="source-chip">${escapeHtml(recordId)}</span>`).join("")}</div>
