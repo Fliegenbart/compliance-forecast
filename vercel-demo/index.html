@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>GMP Risiko-Cockpit - Demo</title>
+    <title>GMP-Risikovorschau - Demo</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -13,7 +13,7 @@
         <nav class="nav">
           <div class="brand">
             <div class="brand-mark" aria-hidden="true">GW</div>
-            <span>Beispiel GmbH</span>
+            <span>Grüne Wald GmbH</span>
           </div>
           <div class="nav-meta">
             <span>Statische Vercel-Demo</span>
@@ -23,10 +23,10 @@
 
         <div class="hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Beratende GMP-Risikopriorisierung</p>
-            <h1>GMP Risiko-Cockpit für QA-Priorisierung.</h1>
+            <p class="eyebrow">BERATENDE GMP-RISIKOVORSCHAU</p>
+            <h1>Compliance-Risiken früher sehen. Entscheidungen bleiben beim QA-Team.</h1>
             <p class="lead">
-              Backlog-Alter ist nicht dasselbe wie GMP-Risiko. Das Cockpit zeigt QA-Leitung, Site Quality Leads und Quality Councils, welche Qualitätsthemen zuerst menschliche Aufmerksamkeit verdienen.
+              Backlog-Alter ist nicht dasselbe wie GMP-Risiko. Diese Demo zeigt, welche Qualitätsthemen heute zuerst menschliche Aufmerksamkeit verdienen — und welche warten können.
             </p>
             <div class="hero-answers" aria-label="Kurz erklärt">
               <span>Für QA-Leitung und Site Quality Leads</span>
@@ -36,15 +36,15 @@
             </div>
           </div>
 
-          <aside class="focus-panel" aria-label="Heute im Fokus">
+          <aside class="focus-panel" aria-label="Wetter-Briefing">
             <div class="briefing-eyebrow" id="briefingEyebrow">HEUTE · lädt</div>
-            <h2 id="focusStatus">Heute im Fokus</h2>
+            <div class="weather-glyph" id="weatherGlyph" aria-hidden="true">⛈</div>
+            <h2 id="focusStatus">Wetterlage wird geladen</h2>
             <p id="focusBriefing">
-              Die regelbasierte Priorisierung wird aus synthetischen QMS-Signalen erzeugt.
+              Die regelbasierte Lagebeschreibung wird aus synthetischen QMS-Signalen erzeugt.
             </p>
-            <ul class="focus-reasons" id="focusReasons"></ul>
             <div class="watchline" id="focusWatchline">Weitere Bereiche werden geprüft.</div>
-            <div class="briefing-footnote" id="briefingFootnote">Stand lädt · synthetische Records · Datenreife lädt</div>
+            <div class="briefing-footnote" id="briefingFootnote">Stand lädt · synthetische Records · Datenreife lädt · Signale lädt · Evidenzkarten lädt</div>
           </aside>
         </div>
 
@@ -56,6 +56,7 @@
             <em>› Was dieses System nicht entscheidet</em>
           </summary>
           <ul>
+            <li>Dieses System gibt beratende Risikosignale. Es trifft keine Entscheidungen über:</li>
             <li>keine Batchfreigabe</li>
             <li>keine CAPA-Genehmigung</li>
             <li>keine Deviation-Schließung</li>
@@ -63,6 +64,7 @@
             <li>keine Supplier Qualification</li>
             <li>keine Validierungsfreigabe</li>
             <li>keine regulatorische Meldeentscheidung</li>
+            <li>Alle Signale sind Hinweise zur Priorisierung menschlicher Prüfung — keine Compliance-Aussagen.</li>
           </ul>
         </details>
 
@@ -79,7 +81,7 @@
           </div>
 
           <div class="facts">
-            <p class="section-kicker">Risiko-Kontext</p>
+            <p class="section-kicker">Forecast-Kontext</p>
             <div class="fact-row">
               <span>Generiert</span>
               <strong id="generatedAt">Lädt</strong>
@@ -123,8 +125,8 @@
             <div class="surface">
               <div class="surface-head">
                 <div>
-                  <p class="section-kicker">Prioritätslage</p>
-                  <h3>Prioritätsverteilung</h3>
+                  <p class="section-kicker">Wetterlage</p>
+                  <h3>Wetterlage</h3>
                 </div>
                 <span>transparent</span>
               </div>
@@ -133,7 +135,7 @@
               <div class="surface-head divider">
                 <div>
                   <p class="section-kicker">Cluster</p>
-                  <h3>Bereich / Prozess</h3>
+                  <h3>Bereiche unter Beobachtung</h3>
                 </div>
               </div>
               <div id="heatmap" class="heatmap-list"></div>
@@ -144,7 +146,7 @@
             <div class="surface-head">
               <div>
                 <p class="section-kicker">Evidenz</p>
-                <h3>Warum dieses Signal sichtbar ist</h3>
+                <h3>Warum diese Signale sichtbar sind</h3>
               </div>
               <span>mit Record-IDs</span>
             </div>
@@ -165,8 +167,10 @@
       </section>
 
       <footer class="demo-footer">
-        <strong>Read-only-Prototyp</strong>
-        <span>Keine externen Calls. Keine echten Kundendaten. Jede Evidenz verweist auf synthetische Record-IDs.</span>
+        <strong>Read-only Prototyp</strong>
+        <span>synthetische Daten · keine externen Calls · jede Evidenz verweist auf synthetische Record-IDs.</span>
+        <span>Stand 1.5.2026 · rules-v0.1 · Demo zur konzeptionellen Diskussion mit QA-Leitung und Site Quality Leads.</span>
+        <span>Grüne Wald GmbH</span>
       </footer>
     </main>
 

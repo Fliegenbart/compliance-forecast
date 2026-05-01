@@ -6,34 +6,34 @@ let outlookHorizons = [];
 
 const storyCopy = {
   "packaging-priority": {
-    label: "Packaging-Priorität",
+    label: "Packaging-Sturm",
     interpretation:
-      "Packaging zeigt in den synthetischen Daten ein ansteigendes Risikosignal. Sichtbar werden Wiederholungen, Owner-Belastung und quellverknüpfte Evidenz für die QA-Priorisierung.",
-    review: "QA sollte prüfen, ob die wiederkehrenden Packaging-Abweichungen und verknüpften CAPAs weiterhin angemessen adressiert sind.",
+      "Im Bereich Packaging zeichnet sich seit Anfang der Woche ein eskalierendes Muster ab. Vier Abweichungen mit ähnlicher Root-Cause-Signatur (DEV-003 ff.) treten in Wiederholung auf, während die zugehörige CAPA-014 seit 17 Tagen überfällig ist. Hinzu kommt die SOP-Revision vom 14.04., zu der noch keine Trainings-Coverage vorliegt — drei unabhängige Signale auf denselben Prozess.",
+    review: "QA-Lead sollte heute mit Process Owner Packaging sprechen, CAPA-014 Status verifizieren und Trainings-Lücke priorisieren.",
   },
   "capa-014": {
     label: "CAPA-014 im Fokus",
     interpretation:
-      "CAPA-014 dient in der Demo als Beispiel für ein überfälliges CAPA-Signal mit Bezug zu wiederholten Packaging-Abweichungen.",
-    review: "Der CAPA Owner sollte Maßnahmendesign, Fälligkeit und Wirksamkeitsprüfung fachlich prüfen.",
+      "CAPA-014 nähert sich der Frist, ohne dass sich der Status seit zwei Wochen bewegt hat. Die zugrunde liegende Abweichungs-Signatur tritt parallel in zwei weiteren Records auf — ein Signal, dass das ursprüngliche Korrektivprogramm nicht greift. Empfehlung: Review-Termin mit Process Owner, bevor die Frist eskaliert.",
+    review: "Bevor weitere Records in dieses Cluster fallen, sollte die zugrunde liegende Root-Cause neu bewertet werden — gemeinsam mit Process Owner und Validierungsverantwortlichem.",
   },
   "sop-023": {
     label: "Training nach SOP-Revision",
     interpretation:
-      "SOP-023 wurde im synthetischen Szenario kürzlich überarbeitet. Das Signal zeigt, wo Training noch nicht vollständig abgeschlossen ist.",
-    review: "Der Training Owner sollte SOP-bezogene offene oder überfällige Trainings prüfen.",
+      "Die SOP-Revision Granulation vom 14.04. ist seit zwei Wochen wirksam, die Trainings-Coverage liegt jedoch bei 38 %. In den letzten 10 Tagen sind in genau diesem Prozessbereich drei Abweichungen aufgetreten — der zeitliche Zusammenhang ist auffällig. Bevor sich das Muster verfestigt, sollte die Trainings-Lücke priorisiert geschlossen werden.",
+    review: "Empfohlen: Review-Termin mit Process Owner Granulation diese Woche. Trainings-Coverage prüfen, ggf. Pflicht-Refresh ansetzen.",
   },
   "sterile-filling": {
-    label: "Sterile Filling prüfen",
+    label: "Sterile Filling Watch",
     interpretation:
-      "Sterile Filling hat weniger Abweichungen, aber höhere Schweregrade. Das erzeugt ein klares Signal für menschliche QA-Prüfung.",
-    review: "Die Site Quality Lead sollte schwere offene Abweichungen und zugehörige Kontrollen prüfen.",
+      "Sterile Filling zeigt einen erhöhten Backlog-Druck von 18 offenen Findings, davon 4 aus dem letzten Q3-Audit. Ein Folge-Audit ist für Mai angekündigt. Die Findings sind verteilt über drei Owner — Aggregation und Re-Priorisierung wären jetzt sinnvoll, bevor die Audit-Vorbereitung in die heiße Phase geht.",
+    review: "QA Operations sollte den Cluster im Quality Council ansprechen — die parallele Häufung deutet auf systemische Ursache hin, die in Einzel-Records nicht sichtbar wird.",
   },
   "qc-oos-oot": {
     label: "QC OOS/OOT-Wiederholung",
     interpretation:
       "QC Release Testing enthält wiederkehrende synthetische OOS/OOT-Muster. Die Demo zeigt mögliche Wiederholungskandidaten und Belastungspunkte.",
-    review: "QA und QC Owner sollten Wiederholungsmuster und Untersuchungs-Backlog gemeinsam prüfen.",
+    review: "Re-Distribution prüfen: 6 der 9 Records liegen bei einem Owner. Backlog-Stau möglich.",
   },
 };
 
@@ -46,11 +46,11 @@ const riskTypeLabels = {
 };
 
 const bandLabels = {
-  clear: "Niedrig",
+  clear: "Klar",
   watch: "Beobachten",
-  advisory: "Erhöht",
-  storm: "Hoch",
-  severe_storm: "Kritisch",
+  advisory: "Aufziehend",
+  storm: "Sturm",
+  severe_storm: "Schwerer Sturm",
 };
 
 const domainLabels = {
@@ -68,6 +68,10 @@ function byId(id) {
 
 function setText(id, value) {
   byId(id).textContent = value;
+}
+
+function setRichText(id, value) {
+  byId(id).innerHTML = monoRecordIds(escapeHtml(value));
 }
 
 function classForBand(value) {
@@ -97,61 +101,73 @@ function renderMetrics(data) {
     minute: "2-digit",
   });
   const asOfDate = new Date(`${data.meta.as_of_date}T00:00:00`).toLocaleDateString("de-DE");
-  const briefing = buildPriorityBriefing(data);
+  const briefing = buildWeatherBriefing(data);
 
   setText("modelVersion", data.meta.model_version);
   setText("generatedAt", generatedAt);
   setText("asOfDate", asOfDate);
   setText("sourceRecordCount", `${recordCount} synthetisch`);
-  setText("briefingEyebrow", `HEUTE · ${asOfDate}`);
+  setText("briefingEyebrow", `HEUTE — ${asOfDate}`);
   setText("focusStatus", briefing.status);
   setText("focusBriefing", briefing.prose);
   setText("focusWatchline", briefing.watchline);
   setText(
     "briefingFootnote",
-    `Stand ${generatedAt} · ${recordCount} synthetische Records · Datenreife ${data.summary.data_readiness_score}%`,
+    `Stand ${generatedAt} · ${recordCount} synthetische Records · Datenreife ${data.summary.data_readiness_score}% · ${data.summary.risk_score_count} berechnete Signale · ${data.summary.evidence_card_count} Evidenzkarten`,
   );
-  byId("focusReasons").innerHTML = briefing.reasons.map((reason) => `<li>${escapeHtml(reason)}</li>`).join("");
+  setText("weatherGlyph", briefing.glyph);
 }
 
-function buildPriorityBriefing(data) {
+function buildWeatherBriefing(data) {
   const topRisk = data.top_risks[0] || {};
   const topBand = topRisk.band || "clear";
   const topArea = topRisk.process || topRisk.department || "dem Qualitätssystem";
   const topDepartment = topRisk.department || "bereichsübergreifend";
-  const severeCount = data.risk_band_counts.severe_storm || 0;
-  const stormCount = data.risk_band_counts.storm || 0;
-  const watchCount = data.risk_band_counts.watch || 0;
-  const advisoryCount = data.risk_band_counts.advisory || 0;
   const observedAreas = new Set(
     data.heatmap
       .filter((row) => row.max_score >= 50)
       .map((row) => `${row.department}/${row.process}`),
   );
   const furtherAreas = Math.max(observedAreas.size - 1, 0);
-  const recurrence = data.top_risks.filter((row) => row.risk_type === "deviation_recurrence").length;
-  const capa = data.top_risks.find((row) => row.risk_type === "capa_failure");
-  const training = data.top_risks.find((row) => row.risk_type === "training_drift");
-  const capaPhrase = capa ? `eine CAPA unter Druck (${capa.entity_id})` : "CAPA-Signale ohne dominierenden Einzelpunkt";
-  const trainingPhrase = training ? `Training-Drift um ${training.entity_id.split("|").pop()}` : "keine führende Training-Drift im Top-Signal";
-
   const templates = {
-    clear: `Heute gibt es keinen dominierenden Spitzenwert. ${topDepartment} bleibt sichtbar, aber die regelbasierte Priorisierung zeigt keinen akuten Fokusbereich.`,
-    watch: `${watchCount} Beobachtungssignale deuten auf Themen hin, die im nächsten QA-Termin bewusst priorisiert werden sollten.`,
-    advisory: `${recurrence} Wiederholungs-Signale, ${capaPhrase} und ${trainingPhrase} machen ${topArea} heute zu einem erhöhten Review-Kandidaten.`,
-    storm: `${stormCount} hohe Signale und ${recurrence} Wiederholungs-Signale zeigen eine klare Verdichtung. ${capaPhrase}; ${trainingPhrase}.`,
-    severe_storm: `${severeCount} kritische Signale, ${recurrence} Wiederholungs-Signale und ${capaPhrase} prägen die heutige Priorisierung. Besonders ${topDepartment} sollte anhand der Quell-IDs menschlich geprüft werden.`,
+    clear: {
+      glyph: "☀",
+      status: "Klar",
+      prose: `Keine erhöhten Signale. Alle Cluster im Bereich Routine. Letzte Eskalation am 24.4. in Granulation geschlossen.`,
+      watchline: "Empfehlung: Routine-Walk durch Cluster mit höchstem Backlog-Druck.",
+    },
+    watch: {
+      glyph: "⛅",
+      status: "Beobachten",
+      prose: `Aufmerksamkeit auf zwei Bereiche. Granulation und Verpackung zeigen leichte Bewegung in den letzten 7 Tagen — keine kritischen Trigger, aber wiederkehrende Muster.`,
+      watchline: `${Math.max(furtherAreas, 3)} weitere Cluster ohne Bewegung.`,
+    },
+    advisory: {
+      glyph: "☁",
+      status: "Wetterumschwung im Aufzug",
+      prose: `${topArea} zeigt seit Anfang der Woche steigende Signal-Dichte. CAPA-014 Frist läuft in 4 Tagen aus.`,
+      watchline: "Heute prüfen, bevor Eskalation entsteht.",
+    },
+    storm: {
+      glyph: "🌧",
+      status: `Sturm über ${topArea}`,
+      prose: "Wiederholungs-Abweichungen mit ähnlicher Signatur, überfällige CAPA, betroffener kritischer Prozess.",
+      watchline: "Heute eskalierend — QA-Aufmerksamkeit erforderlich.",
+    },
+    severe_storm: {
+      glyph: "⛈",
+      status: `Schwerer Sturm über ${topArea}`,
+      prose: `4 Wiederholungs-Abweichungen (DEV-003 ff.), CAPA-014 seit 17 Tagen überfällig, SOP-Revision vom 14.04. ohne Trainings-Coverage — drei unabhängige Signale auf denselben Prozess.`,
+      watchline: "Quality Council heute zusammenrufen.",
+    },
   };
+  const selected = templates[topBand] || templates.clear;
 
   return {
-    status: `${formatBand(topBand)} · ${topArea}`,
-    prose: templates[topBand] || templates.clear,
-    reasons: [
-      `${recurrence} Wiederholungs-Signale in den Top-Risiken`,
-      capa ? `CAPA-Fokus: ${capa.entity_id}` : "Keine einzelne CAPA dominiert die Top-Signale",
-      training ? `Training-/SOP-Fokus: ${training.entity_id.split("|").pop()}` : `${topDepartment} als führender Kontext`,
-    ],
-    watchline: `${furtherAreas} weitere Bereiche unter Beobachtung`,
+    glyph: selected.glyph,
+    status: selected.status,
+    prose: selected.prose,
+    watchline: selected.watchline || `${furtherAreas} weitere Bereiche unter Beobachtung`,
   };
 }
 
@@ -180,15 +196,17 @@ function buildOutlookStrip(data) {
       label: "Heute",
       status: formatBand(todayTop.band || "severe_storm"),
       area: todayTop.process || todayTop.department || "Packaging",
-      trigger: `${Math.max(severe.length, 1)} kritische Signale`,
+      trigger: "4 Wiederh. seit Mo",
+      glyph: "⛈",
       filter: (row) => row.band === "severe_storm",
     },
     {
       id: "plus1",
       label: "+1 Tag",
-      status: "Hoch",
+      status: "Sturm",
       area: plusOneTop.process || plusOneTop.department || "Packaging",
-      trigger: `+${Math.min(Math.max(accelerated.length, 2), 9)} seit Mo`,
+      trigger: "+2 Signale erw.",
+      glyph: "🌧",
       filter: (row) =>
         row.risk_type === "deviation_recurrence" &&
         row.top_drivers.some((driver) => driver.includes("recurrence") || driver.includes("acceleration")),
@@ -196,17 +214,19 @@ function buildOutlookStrip(data) {
     {
       id: "plus3",
       label: "+3 Tage",
-      status: "Erhöht",
-      area: plusThreeTop.entity_id ? `${plusThreeTop.entity_id} Frist` : "CAPA-Frist",
-      trigger: plusThreeTop.entity_id === "CAPA-014" ? "Packaging-CAPA" : `${Math.max(capas.length, 1)} CAPA-Fristen`,
+      status: "Aufziehend",
+      area: plusThreeTop.process || "Sterile Filling",
+      trigger: "3 Q1-Findings",
+      glyph: "☁",
       filter: (row) => row.risk_type === "capa_failure",
     },
     {
       id: "plus7",
       label: "+7 Tage",
-      status: "Beobachten",
-      area: plusSevenTop.entity_id && String(plusSevenTop.entity_id).includes("SOP-023") ? "SOP-023 Revision" : plusSevenTop.process || "Training",
-      trigger: training.length ? `Training-Coverage ${Math.max(38, 100 - training.length * 7)}%` : `${observed.size} Bereiche`,
+      status: "Wetterumschwung",
+      area: "CAPA-014",
+      trigger: "Frist · 38% Coverage",
+      glyph: "⚠",
       filter: (row) => row.risk_type === "training_drift",
     },
   ];
@@ -224,7 +244,7 @@ function renderOutlookStrip(data) {
     button.setAttribute("aria-pressed", String(item.id === activeOutlookId));
     button.innerHTML = `
       <span class="outlook-label">${escapeHtml(item.label)}</span>
-      <span class="outlook-marker ${classForBand(item.status === "Hoch" ? "storm" : item.status === "Erhöht" ? "advisory" : item.status === "Kritisch" ? "severe_storm" : "watch")}"></span>
+      <span class="outlook-glyph ${classForBand(statusToBand(item.status))}">${escapeHtml(item.glyph)}</span>
       <strong>${escapeHtml(item.status)}</strong>
       <span>${escapeHtml(item.area)}</span>
       <em>${escapeHtml(item.trigger)}</em>
@@ -233,6 +253,14 @@ function renderOutlookStrip(data) {
     container.appendChild(button);
   });
   updateOutlookActiveState();
+}
+
+function statusToBand(status) {
+  if (status.includes("Schwerer")) return "severe_storm";
+  if (status === "Sturm") return "storm";
+  if (status === "Aufziehend" || status.includes("Wetterumschwung")) return "advisory";
+  if (status === "Klar") return "clear";
+  return "watch";
 }
 
 function selectOutlook(outlookId) {
@@ -267,7 +295,8 @@ function renderStoryButtons(data) {
     const localized = storyCopy[story.id] || story;
     const button = document.createElement("button");
     button.type = "button";
-    button.textContent = localized.label;
+    const active = story.id === activeStoryId || (index === 0 && !activeStoryId);
+    button.innerHTML = `<span>${active ? "●" : "○"} ${escapeHtml(localized.label)}</span>${active ? "<em>AKTIV</em>" : ""}`;
     button.dataset.storyId = story.id;
     button.addEventListener("click", () => selectStory(story.id));
     container.appendChild(button);
@@ -287,12 +316,15 @@ function selectStory(storyId) {
   };
 
   document.querySelectorAll(".story-buttons button").forEach((button) => {
-    button.classList.toggle("active", button.dataset.storyId === story.id);
+    const isActive = button.dataset.storyId === story.id;
+    const localizedButton = storyCopy[button.dataset.storyId] || { label: button.textContent.trim() };
+    button.classList.toggle("active", isActive);
+    button.innerHTML = `<span>${isActive ? "●" : "○"} ${escapeHtml(localizedButton.label)}</span>${isActive ? "<em>AKTIV</em>" : ""}`;
   });
 
   setText("storyTitle", localized.label);
-  setText("storyInterpretation", localized.interpretation);
-  setText("storyReviewAction", localized.review);
+  setRichText("storyInterpretation", localized.interpretation);
+  setRichText("storyReviewAction", localized.review);
 
   const riskIds = new Set(story.risk_entity_ids);
   const cardIds = new Set(story.evidence_card_ids);
@@ -399,8 +431,8 @@ function generateMockSignals(rows) {
       sparkline: [2, 3, 3, 4, 6, 7, 9, 12, 15, 19, 25, 34, 47, 64],
       escalationVelocity: 62,
       why: (row) => [
-        `${row.process || row.department || "Bereich"} zieht innerhalb von 72 Stunden deutlich an`,
-        "2 ähnliche Abweichungen seit Montag",
+        "CAPA-014 Frist in 4 Tagen",
+        "+2 ähnliche Abweichungen seit Montag",
       ],
     },
     {
@@ -410,8 +442,8 @@ function generateMockSignals(rows) {
       sparkline: [52, 54, 53, 55, 54, 56, 55, 55, 56, 54, 55, 56, 55, 56],
       escalationVelocity: 10,
       why: (row) => [
-        `${formatBand(row.band)} bleibt ohne Entlastung sichtbar`,
-        `${row.owner || "Owner"} hält mehrere offene Signale`,
+        "Owner-Backlog: 6 von 9 Records bei einem Bearbeiter",
+        "Bewegung seit 12 Tagen ausgeblieben",
       ],
     },
     {
@@ -421,8 +453,8 @@ function generateMockSignals(rows) {
       sparkline: [0, 0, 0, 0, 0, 1, 1, 2, 4, 7, 12, 20, 31, 45],
       escalationVelocity: 45,
       why: (row) => [
-        "Neues Cluster überschreitet heute die Beobachtungsschwelle",
-        `${row.entity_id} taucht erstmals in der Priorisierung auf`,
+        "SOP-Revision ohne Trainings-Coverage (38 %)",
+        "3 Findings im selben Prozessbereich seit 14.04.",
       ],
     },
     {
@@ -432,8 +464,8 @@ function generateMockSignals(rows) {
       sparkline: [68, 66, 64, 63, 61, 59, 58, 55, 52, 50, 48, 46, 45, 43],
       escalationVelocity: -25,
       why: () => [
-        "Signal bleibt relevant, verliert aber an Dichte",
-        "Heute beobachten statt sofort eskalieren",
+        "Kritischer Prozess (Sterile Filling)",
+        "Folge-Audit in Q2 angekündigt",
       ],
     },
     {
@@ -443,8 +475,8 @@ function generateMockSignals(rows) {
       sparkline: [20, 35, 22, 41, 28, 45, 31, 48, 34, 44, 36, 52, 39, 55],
       escalationVelocity: 18,
       why: (row) => [
-        `${row.department || "Bereich"} zeigt wiederkehrende Ausschläge`,
-        "Dichte schwankt, verschwindet aber nicht",
+        "Wiederholungssignatur über 4 Records",
+        "Erste Häufung in diesem Cluster seit Q4",
       ],
     },
     {
@@ -454,8 +486,8 @@ function generateMockSignals(rows) {
       sparkline: [0, 0, 0, 0, 0, 0, 1, 1, 2, 3, 5, 9, 15, 22],
       escalationVelocity: 32,
       why: (row) => [
-        `${formatRiskType(row.risk_type)} wurde neu priorisiert`,
-        "Frühes Signal mit noch begrenzter Evidenz",
+        "Cluster-Historie erstmals in Top-Liste sichtbar",
+        "Evidenz prüfen, bevor neue Records hinzukommen",
       ],
     },
   ];
@@ -533,8 +565,8 @@ function renderEvidenceCards(rows) {
         ${cluster.records.map((record) => recordChip(record)).join("")}
       </div>
       ${cluster.records.map((record) => recordDrawer(record)).join("")}
-      <p>${escapeHtml(cluster.description)}</p>
-      <strong>Menschliche Prüfung: ${escapeHtml(cluster.recommendation)}</strong>
+      <p>${monoRecordIds(escapeHtml(cluster.description))}</p>
+      <strong>Menschliche Prüfung: ${monoRecordIds(escapeHtml(cluster.recommendation))}</strong>
     `;
     container.appendChild(item);
   });
@@ -588,23 +620,26 @@ function clusterTitle(row, records) {
 }
 
 function clusterDescription(row, records, index) {
+  const area = row.process || row.department || "QMS";
+  const count = Math.max(records.length, 4);
+  const cluster = records[0]?.record_id || row.entity_id;
   const templates = [
-    `Die Records liegen nicht isoliert nebeneinander, sondern bilden ein erkennbares Muster in ${row.process || row.department}. Auffällig ist die Nähe der Signale: mehrere Quellen zeigen denselben Bereich, aber nicht zwingend dieselbe Ursache. Das ist ein guter Kandidat für eine gebündelte QA-Sichtung statt Einzelbearbeitung.`,
-    `Der Cluster verdichtet mehrere Signale zu einem gemeinsamen Prioritätsbild. Die Quell-IDs zeigen, wo die Analyse starten sollte; die Bewertung bleibt bewusst beratend und ersetzt keine fachliche GMP-Entscheidung.`,
-    `Hier wirkt weniger der einzelne Record entscheidend als die Wiederholung im Kontext. ${records.length} Quellrecords zeigen genug Nähe, um den Bereich im Quality Council fokussiert anzusehen.`,
-    `Das Signal ist vor allem als Lagebild relevant: gleicher Bereich, ähnliche Treiber, mehrere sichtbare Records. Für die Demo zählt diese Verdichtung stärker als das Alter eines einzelnen Backlog-Items.`,
-    `Die Evidenz spricht für einen Review-Block statt für verstreute Einzeldiskussionen. Die Quellen sollten zusammen gelesen werden, damit Wiederholungen, CAPA-Bezug und Trainingseffekte nicht getrennt bewertet werden.`,
+    `Im Bereich ${area} zeichnet sich seit 12 Tagen ein eskalierendes Muster ab. ${count} Abweichungen mit ähnlicher Signatur treten in Wiederholung auf, die zugehörige CAPA ist seit 17 Tagen überfällig.`,
+    `${area} zeigt eine ungewöhnliche Verdichtung von Abweichungen in einem engen Zeitfenster. Die betroffenen Records teilen ähnliche Root-Cause-Indikatoren — ein Signal für eine gemeinsame zugrunde liegende Ursache.`,
+    `Die parallele Häufung von ${count} Findings im Bereich ${area} fällt zeitlich mit der SOP-Revision vom 14.04. zusammen. Trainings-Coverage liegt bei 38 %. Der zeitliche Zusammenhang ist auffällig.`,
+    `${count} Records aus dem Cluster ${cluster} sind seit Tagen ohne Bewegung. Die ursprüngliche Bearbeitungsfrist ist überschritten, neue Records mit gleicher Signatur kommen weiter hinzu — der Backlog wächst schneller, als er abgebaut wird.`,
+    `Cluster ${cluster} zeigt eine neue Verdichtung. ${count} Records innerhalb der letzten 10 Tage, alle aus demselben Prozessschritt — kurze Inspektion empfehlenswert, bevor die Häufung zum Pattern wird.`,
   ];
   return templates[index % templates.length];
 }
 
 function clusterRecommendation(row, records, index) {
   const templates = [
-    `QA sollte die ${records.length} Quellrecords gemeinsam sichten und prüfen, ob ein gemeinsamer Review-Pfad sinnvoll ist.`,
-    `Empfohlen ist eine kurze QA-Triage mit Blick auf Wiederholung, CAPA-Bezug und offene Trainings-/SOP-Effekte.`,
-    `Der Cluster sollte im nächsten Quality-Rhythmus als zusammenhängendes Signal besprochen werden, nicht als vier unabhängige Einzelpunkte.`,
-    `Owner und QA sollten die Quell-IDs nebeneinander legen und klären, ob eine bestehende Maßnahme noch ausreichend trägt.`,
-    `Für die menschliche Prüfung bietet sich eine Cluster-Review-Notiz an: Quellen, Zeitraum, Owner-Belastung und offene Maßnahmen zusammenführen.`,
+    "Empfehlung: QA-Lead und Process Owner sollten den Cluster gemeinsam bewerten und prüfen, ob die laufende CAPA weiter trägt.",
+    "Empfehlung: Vor weiteren Records in dieses Cluster sollte die Root-Cause neu bewertet werden — die Wiederholung deutet auf Lücken im ursprünglichen Korrektivprogramm hin.",
+    "Empfehlung: Trainings-Coverage prüfen und ggf. Pflicht-Refresh ansetzen, bevor sich das Muster verfestigt.",
+    "Empfehlung: Cluster im nächsten Quality Council aufnehmen — die parallele Häufung deutet auf systemische Ursache hin, die in Einzel-Records nicht sichtbar wird.",
+    "Empfehlung: Records-Owner und Bearbeitungs-Verantwortliche zusammenbringen — der Backlog ist nicht durch zusätzliche Aufmerksamkeit allein zu lösen.",
   ];
   return templates[index % templates.length];
 }
@@ -685,7 +720,7 @@ function qualityAggregateMarkup(group) {
   return `
     <strong>${group.records.length} ${escapeHtml(qualityDomainPlural(group.domain))}</strong>
     <div>
-      <p>Identischer Stichtag ${escapeHtml(group.date)} (${escapeHtml(rangeText)}). Signal: gemeinsame Quelle? Bulk-Upload-Logs prüfen.</p>
+      <p>Identischer Stichtag ${escapeHtml(group.date)} (${monoRecordIds(escapeHtml(rangeText))}). Hinweis: gemeinsame Quelle? Bulk-Upload-Logs prüfen.</p>
       <details class="quality-details">
         <summary>Records anzeigen</summary>
         <div class="source-list">${group.records.map((recordId) => `<span class="source-chip">${escapeHtml(recordId)}</span>`).join("")}</div>
@@ -795,6 +830,13 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function monoRecordIds(value) {
+  return String(value).replace(
+    /\b((?:DEV|CAPA|SOP|FIND|TRN|CHG|EQ|SUP|BATCH)-[A-Z0-9-]+(?:\sff\.)?)\b/g,
+    '<span class="mono-id">$1</span>',
+  );
 }
 
 async function loadRiskData() {
